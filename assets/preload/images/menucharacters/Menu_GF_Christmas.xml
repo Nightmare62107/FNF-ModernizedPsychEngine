@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Menu_GF_Christmas.png">
+	<!-- Created with Adobe Animate version 21.0.1.37179 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="M GF Christmas Idle0000" x="10" y="10" width="778" height="680" frameX="0" frameY="-14" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0001" x="808" y="10" width="778" height="680" frameX="0" frameY="-14" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0002" x="1606" y="10" width="778" height="678" frameX="0" frameY="-16" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0003" x="2404" y="10" width="778" height="678" frameX="0" frameY="-16" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0004" x="3202" y="10" width="778" height="681" frameX="0" frameY="-13" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0005" x="10" y="711" width="778" height="681" frameX="0" frameY="-13" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0006" x="808" y="711" width="778" height="683" frameX="0" frameY="-11" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0007" x="1606" y="711" width="778" height="694"/>
+	<SubTexture name="M GF Christmas Idle0008" x="1606" y="711" width="778" height="694"/>
+	<SubTexture name="M GF Christmas Idle0009" x="1606" y="711" width="778" height="694"/>
+	<SubTexture name="M GF Christmas Idle0010" x="2404" y="711" width="778" height="694"/>
+	<SubTexture name="M GF Christmas Idle0011" x="2404" y="711" width="778" height="694"/>
+	<SubTexture name="M GF Christmas Idle0012" x="2404" y="711" width="778" height="694"/>
+	<SubTexture name="M GF Christmas Idle0013" x="3202" y="711" width="778" height="694"/>
+	<SubTexture name="M GF Christmas Idle0014" x="3202" y="711" width="778" height="694"/>
+	<SubTexture name="M GF Christmas Idle0015" x="10" y="1425" width="778" height="682" frameX="0" frameY="-12" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0016" x="808" y="1425" width="778" height="682" frameX="0" frameY="-12" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0017" x="1606" y="1425" width="778" height="682" frameX="0" frameY="-12" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0018" x="2404" y="1425" width="778" height="682" frameX="0" frameY="-12" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0019" x="3202" y="1425" width="778" height="683" frameX="0" frameY="-11" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0020" x="10" y="2128" width="778" height="683" frameX="0" frameY="-11" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0021" x="808" y="2128" width="778" height="684" frameX="0" frameY="-10" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0022" x="1606" y="2128" width="778" height="689" frameX="0" frameY="-5" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0023" x="1606" y="2128" width="778" height="689" frameX="0" frameY="-5" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0024" x="1606" y="2128" width="778" height="689" frameX="0" frameY="-5" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0025" x="2404" y="2128" width="778" height="688" frameX="0" frameY="-6" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0026" x="2404" y="2128" width="778" height="688" frameX="0" frameY="-6" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0027" x="2404" y="2128" width="778" height="688" frameX="0" frameY="-6" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0028" x="3202" y="2128" width="778" height="688" frameX="0" frameY="-6" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="M GF Christmas Idle0029" x="3202" y="2128" width="778" height="688" frameX="0" frameY="-6" frameWidth="778" frameHeight="694"/>
+</TextureAtlas>

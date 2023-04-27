@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Menu_BF_Christmas.png">
+	<!-- Created with Adobe Animate version 21.0.1.37179 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="M BF Christmas Idle0000" x="10" y="10" width="406" height="395" frameX="-1" frameY="-20" frameWidth="411" frameHeight="416"/>
+	<SubTexture name="M BF Christmas Idle0001" x="10" y="10" width="406" height="395" frameX="-1" frameY="-20" frameWidth="411" frameHeight="416"/>
+	<SubTexture name="M BF Christmas Idle0002" x="436" y="10" width="408" height="397" frameX="0" frameY="-19" frameWidth="411" frameHeight="416"/>
+	<SubTexture name="M BF Christmas Idle0003" x="436" y="10" width="408" height="397" frameX="0" frameY="-19" frameWidth="411" frameHeight="416"/>
+	<SubTexture name="M BF Christmas Idle0004" x="864" y="10" width="405" height="402" frameX="-3" frameY="-14" frameWidth="411" frameHeight="416"/>
+	<SubTexture name="M BF Christmas Idle0005" x="864" y="10" width="405" height="402" frameX="-3" frameY="-14" frameWidth="411" frameHeight="416"/>
+	<SubTexture name="M BF Christmas Idle0006" x="1289" y="10" width="410" height="415" frameX="-1" frameY="-1" frameWidth="411" frameHeight="416"/>
+	<SubTexture name="M BF Christmas Idle0007" x="1289" y="10" width="410" height="415" frameX="-1" frameY="-1" frameWidth="411" frameHeight="416"/>
+	<SubTexture name="M BF Christmas Idle0008" x="10" y="445" width="408" height="416" frameX="-2" frameY="0" frameWidth="411" frameHeight="416"/>
+	<SubTexture name="M BF Christmas Idle0009" x="10" y="445" width="408" height="416" frameX="-2" frameY="0" frameWidth="411" frameHeight="416"/>
+	<SubTexture name="M BF Christmas Idle0010" x="10" y="445" width="408" height="416" frameX="-2" frameY="0" frameWidth="411" frameHeight="416"/>
+	<SubTexture name="M BF Christmas Idle0011" x="10" y="445" width="408" height="416" frameX="-2" frameY="0" frameWidth="411" frameHeight="416"/>
+	<SubTexture name="M BF Christmas Idle0012" x="10" y="445" width="408" height="416" frameX="-2" frameY="0" frameWidth="411" frameHeight="416"/>
+	<SubTexture name="M BF Christmas Idle0013" x="10" y="445" width="408" height="416" frameX="-2" frameY="0" frameWidth="411" frameHeight="416"/>
+	<SubTexture name="M bf christmas HEY0000" x="438" y="445" width="395" height="419" frameX="0" frameY="0" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0001" x="438" y="445" width="395" height="419" frameX="0" frameY="0" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0002" x="853" y="445" width="413" height="413" frameX="-1" frameY="-8" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0003" x="853" y="445" width="413" height="413" frameX="-1" frameY="-8" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0004" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0005" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0006" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0007" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0008" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0009" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0010" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0011" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0012" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0013" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0014" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0015" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0016" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0017" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0018" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0019" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0020" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0021" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0022" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0023" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0024" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+	<SubTexture name="M bf christmas HEY0025" x="1286" y="445" width="414" height="415" frameX="-1" frameY="-6" frameWidth="415" frameHeight="421"/>
+</TextureAtlas>

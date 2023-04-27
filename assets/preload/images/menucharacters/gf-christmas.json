@@ -1,0 +1,11 @@
+{
+	"idle_anim": "M GF Christmas Idle",
+	"image": "Menu_GF_Christmas",
+	"position": [
+		231,
+		156
+	],
+	"flipX": false,
+	"scale": 0.49,
+	"confirm_anim": "M GF Christmas Idle"
+}

@@ -1,0 +1,11 @@
+{
+	"idle_anim": "M BF Christmas Idle",
+	"image": "Menu_BF_Christmas",
+	"position": [
+		55,
+		4
+	],
+	"flipX": false,
+	"scale": 0.8,
+	"confirm_anim": "M bf christmas HEY"
+}
