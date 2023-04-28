@@ -20,7 +20,7 @@ same goes for *Lua Scripts*, comment out or delete the line with `LUA_ALLOWED`, 
 
 ## Modernized Psych Engine Credits:
 * Radioactive/amiibofanboy1 gaming - Programmer
-* Ugh - Artist
+* UGH - Artist
 
 ## Psych Engine Credits:
 * Shadow Mario - Programmer
