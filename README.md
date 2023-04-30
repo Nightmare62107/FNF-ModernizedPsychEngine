@@ -86,6 +86,8 @@ _____________________________________
   * Player And GF On Opponent Side: Player and Girlfriend plays animation if Opponent hits a note
   * Opponent On Player Side: Opponent plays animation if Player hits a note
   * Opponent And GF On Player Side: Opponent and Girlfriend plays animation if Player hits a note
+* You can change certain textures within the editor and save it to your json like the notes and splashes
+* You can have the option to skip the countdown in the editor and save it to your json
 
 ## Multiple editors to assist you in making your own Mod
 ![Screenshot_3](https://user-images.githubusercontent.com/44785097/144629914-1fe55999-2f18-4cc1-bc70-afe616d74ae5.png)
