@@ -25,13 +25,13 @@ import openfl.display.ShaderParameterType;
 class FlxRuntimeShader extends FlxShader
 {
 	#if FLX_DRAW_QUADS
-	// We need to add stuff from FlxGraphicsShader too!
+	//We need to add stuff from FlxGraphicsShader too!
 	#else
 	// Only stuff from openfl.display.Shader is needed
 	#end
-	// These variables got copied from openfl.display.GraphicsShader
-	// and from flixel.graphics.tile.FlxGraphicsShader,
-	// and probably won't change ever.
+	//These variables got copied from openfl.display.GraphicsShader
+	//and from flixel.graphics.tile.FlxGraphicsShader,
+	//and probably won't change ever.
 	static final BASE_VERTEX_HEADER:String = "
 		#pragma version
 
@@ -53,7 +53,8 @@ class FlxRuntimeShader extends FlxShader
 	static final BASE_VERTEX_BODY:String = "
 		openfl_Alphav = openfl_Alpha;
 		openfl_TextureCoordv = openfl_TextureCoord;
-		if (openfl_HasColorTransform) {
+		if (openfl_HasColorTransform)
+		{
 			openfl_ColorMultiplierv = openfl_ColorMultiplier;
 			openfl_ColorOffsetv = openfl_ColorOffset / 255.0;
 		}
@@ -75,7 +76,7 @@ class FlxRuntimeShader extends FlxShader
 	"
 
 	#if FLX_DRAW_QUADS
-	// Add on more stuff!
+	//Add on more stuff!
 	+ "
 		uniform bool hasTransform;
 		uniform bool hasColorTransform;
@@ -114,9 +115,12 @@ class FlxRuntimeShader extends FlxShader
 	#end
 	static final BASE_FRAGMENT_BODY:String = "
 		vec4 color = texture2D(bitmap, openfl_TextureCoordv);
-		if (color.a == 0.0) {
+		if (color.a == 0.0)
+		{
 			gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
-		} else if (openfl_HasColorTransform) {
+		}
+		else if (openfl_HasColorTransform)
+		{
 			color = vec4(color.rgb / color.a, color.a);
 			mat4 colorMultiplier = mat4 (0);
 			colorMultiplier[0][0] = openfl_ColorMultiplierv.x;
@@ -124,12 +128,16 @@ class FlxRuntimeShader extends FlxShader
 			colorMultiplier[2][2] = openfl_ColorMultiplierv.z;
 			colorMultiplier[3][3] = 1.0; // openfl_ColorMultiplierv.w;
 			color = clamp(openfl_ColorOffsetv + (color * colorMultiplier), 0.0, 1.0);
-			if (color.a > 0.0) {
+			if (color.a > 0.0)
+			{
 				gl_FragColor = vec4(color.rgb * color.a * openfl_Alphav, color.a * openfl_Alphav);
-			} else {
+			}
+			else
+			{
 				gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
 			}
-		} else {
+		}else
+		{
 			gl_FragColor = color * openfl_Alphav;
 		}
 	";
@@ -146,7 +154,8 @@ class FlxRuntimeShader extends FlxShader
 	#else
 	static final DEFAULT_FRAGMENT_SOURCE:String = "
 		#pragma header
-		void main(void) {
+		void main(void)
+		{
 			#pragma body
 		}
 	";
@@ -177,7 +186,8 @@ class FlxRuntimeShader extends FlxShader
 	#else
 	static final DEFAULT_VERTEX_SOURCE:String = "
 		#pragma header
-		void main(void) {
+		void main(void)
+		{
 			#pragma body
 		}
 	";
@@ -222,7 +232,8 @@ class FlxRuntimeShader extends FlxShader
 			glVertexSource = s;
 		}
 
-		@:privateAccess {
+		@:privateAccess
+		{
 			// This tells the shader that the glVertexSource/glFragmentSource have been updated.
 			__glSourceDirty = true;
 			// This tells the shader that the shader properties are NOT reflected on this class automatically.
@@ -252,7 +263,8 @@ class FlxRuntimeShader extends FlxShader
 		return result;
 	}
 
-	function buildPrecisionHeaders():String {
+	function buildPrecisionHeaders():String
+	{
 		return "#ifdef GL_ES
 				" + (precisionHint == FULL ? "#ifdef GL_FRAGMENT_PRECISION_HIGH
 					precision highp float;
@@ -300,49 +312,69 @@ class FlxRuntimeShader extends FlxShader
 			
 			var id = vertex + fragment;
 
-			if (__context.__programs.exists(id)) {
-				// Use the existing program if it has been compiled.
+			if (__context.__programs.exists(id))
+			{
+				//Use the existing program if it has been compiled.
 				program = __context.__programs.get(id);
-			} else {
-				// Build the program.
+			}
+			else
+			{
+				//Build the program.
 				program = __context.createProgram(GLSL);
 				program.__glProgram = __createGLProgram(vertex, fragment);
 				__context.__programs.set(id, program);
 			}
 
-			if (program != null) {
+			if (program != null)
+			{
 				glProgram = program.__glProgram;
 
-				// Map attributes for each type.
+				//Map attributes for each type.
 
-				for (input in __inputBitmapData) {
-					if (input.__isUniform) {
+				for (input in __inputBitmapData)
+				{
+					if (input.__isUniform)
+					{
 						input.index = gl.getUniformLocation(glProgram, input.name);
-					} else {
+					}
+					else
+					{
 						input.index = gl.getAttribLocation(glProgram, input.name);
 					}
 				}
 
-				for (parameter in __paramBool) {
-					if (parameter.__isUniform) {
+				for (parameter in __paramBool)
+				{
+					if (parameter.__isUniform)
+					{
 						parameter.index = gl.getUniformLocation(glProgram, parameter.name);
-					} else {
+					}
+					else
+					{
 						parameter.index = gl.getAttribLocation(glProgram, parameter.name);
 					}
 				}
 
-				for (parameter in __paramFloat) {
-					if (parameter.__isUniform) {
+				for (parameter in __paramFloat)
+				{
+					if (parameter.__isUniform)
+					{
 						parameter.index = gl.getUniformLocation(glProgram, parameter.name);
-					} else {
+					}
+					else
+					{
 						parameter.index = gl.getAttribLocation(glProgram, parameter.name);
 					}
 				}
 
-				for (parameter in __paramInt) {
-					if (parameter.__isUniform) {
+				for (parameter in __paramInt)
+				{
+					if (parameter.__isUniform)
+					{
 						parameter.index = gl.getUniformLocation(glProgram, parameter.name);
-					} else {
+					}
+					else
+					{
 						parameter.index = gl.getAttribLocation(glProgram, parameter.name);
 					}
 				}
@@ -351,9 +383,11 @@ class FlxRuntimeShader extends FlxShader
 	}
 
 	private var __fieldList:Array<String> = null;
-	private function thisHasField(name:String) {
-		// Reflect.hasField(this, name) is REALLY expensive so we use a cache.
-		if (__fieldList == null) {
+	private function thisHasField(name:String)
+	{
+		//Reflect.hasField(this, name) is REALLY expensive so we use a cache.
+		if (__fieldList == null)
+		{
 			__fieldList = Reflect.fields(this)
 				.concat(Type.getInstanceFields(Type.getClass(this)));
 		}
@@ -378,23 +412,27 @@ class FlxRuntimeShader extends FlxShader
 		var lastMatch = 0;
 
 		@:privateAccess
-		while (regex.matchSub(source, lastMatch)) {
+		while (regex.matchSub(source, lastMatch))
+		{
 			type = regex.matched(1);
 			name = regex.matched(2);
 
-			if (StringTools.startsWith(name, "gl_")) {
+			if (StringTools.startsWith(name, "gl_"))
+			{
 				continue;
 			}
 
 			var isUniform = (storageType == "uniform");
 
-			if (StringTools.startsWith(type, "sampler")) {
+			if (StringTools.startsWith(type, "sampler"))
+			{
 				var input = new ShaderInput<BitmapData>();
 				input.name = name;
 				input.__isUniform = isUniform;
 				__inputBitmapData.push(input);
 
-				switch (name) {
+				switch (name)
+				{
 					case "openfl_Texture":
 						__texture = input;
 					case "bitmap":
@@ -404,7 +442,9 @@ class FlxRuntimeShader extends FlxShader
 
 				Reflect.setField(__data, name, input);
 				if (__isGenerated && thisHasField(name)) Reflect.setProperty(this, name, input);
-			} else if (!Reflect.hasField(__data, name) || Reflect.field(__data, name) == null) {
+			}
+			else if (!Reflect.hasField(__data, name) || Reflect.field(__data, name) == null)
+			{
 				var parameterType:ShaderParameterType = switch (type)
 				{
 					case "bool": BOOL;
@@ -510,7 +550,10 @@ class FlxRuntimeShader extends FlxShader
 						}
 
 						Reflect.setField(__data, name, parameter);
-						if (__isGenerated && thisHasField(name)) Reflect.setProperty(this, name, parameter);
+						if (__isGenerated && thisHasField(name))
+						{
+							Reflect.setProperty(this, name, parameter);
+						}
 				}
 			}
 

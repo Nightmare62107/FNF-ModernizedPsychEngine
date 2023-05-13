@@ -1,0 +1,11 @@
+{
+	"idle_anim": "GF Dancing Beat",
+	"image": "Menu_GF_Old",
+	"position": [
+		158,
+		142
+	],
+	"flipX": false,
+	"scale": 0.49,
+	"confirm_anim": "GF Dancing Beat"
+}

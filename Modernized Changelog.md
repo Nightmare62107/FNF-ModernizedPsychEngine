@@ -6,7 +6,7 @@ README:
 
 	- With all that out of the way, I hope you enjoy!
 
-BETA 1.0;
+VERSION 1.0;
 
 	NEW THINGS ADDED:
 
@@ -52,7 +52,7 @@ BETA 1.0;
 
 		- Added the leaked Pico Game Over music to Week 3
 
-BETA 2.0;
+VERSION 2.0;
 
 	NEW THINGS ADDED:
 
@@ -82,7 +82,7 @@ BETA 2.0;
 
 		- Added the "Ready Countdown Texture", "Set Countdown Texture" and "Go Countdown Texture" options to the Textures Section of the Charting Menu
 
-BETA 3.0;
+VERSION 3.0;
 
 	NEW THINGS ADDED;
 
@@ -102,6 +102,20 @@ BETA 3.0;
 
 		- Added changing window name when you go into a song (depends on the song name and difficulty)
 
+		- Added Psyka's Dance Title sprites back into the engine
+
+		- Added the weird song from old Psych Engine versions named "Hot Dilf" back into the engine
+
+VERSION 3.5;
+
+	NEW THINGS ADDED:
+
+		- Added a Silhouette Event (makes the BG white and the Characters black to make it look like a silhouette)
+
+		- Added a Shiny mechanic that makes characters and their icons their health bar color, also gives a sparkle effect and a shiny sound (odds are 1 in 4096)
+
+		- Added a screenshot feature (press Control and 6 to screenshot anywhere in the game)
+
 ENGINES USED:
 
 	- "Psych Engine" https://github.com/ShadowMario/FNF-PsychEngine
@@ -115,6 +129,8 @@ ENGINES USED:
 	- "Kade Engine" https://github.com/KadeDev/Kade-Engine
 
 	- "Theoyeah Engine" https://github.com/Theoyeah/Theoyeah-Engine
+
+	- "Psych Engine Android Port" https://github.com/RenTheSylvee/FNF-PsychEngine-Android-Port
 
 MODS USED:
 

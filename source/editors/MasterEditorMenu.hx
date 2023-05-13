@@ -40,7 +40,7 @@ class MasterEditorMenu extends MusicBeatState
 	{
 		FlxG.camera.bgColor = FlxColor.BLACK;
 		#if desktop
-		// Updating Discord Rich Presence
+		//Updating Discord Rich Presence
 		DiscordClient.changePresence("Editors Main Menu", null);
 		#end
 
@@ -77,7 +77,10 @@ class MasterEditorMenu extends MusicBeatState
 		}
 
 		var found:Int = directories.indexOf(Paths.currentModDirectory);
-		if(found > -1) curDirectory = found;
+		if (found > -1)
+		{
+			curDirectory = found;
+		}
 		changeDirectory();
 		#end
 		changeSelection();
@@ -96,7 +99,10 @@ class MasterEditorMenu extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		var shiftMult:Int = 1;
-		if(FlxG.keys.pressed.SHIFT) shiftMult = 1;
+		if (FlxG.keys.pressed.SHIFT)
+		{
+			shiftMult = 1;
+		}
 
 		var upP = controls.UI_UP_P;
 		var downP = controls.UI_DOWN_P;
@@ -131,11 +137,12 @@ class MasterEditorMenu extends MusicBeatState
 		}
 
 		#if MODS_ALLOWED
-		if(controls.UI_LEFT_P)
+		if (controls.UI_LEFT_P)
 		{
 			changeDirectory(-1);
 		}
-		if(controls.UI_RIGHT_P)
+
+		if (controls.UI_RIGHT_P)
 		{
 			changeDirectory(1);
 		}
@@ -160,7 +167,7 @@ class MasterEditorMenu extends MusicBeatState
 					LoadingState.loadAndSwitchState(new DialogueCharacterEditorState(), false);
 				case 'Dialogue Editor':
 					LoadingState.loadAndSwitchState(new DialogueEditorState(), false);
-				case 'Chart Editor'://felt it would be cool maybe
+				case 'Chart Editor': //felt it would be cool maybe
 					LoadingState.loadAndSwitchState(new ChartingState(), false);
 			}
 			FlxG.sound.music.volume = 0;
@@ -176,12 +183,12 @@ class MasterEditorMenu extends MusicBeatState
 			bullShit++;
 
 			item.alpha = 0.6;
-			// item.setGraphicSize(Std.int(item.width * 0.8));
+			//item.setGraphicSize(Std.int(item.width * 0.8));
 
 			if (item.targetY == 0)
 			{
 				item.alpha = 1;
-				// item.setGraphicSize(Std.int(item.width));
+				//item.setGraphicSize(Std.int(item.width));
 			}
 		}
 		super.update(elapsed);
@@ -194,9 +201,14 @@ class MasterEditorMenu extends MusicBeatState
 		curSelected += change;
 
 		if (curSelected < 0)
+		{
 			curSelected = options.length - 1;
+		}
+
 		if (curSelected >= options.length)
+		{
 			curSelected = 0;
+		}
 	}
 
 	#if MODS_ALLOWED
@@ -206,14 +218,21 @@ class MasterEditorMenu extends MusicBeatState
 
 		curDirectory += change;
 
-		if(curDirectory < 0)
+		if (curDirectory < 0)
+		{
 			curDirectory = directories.length - 1;
-		if(curDirectory >= directories.length)
+		}
+
+		if (curDirectory >= directories.length)
+		{
 			curDirectory = 0;
+		}
 	
 		WeekData.setDirectoryFromWeek();
-		if(directories[curDirectory] == null || directories[curDirectory].length < 1)
+		if (directories[curDirectory] == null || directories[curDirectory].length < 1)
+		{
 			directoryTxt.text = '< No Mod Directory Loaded >';
+		}
 		else
 		{
 			Paths.currentModDirectory = directories[curDirectory];

@@ -95,8 +95,9 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		option.displayFormat = '%vX';
 		optionsArray.push(option);
 
-		//var option:GameplayOption = new GameplayOption('Max Misses', 'maxmisses', 'string', 'infinite', ["infinite", "10"]);
-		//optionsArray.push(option);
+		//Unused Max Misses testing
+		/*var option:GameplayOption = new GameplayOption('Max Misses', 'maxmisses', 'string', 'infinite', ["infinite", "10"]);
+		optionsArray.push(option);*/
 
 		var option:GameplayOption = new GameplayOption('Instakill on Miss', 'instakill', 'bool', false);
 		optionsArray.push(option);

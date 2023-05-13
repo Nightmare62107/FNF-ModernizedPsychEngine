@@ -33,7 +33,8 @@ import Discord;
 
 using StringTools;
 
-class EditorLua {
+class EditorLua
+{
 	public static var Function_Stop = 1;
 	public static var Function_Continue = 0;
 
@@ -62,7 +63,7 @@ class EditorLua {
 		}
 		trace('Lua file loaded succesfully:' + script);
 
-		// Lua variables
+		//Lua variables
 		set('Function_Stop', Function_Stop);
 		set('Function_Continue', Function_Continue);
 		set('inChartEditor', true);
@@ -93,7 +94,7 @@ class EditorLua {
 		Lua_helper.add_callback(lua, "getProperty", function(variable:String)
 		{
 			var killMe:Array<String> = variable.split('.');
-			if(killMe.length > 1)
+			if (killMe.length > 1)
 			{
 				var coverMeInPiss:Dynamic = Reflect.getProperty(EditorPlayState.instance, killMe[0]);
 
@@ -108,7 +109,7 @@ class EditorLua {
 		Lua_helper.add_callback(lua, "setProperty", function(variable:String, value:Dynamic)
 		{
 			var killMe:Array<String> = variable.split('.');
-			if(killMe.length > 1)
+			if (killMe.length > 1)
 			{
 				var coverMeInPiss:Dynamic = Reflect.getProperty(EditorPlayState.instance, killMe[0]);
 
@@ -122,15 +123,15 @@ class EditorLua {
 		});
 		Lua_helper.add_callback(lua, "getPropertyFromGroup", function(obj:String, index:Int, variable:Dynamic)
 		{
-			if(Std.isOfType(Reflect.getProperty(EditorPlayState.instance, obj), FlxTypedGroup))
+			if (Std.isOfType(Reflect.getProperty(EditorPlayState.instance, obj), FlxTypedGroup))
 			{
 				return Reflect.getProperty(Reflect.getProperty(EditorPlayState.instance, obj).members[index], variable);
 			}
 
 			var leArray:Dynamic = Reflect.getProperty(EditorPlayState.instance, obj)[index];
-			if(leArray != null)
+			if (leArray != null)
 			{
-				if(Type.typeof(variable) == ValueType.TInt)
+				if (Type.typeof(variable) == ValueType.TInt)
 				{
 					return leArray[variable];
 				}
@@ -140,15 +141,15 @@ class EditorLua {
 		});
 		Lua_helper.add_callback(lua, "setPropertyFromGroup", function(obj:String, index:Int, variable:Dynamic, value:Dynamic)
 		{
-			if(Std.isOfType(Reflect.getProperty(EditorPlayState.instance, obj), FlxTypedGroup))
+			if (Std.isOfType(Reflect.getProperty(EditorPlayState.instance, obj), FlxTypedGroup))
 			{
 				return Reflect.setProperty(Reflect.getProperty(EditorPlayState.instance, obj).members[index], variable, value);
 			}
 
 			var leArray:Dynamic = Reflect.getProperty(EditorPlayState.instance, obj)[index];
-			if(leArray != null)
+			if (leArray != null)
 			{
-				if(Type.typeof(variable) == ValueType.TInt)
+				if (Type.typeof(variable) == ValueType.TInt)
 				{
 					return leArray[variable] = value;
 				}
@@ -157,14 +158,18 @@ class EditorLua {
 		});
 		Lua_helper.add_callback(lua, "removeFromGroup", function(obj:String, index:Int, dontDestroy:Bool = false)
 		{
-			if(Std.isOfType(Reflect.getProperty(EditorPlayState.instance, obj), FlxTypedGroup))
+			if (Std.isOfType(Reflect.getProperty(EditorPlayState.instance, obj), FlxTypedGroup))
 			{
 				var sex = Reflect.getProperty(EditorPlayState.instance, obj).members[index];
-				if(!dontDestroy)
+				if (!dontDestroy)
+				{
 					sex.kill();
+				}
 				Reflect.getProperty(EditorPlayState.instance, obj).remove(sex, true);
 				if(!dontDestroy)
+				{
 					sex.destroy();
+				}
 				return;
 			}
 			Reflect.getProperty(EditorPlayState.instance, obj).remove(Reflect.getProperty(EditorPlayState.instance, obj)[index]);
@@ -172,14 +177,17 @@ class EditorLua {
 
 		Lua_helper.add_callback(lua, "getColorFromHex", function(color:String)
 		{
-			if(!color.startsWith('0x')) color = '0xff' + color;
+			if (!color.startsWith('0x'))
+			{
+				color = '0xff' + color;
+			}
 			return Std.parseInt(color);
 		});
 
 		Lua_helper.add_callback(lua, "setGraphicSize", function(obj:String, x:Int, y:Int = 0)
 		{
 			var poop:FlxSprite = Reflect.getProperty(EditorPlayState.instance, obj);
-			if(poop != null)
+			if (poop != null)
 			{
 				poop.setGraphicSize(x, y);
 				poop.updateHitbox();
@@ -189,7 +197,7 @@ class EditorLua {
 		Lua_helper.add_callback(lua, "scaleObject", function(obj:String, x:Float, y:Float)
 		{
 			var poop:FlxSprite = Reflect.getProperty(EditorPlayState.instance, obj);
-			if(poop != null)
+			if (poop != null)
 			{
 				poop.scale.set(x, y);
 				poop.updateHitbox();
@@ -199,7 +207,7 @@ class EditorLua {
 		Lua_helper.add_callback(lua, "updateHitbox", function(obj:String)
 		{
 			var poop:FlxSprite = Reflect.getProperty(EditorPlayState.instance, obj);
-			if(poop != null)
+			if (poop != null)
 			{
 				poop.updateHitbox();
 				return;
@@ -217,7 +225,7 @@ class EditorLua {
 	public function call(event:String, args:Array<Dynamic>):Dynamic
 	{
 		#if LUA_ALLOWED
-		if(lua == null)
+		if (lua == null)
 		{
 			return Function_Continue;
 		}
@@ -235,11 +243,11 @@ class EditorLua {
 			/*var resultStr:String = Lua.tostring(lua, result);
 			var error:String = Lua.tostring(lua, -1);
 			Lua.pop(lua, 1);*/
-			if(Lua.type(lua, -1) == Lua.LUA_TSTRING)
+			if (Lua.type(lua, -1) == Lua.LUA_TSTRING)
 			{
 				var error:String = Lua.tostring(lua, -1);
 				Lua.pop(lua, 1);
-				if(error == 'attempt to call a nil value') //Makes it ignore warnings and not break stuff if you didn't put the functions on your lua file
+				if (error == 'attempt to call a nil value') //Makes it ignore warnings and not break stuff if you didn't put the functions on your lua file
 				{
 					return Function_Continue;
 				}
@@ -255,7 +263,7 @@ class EditorLua {
 	#if LUA_ALLOWED
 	function resultIsAllowed(leLua:State, leResult:Null<Int>) //Makes it ignore warnings
 	{
-		switch(Lua.type(leLua, leResult))
+		switch (Lua.type(leLua, leResult))
 		{
 			case Lua.LUA_TNIL | Lua.LUA_TBOOLEAN | Lua.LUA_TNUMBER | Lua.LUA_TSTRING | Lua.LUA_TTABLE:
 				return true;
@@ -285,12 +293,12 @@ class EditorLua {
 		result = Convert.fromLua(lua, -1);
 		Lua.pop(lua, 1);
 
-		if(result == null)
+		if (result == null)
 		{
 			return false;
 		}
 
-		// YES! FINALLY IT WORKS
+		//YES! FINALLY IT WORKS
 		//trace('variable: ' + variable + ', ' + result);
 		return (result == 'true');
 	}
@@ -299,7 +307,7 @@ class EditorLua {
 	public function stop()
 	{
 		#if LUA_ALLOWED
-		if(lua == null)
+		if (lua == null)
 		{
 			return;
 		}

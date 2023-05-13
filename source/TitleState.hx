@@ -129,7 +129,7 @@ class TitleState extends MusicBeatState
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
-		// DEBUG BULLSHIT
+		//DEBUG BULLSHIT
 
 		swagShader = new ColorSwap();
 		super.create();
@@ -649,6 +649,68 @@ class TitleState extends MusicBeatState
 		super.update(elapsed);
 	}
 
+	function shinyChance()
+	{
+		var shinyChanceGF:Int = FlxG.random.int(1, 4096);
+		
+		if (shinyChanceGF == 2048)
+		{
+			var easteregg:String = FlxG.save.data.psychDevsEasterEgg;
+			if (easteregg == null)
+			{
+				easteregg = '';
+			}
+			easteregg = easteregg.toUpperCase();
+
+			FlxG.sound.play(Paths.sound('ShinySFX'));
+			switch (easteregg)
+			{
+				case 'RIVER':
+					gfDance.color = FlxColor.fromRGB(216, 29, 148);
+				case 'SHUBS':
+					gfDance.color = FlxColor.fromRGB(39, 154, 220);
+				case 'SHADOW':
+					gfDance.color = FlxColor.fromRGB(63, 63, 63);
+				case 'BBPANZU':
+					gfDance.color = FlxColor.fromRGB(29, 146, 59);
+				case 'PSYKA':
+					gfDance.color = FlxColor.fromRGB(192, 66, 236);
+				default:
+					gfDance.color = FlxColor.fromRGB(165, 0, 97);
+			}
+
+			var sparkGF:FlxSprite = new FlxSprite();
+			sparkGF.frames = Paths.getSparrowAtlas('shinySparkles');
+			switch (easteregg)
+			{
+				case 'RIVER':
+					sparkGF.x = gfDance.x + 350;
+				case 'SHUBS':
+					sparkGF.x = gfDance.x + 200;
+				case 'SHADOW':
+					sparkGF.x = gfDance.x + 150;
+				case 'BBPANZU':
+					sparkGF.x = gfDance.x + 350;
+				case 'PSYKA':
+					sparkGF.x = gfDance.x + 350;
+				default:
+					sparkGF.x = gfDance.x + 350;
+			}
+			sparkGF.y = gfDance.y + 300;
+			sparkGF.antialiasing = false;
+			sparkGF.scale.set(9, 9);
+			add(sparkGF);
+
+			sparkGF.animation.addByPrefix('idle', 'Shiny', 24, false);
+			sparkGF.animation.play('idle', true);
+
+			new FlxTimer().start(0.8, function(tmr:FlxTimer)
+			{
+				sparkGF.alpha = 0;
+			});
+		}
+	}
+
 	function createCoolText(textArray:Array<String>, ?offset:Float = 0)
 	{
 		for (i in 0...textArray.length)
@@ -785,6 +847,7 @@ class TitleState extends MusicBeatState
 	var increaseVolume:Bool = false;
 	function skipIntro():Void
 	{
+		shinyChance();
 		if (!skippedIntro)
 		{
 			if (playJingle) //Ignore deez

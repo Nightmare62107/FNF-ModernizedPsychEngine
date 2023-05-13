@@ -197,7 +197,10 @@ class NativeAudioSource
 	{
 		playing = false;
 
-		if (handle == null) return;
+		if (handle == null)
+		{
+			return;
+		}
 		AL.sourcePause(handle);
 
 		if (streamTimer != null)
@@ -303,10 +306,10 @@ class NativeAudioSource
 
 			AL.sourceQueueBuffers(handle, numBuffers, buffers);
 
-			// OpenAL can unexpectedly stop playback if the buffers run out
-			// of data, which typically happens if an operation (such as
-			// resizing a window) freezes the main thread.
-			// If AL is supposed to be playing but isn't, restart it here.
+			//OpenAL can unexpectedly stop playback if the buffers run out
+			//of data, which typically happens if an operation (such as
+			//resizing a window) freezes the main thread.
+			//If AL is supposed to be playing but isn't, restart it here.
 			if (playing && handle != null && AL.getSourcei(handle, AL.SOURCE_STATE) == AL.STOPPED)
 			{
 				AL.sourcePlay(handle);
@@ -362,7 +365,7 @@ class NativeAudioSource
 		parent.onComplete.dispatch();
 	}
 
-	// Get & Set Methods
+	//Get & Set Methods
 	public function getCurrentTime():Int
 	{
 		if (completed)
@@ -385,7 +388,7 @@ class NativeAudioSource
 
 				var time = Std.int(totalSeconds * ratio * 1000) - parent.offset;
 
-				// var time = Std.int (AL.getSourcef (handle, AL.SEC_OFFSET) * 1000) - parent.offset;
+				//var time = Std.int (AL.getSourcef (handle, AL.SEC_OFFSET) * 1000) - parent.offset;
 				if (time < 0) return 0;
 				return time;
 			}
@@ -396,11 +399,11 @@ class NativeAudioSource
 
 	public function setCurrentTime(value:Int):Int
 	{
-		// `setCurrentTime()` has side effects and is never safe to skip.
-		/* if (value == getCurrentTime())
+		//`setCurrentTime()` has side effects and is never safe to skip.
+		/*if (value == getCurrentTime())
 		{
 			return value;
-		} */
+		}*/
 
 		if (handle != null)
 		{
@@ -412,19 +415,32 @@ class NativeAudioSource
 				AL.sourceUnqueueBuffers(handle, STREAM_NUM_BUFFERS);
 				refillBuffers(buffers);
 
-				if (playing) AL.sourcePlay(handle);
+				if (playing)
+				{
+					AL.sourcePlay(handle);
+				}
 			}
 			else if (parent.buffer != null)
 			{
 				AL.sourceRewind(handle);
-				if (playing) AL.sourcePlay(handle);
-				// AL.sourcef (handle, AL.SEC_OFFSET, (value + parent.offset) / 1000);
+				if (playing)
+				{
+					AL.sourcePlay(handle);
+				}
+				//AL.sourcef (handle, AL.SEC_OFFSET, (value + parent.offset) / 1000);
 
 				var secondOffset = (value + parent.offset) / 1000;
 				var totalSeconds = samples / parent.buffer.sampleRate;
 
-				if (secondOffset < 0) secondOffset = 0;
-				if (secondOffset > totalSeconds) secondOffset = totalSeconds;
+				if (secondOffset < 0)
+				{
+					secondOffset = 0;
+				}
+
+				if (secondOffset > totalSeconds)
+				{
+					secondOffset = totalSeconds;
+				}
 
 				var ratio = (secondOffset / totalSeconds);
 				var totalOffset = Std.int(dataLength * ratio);

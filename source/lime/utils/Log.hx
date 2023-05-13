@@ -37,20 +37,15 @@ class Log
 			if (throwErrors)
 			{
 				#if !macro
-                                if (!FileSystem.exists(SUtil.getPath() + 'logs'))
+                if (!FileSystem.exists(SUtil.getPath() + 'logs'))
+				{
 					FileSystem.createDirectory(SUtil.getPath() + 'logs');
+				}
 
-				File.saveContent(SUtil.getPath()
-					+ 'logs/'
-					+ Lib.application.meta.get('file')
-					+ '-'
-					+ Date.now().toString().replace(' ', '-').replace(':', "'")
-					+ '.log',
-					message
-					+ '\n');
+				File.saveContent(SUtil.getPath() + 'logs/' + Lib.application.meta.get('file') + '-' + Date.now().toString().replace(' ', '-').replace(':', "'") + '.log', message + '\n');
 				#end
 
-                                Lib.application.window.alert(message, 'Error!');
+                Lib.application.window.alert(message, 'Error!');
 				throw message;
 			}
 			else

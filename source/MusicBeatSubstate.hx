@@ -91,7 +91,6 @@ class MusicBeatSubstate extends FlxSubState
 			stepHit();
 		}
 
-
 		super.update(elapsed);
 	}
 

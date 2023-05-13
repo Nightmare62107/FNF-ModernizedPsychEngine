@@ -14,6 +14,8 @@ import flixel.util.FlxGradient;
 import flixel.FlxState;
 import flixel.FlxCamera;
 import flixel.FlxBasic;
+import lime.graphics.Image;
+import lime.math.Rectangle;
 
 #if android
 import flixel.input.actions.FlxActionInput;
@@ -80,11 +82,11 @@ class MusicBeatState extends FlxUIState
 			case HITBOX:
 				if(ClientPrefs.hitboxmode != 'New')
 				{
-				controls.setHitBox(androidc.hbox);
+					controls.setHitBox(androidc.hbox);
 				}
 				else
 				{
-				controls.setNewHitBox(androidc.newhbox);
+					controls.setNewHitBox(androidc.newhbox);
 				}
 			default:
 		}
@@ -138,6 +140,22 @@ class MusicBeatState extends FlxUIState
 
 	override function update(elapsed:Float)
 	{
+		if (FlxG.keys.pressed.CONTROL && FlxG.keys.justPressed.SIX)
+		{
+			var fd:lime.ui.FileDialog = new lime.ui.FileDialog();
+			fd.onSelect.add(function (str:String)
+			{
+				sys.io.File.saveBytes(str, lime.app.Application.current.window.readPixels(new lime.math.Rectangle(0, 0, FlxG.width, FlxG.height)).encode());
+			});
+			fd.browse(lime.ui.FileDialogType.SAVE, "png", lime.system.System.documentsDirectory);
+		}
+
+		//This is a version without the file dialog (goes unused)
+		/*if (FlxG.keys.pressed.CONTROL && FlxG.keys.justPressed.SIX)
+		{
+			sys.io.File.saveBytes("screen.png", lime.app.Application.current.window.readPixels(new lime.math.Rectangle(0, 0, FlxG.width, FlxG.height)).encode());
+		}*/
+
 		//everyStep();
 		var oldStep:Int = curStep;
 

@@ -243,7 +243,9 @@ class FlxSound extends FlxBasic
 		autoDestroy = false;
 
 		if (_transform == null)
+		{
 			_transform = new SoundTransform();
+		}
 		_transform.pan = 0;
 	}
 
@@ -280,7 +282,9 @@ class FlxSound extends FlxBasic
 	override public function update(elapsed:Float):Void
 	{
 		if (!playing)
+		{
 			return;
+		}
 
 		_time = _channel.position;
 
@@ -318,7 +322,9 @@ class FlxSound extends FlxBasic
 		}
 
 		if (endTime != null && _time >= endTime)
+		{
 			stopped();
+		}
 	}
 
 	override public function kill():Void
@@ -340,7 +346,9 @@ class FlxSound extends FlxBasic
 	public function loadEmbedded(EmbeddedSound:FlxSoundAsset, Looped:Bool = false, AutoDestroy:Bool = false, ?OnComplete:Void->Void):FlxSound
 	{
 		if (EmbeddedSound == null)
+		{
 			return this;
+		}
 
 		cleanup(true);
 
@@ -355,12 +363,16 @@ class FlxSound extends FlxBasic
 		else if ((EmbeddedSound is String))
 		{
 			if (Assets.exists(EmbeddedSound, AssetType.SOUND) || Assets.exists(EmbeddedSound, AssetType.MUSIC))
+			{
 				_sound = Assets.getSound(EmbeddedSound);
+			}
 			else
+			{
 				FlxG.log.error('Could not find a Sound asset with an ID of \'$EmbeddedSound\'.');
+			}
 		}
 
-		// NOTE: can't pull ID3 info from embedded sound currently
+		//NOTE: can't pull ID3 info from embedded sound currently
 		return init(Looped, AutoDestroy, OnComplete);
 	}
 
@@ -385,15 +397,17 @@ class FlxSound extends FlxBasic
 		loadCallback = function(e:Event)
 		{
 			(e.target : IEventDispatcher).removeEventListener(e.type, loadCallback);
-			// Check if the sound was destroyed before calling. Weak ref doesn't guarantee GC.
+			//Check if the sound was destroyed before calling. Weak ref doesn't guarantee GC.
 			if (_sound == e.target)
 			{
 				_length = _sound.length;
 				if (OnLoad != null)
+				{
 					OnLoad();
+				}
 			}
 		}
-		// Use a weak reference so this can be garbage collected if destroyed before loading.
+		//Use a weak reference so this can be garbage collected if destroyed before loading.
 		_sound.addEventListener(Event.COMPLETE, loadCallback, false, 0, true);
 		_sound.load(new URLRequest(SoundURL));
 
@@ -469,17 +483,27 @@ class FlxSound extends FlxBasic
 	public function play(ForceRestart:Bool = false, StartTime:Float = 0.0, ?EndTime:Float):FlxSound
 	{
 		if (!exists)
+		{
 			return this;
+		}
 
 		if (ForceRestart)
+		{
 			cleanup(false, true);
-		else if (playing) // Already playing sound
+		}
+		else if (playing) //Already playing sound
+		{
 			return this;
+		}
 
 		if (_paused)
+		{
 			resume();
+		}
 		else
+		{
 			startSound(StartTime);
+		}
 
 		endTime = EndTime;
 		return this;
@@ -491,7 +515,9 @@ class FlxSound extends FlxBasic
 	public function resume():FlxSound
 	{
 		if (_paused)
+		{
 			startSound(_time);
+		}
 		return this;
 	}
 
@@ -501,7 +527,9 @@ class FlxSound extends FlxBasic
 	public function pause():FlxSound
 	{
 		if (!playing)
+		{
 			return this;
+		}
 
 		_time = _channel.position;
 		_paused = true;
@@ -527,7 +555,9 @@ class FlxSound extends FlxBasic
 	public inline function fadeOut(Duration:Float = 1, ?To:Float = 0, ?onComplete:FlxTween->Void):FlxSound
 	{
 		if (fadeTween != null)
+		{
 			fadeTween.cancel();
+		}
 		fadeTween = FlxTween.num(volume, To, Duration, {onComplete: onComplete}, volumeTween);
 
 		return this;
@@ -543,10 +573,14 @@ class FlxSound extends FlxBasic
 	public inline function fadeIn(Duration:Float = 1, From:Float = 0, To:Float = 1, ?onComplete:FlxTween->Void):FlxSound
 	{
 		if (!playing)
+		{
 			play();
+		}
 
 		if (fadeTween != null)
+		{
 			fadeTween.cancel();
+		}
 
 		fadeTween = FlxTween.num(From, To, Duration, {onComplete: onComplete}, volumeTween);
 		return this;
@@ -586,8 +620,7 @@ class FlxSound extends FlxBasic
 	@:allow(flixel.system.FlxSoundGroup)
 	function updateTransform():Void
 	{
-		_transform.volume = #if FLX_SOUND_SYSTEM (FlxG.sound.muted ? 0 : 1) * FlxG.sound.volume * #end
-			(group != null ? group.volume : 1) * _volume * _volumeAdjust;
+		_transform.volume = #if FLX_SOUND_SYSTEM (FlxG.sound.muted ? 0 : 1) * FlxG.sound.volume * #end (group != null ? group.volume : 1) * _volume * _volumeAdjust;
 
 		if (_channel != null)
 		{
@@ -599,7 +632,7 @@ class FlxSound extends FlxBasic
 				#if cpp
 				@:privateAccess
 				this._channel.__source.__backend.setPitch(_pitch);
-				// trace('changing $name pitch new $_pitch');
+				//trace('changing $name pitch new $_pitch');
 				#end
 			}
 		}
@@ -612,7 +645,9 @@ class FlxSound extends FlxBasic
 	function startSound(StartTime:Float):Void
 	{
 		if (_sound == null)
+		{
 			return;
+		}
 
 		_time = StartTime;
 		_paused = false;
@@ -639,7 +674,9 @@ class FlxSound extends FlxBasic
 	function stopped(?_):Void
 	{
 		if (onComplete != null)
+		{
 			onComplete();
+		}
 
 		if (looped)
 		{
@@ -698,7 +735,9 @@ class FlxSound extends FlxBasic
 	function onFocus():Void
 	{
 		if (!_alreadyPaused)
+		{
 			resume();
+		}
 	}
 
 	@:allow(flixel.system.frontEnds.SoundFrontEnd)
@@ -719,10 +758,14 @@ class FlxSound extends FlxBasic
 			this.group = group;
 
 			if (oldGroup != null)
+			{
 				oldGroup.remove(this);
+			}
 
 			if (group != null)
+			{
 				group.add(this);
+			}
 
 			updateTransform();
 		}

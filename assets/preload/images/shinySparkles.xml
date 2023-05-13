@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="shinySparkles.png">
+	<!-- Created with Adobe Animate version 22.0.0.93 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Shiny0000" x="0" y="0" width="48" height="48"/>
+	<SubTexture name="Shiny0001" x="53" y="0" width="48" height="48"/>
+	<SubTexture name="Shiny0002" x="106" y="0" width="48" height="48"/>
+	<SubTexture name="Shiny0003" x="159" y="0" width="48" height="48"/>
+	<SubTexture name="Shiny0004" x="212" y="0" width="48" height="48"/>
+	<SubTexture name="Shiny0005" x="265" y="0" width="48" height="48"/>
+	<SubTexture name="Shiny0006" x="318" y="0" width="48" height="48"/>
+	<SubTexture name="Shiny0007" x="371" y="0" width="48" height="48"/>
+	<SubTexture name="Shiny0008" x="371" y="0" width="48" height="48"/>
+	<SubTexture name="Shiny0009" x="424" y="0" width="48" height="48"/>
+	<SubTexture name="Shiny0010" x="0" y="53" width="48" height="48"/>
+	<SubTexture name="Shiny0011" x="53" y="53" width="48" height="48"/>
+	<SubTexture name="Shiny0012" x="106" y="53" width="48" height="48"/>
+	<SubTexture name="Shiny0013" x="159" y="53" width="48" height="48"/>
+	<SubTexture name="Shiny0014" x="212" y="53" width="48" height="48"/>
+	<SubTexture name="Shiny0015" x="265" y="53" width="48" height="48"/>
+	<SubTexture name="Shiny0016" x="318" y="53" width="48" height="48"/>
+	<SubTexture name="Shiny0017" x="371" y="53" width="48" height="48"/>
+	<SubTexture name="Shiny0018" x="424" y="53" width="48" height="48"/>
+	<SubTexture name="Shiny0019" x="0" y="106" width="48" height="48"/>
+	<SubTexture name="Shiny0020" x="53" y="106" width="48" height="48"/>
+	<SubTexture name="Shiny0021" x="106" y="106" width="48" height="48"/>
+	<SubTexture name="Shiny0022" x="159" y="106" width="48" height="48"/>
+</TextureAtlas>
