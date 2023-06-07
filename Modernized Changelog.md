@@ -124,7 +124,7 @@ VERSION 4.0;
 
 		- Fixed the "Pause Screen RNG" Achievement not working
 
-		- Added the "hurt" animation to "bf-christmas"
+		- Added the "hurt" and "scared" animations to "bf-christmas"
 
 		- Added the "Arrow Spin" Event (spins the arrows left or right like how it does in VS Sonic.exe, in the song "Endless")
 
