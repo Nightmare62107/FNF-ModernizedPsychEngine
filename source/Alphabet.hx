@@ -51,7 +51,7 @@ class Alphabet extends FlxSpriteGroup
 
 	public function setAlignmentFromString(align:String)
 	{
-		switch(align.toLowerCase().trim())
+		switch (align.toLowerCase().trim())
 		{
 			case 'right':
 				alignment = RIGHT;
@@ -171,6 +171,7 @@ class Alphabet extends FlxSpriteGroup
 			{
 				x = FlxMath.lerp(x, (targetY * distancePerItem.x) + startPosition.x, lerpVal);
 			}
+
 			if (changeY)
 			{
 				y = FlxMath.lerp(y, (targetY * 1.3 * distancePerItem.y) + startPosition.y, lerpVal);
@@ -187,6 +188,7 @@ class Alphabet extends FlxSpriteGroup
 			{
 				x = (targetY * distancePerItem.x) + startPosition.x;
 			}
+			
 			if (changeY)
 			{
 				y = (targetY * 1.3 * distancePerItem.y) + startPosition.y;
@@ -266,7 +268,6 @@ class Alphabet extends FlxSpriteGroup
 	}
 }
 
-
 /////////////////////////////////////////
 //ALPHABET LETTERS, SYMBOLS AND NUMBERS//
 /////////////////////////////////////////
@@ -317,7 +318,7 @@ class AlphaCharacter extends FlxSprite
 		'\'' => {anim: 'apostrophe', offsets: [0, 32]},
 		'"'  => {anim: 'quote', offsets: [0, 32], offsetsBold: [0, 0]},
 		'!'  => {anim: 'exclamation', offsetsBold: [0, 10]},
-		'?'  => {anim: 'question', offsetsBold: [0, 4]},			//also used for "unknown"
+		'?'  => {anim: 'question', offsetsBold: [0, 4]}, //also used for "unknown"
 		'.'  => {anim: 'period', offsetsBold: [0, -44]},
 		'❝'  => {anim: 'start quote', offsets: [0, 24], offsetsBold: [0, -5]},
 		'❞'  => {anim: 'end quote', offsets: [0, 24], offsetsBold: [0, -5]},
@@ -416,7 +417,7 @@ class AlphaCharacter extends FlxSprite
 		updateLetterOffset();
 	}
 
-	public static function isTypeAlphabet(c:String) // thanks kade
+	public static function isTypeAlphabet(c:String) //thanks kade
 	{
 		var ascii = StringTools.fastCodeAt(c, 0);
 		return (ascii >= 65 && ascii <= 90) || (ascii >= 97 && ascii <= 122);

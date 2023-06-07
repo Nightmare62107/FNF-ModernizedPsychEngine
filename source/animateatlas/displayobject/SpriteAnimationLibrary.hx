@@ -15,9 +15,9 @@ import animateatlas.HelperEnums.SymbolType;
 import openfl.errors.ArgumentError;
 
 /**
- * Performance will be REALLY BAD.
- * Consider using TileAnimationLibrary whenever possible.
- */
+* Performance will be REALLY BAD.
+* Consider using TileAnimationLibrary whenever possible.
+*/
 class SpriteAnimationLibrary
 {
 	public var frameRate:Float;
@@ -87,7 +87,7 @@ class SpriteAnimationLibrary
 			}
 		}
 
-		// but... why?
+		//but... why?
 		out.sort(function(a1, a2):Int
 		{
 			a1 = a1.toLowerCase();
@@ -157,8 +157,8 @@ class SpriteAnimationLibrary
 		return pool;
 	}
 
-	// # end region
-	// # region helpers
+	//# end region
+	//# region helpers
 	private function parseAnimationData(data:AnimationData):Void
 	{
 		var metaData = data.metadata;

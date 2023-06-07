@@ -16,7 +16,6 @@ class Highscore
 	public static var songRating:Map<String, Float> = new Map<String, Float>();
 	#end
 
-
 	public static function resetSong(song:String, diff:Int = 0):Void
 	{
 		var daSong:String = formatSong(song, diff);
@@ -89,8 +88,8 @@ class Highscore
 	}
 
 	/**
-	 * YOU SHOULD FORMAT SONG WITH formatSong() BEFORE TOSSING IN SONG VARIABLE
-	 */
+	* YOU SHOULD FORMAT SONG WITH formatSong() BEFORE TOSSING IN SONG VARIABLE
+	*/
 	static function setScore(song:String, score:Int):Void
 	{
 		//Reminder that I don't need to format this song, it should come formatted!
@@ -98,6 +97,7 @@ class Highscore
 		FlxG.save.data.songScores = songScores;
 		FlxG.save.flush();
 	}
+	
 	static function setWeekScore(week:String, score:Int):Void
 	{
 		//Reminder that I don't need to format this song, it should come formatted!
@@ -158,10 +158,12 @@ class Highscore
 		{
 			weekScores = FlxG.save.data.weekScores;
 		}
+
 		if (FlxG.save.data.songScores != null)
 		{
 			songScores = FlxG.save.data.songScores;
 		}
+		
 		if (FlxG.save.data.songRating != null)
 		{
 			songRating = FlxG.save.data.songRating;

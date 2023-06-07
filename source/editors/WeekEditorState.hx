@@ -50,8 +50,14 @@ class WeekEditorState extends MusicBeatState
 	{
 		super();
 		this.weekFile = WeekData.createWeekFile();
-		if(weekFile != null) this.weekFile = weekFile;
-		else weekFileName = 'week1';
+		if (weekFile != null)
+		{
+			this.weekFile = weekFile;
+		}
+		else
+		{
+			weekFileName = 'week1';
+		}
 	}
 
 	override function create()
@@ -387,7 +393,7 @@ class WeekEditorState extends MusicBeatState
 		recalculateStuffPosition();
 
 		#if desktop
-		// Updating Discord Rich Presence
+		//Updating Discord Rich Presence
 		DiscordClient.changePresence("Week Editor", "Editting: " + weekFileName);
 		#end
 	}
@@ -466,7 +472,7 @@ class WeekEditorState extends MusicBeatState
 	
 	override function update(elapsed:Float)
 	{
-		if(loadedWeek != null)
+		if (loadedWeek != null)
 		{
 			weekFile = loadedWeek;
 			loadedWeek = null;
@@ -492,7 +498,7 @@ class WeekEditorState extends MusicBeatState
 			}
 		}
 
-		if(!blockInput)
+		if (!blockInput)
 		{
 			FlxG.sound.muteKeys = TitleState.muteKeys;
 			FlxG.sound.volumeDownKeys = TitleState.volumeDownKeys;
@@ -570,9 +576,9 @@ class WeekEditorState extends MusicBeatState
 	}
 
 	/**
-		* Called when the save file dialog is cancelled.
-		*/
-		private static function onLoadCancel(_):Void
+	* Called when the save file dialog is cancelled.
+	*/
+	private static function onLoadCancel(_):Void
 	{
 		_file.removeEventListener(Event.SELECT, onLoadComplete);
 		_file.removeEventListener(Event.CANCEL, onLoadCancel);
@@ -582,8 +588,8 @@ class WeekEditorState extends MusicBeatState
 	}
 
 	/**
-		* Called if there is an error while saving the gameplay recording.
-		*/
+	* Called if there is an error while saving the gameplay recording.
+	*/
 	private static function onLoadError(_):Void
 	{
 		_file.removeEventListener(Event.SELECT, onLoadComplete);
@@ -620,9 +626,9 @@ class WeekEditorState extends MusicBeatState
 	}
 
 	/**
-		* Called when the save file dialog is cancelled.
-		*/
-		private static function onSaveCancel(_):Void
+	* Called when the save file dialog is cancelled.
+	*/
+	private static function onSaveCancel(_):Void
 	{
 		_file.removeEventListener(Event.COMPLETE, onSaveComplete);
 		_file.removeEventListener(Event.CANCEL, onSaveCancel);
@@ -631,8 +637,8 @@ class WeekEditorState extends MusicBeatState
 	}
 
 	/**
-		* Called if there is an error while saving the gameplay recording.
-		*/
+	* Called if there is an error while saving the gameplay recording.
+	*/
 	private static function onSaveError(_):Void
 	{
 		_file.removeEventListener(Event.COMPLETE, onSaveComplete);
@@ -806,7 +812,7 @@ class WeekEditorFreeplayState extends MusicBeatState
 					}
 				}
 
-				if(leColor.length > 2)
+				if (leColor.length > 2)
 				{
 					bgColorStepperR.value = leColor[0];
 					bgColorStepperG.value = leColor[1];

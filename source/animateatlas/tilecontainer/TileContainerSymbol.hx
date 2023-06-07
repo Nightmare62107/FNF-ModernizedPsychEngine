@@ -120,7 +120,7 @@ class TileContainerSymbol extends TileContainer
 		moveMovieclip_MovieClips(-1);
 	}
 
-	/** Moves all movie clips n frames, recursively. */
+	//Moves all movie clips n frames, recursively.
 	private function moveMovieclip_MovieClips(direction:Int = 1):Void
 	{
 		if (_type == SymbolType.MOVIE_CLIP)
@@ -290,7 +290,7 @@ class TileContainerSymbol extends TileContainer
 			}
 
 			_bitmap.rect.setTo(spriteData.x, spriteData.y, spriteData.w, spriteData.h);
-			_bitmap.__setRenderDirty(); // setTo() doesn't trigger the renderdirty
+			_bitmap.__setRenderDirty(); //setTo() doesn't trigger the renderdirty
 
 			//aditional checks for rotation
 			if (spriteData.rotated)

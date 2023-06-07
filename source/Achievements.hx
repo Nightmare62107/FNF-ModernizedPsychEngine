@@ -79,22 +79,27 @@ class Achievements
 			{
 				achievementsMap = FlxG.save.data.achievementsMap;
 			}
+
 			if (henchmenDeath == 0 && FlxG.save.data.henchmenDeath != null)
 			{
 				henchmenDeath = FlxG.save.data.henchmenDeath;
 			}
+
 			if (totalDeaths == 0 && FlxG.save.data.totalDeaths != null)
 			{
 				totalDeaths = FlxG.save.data.totalDeaths;
 			}
+
 			if (totalNotesHit == 0 && FlxG.save.data.totalNotesHit != null)
 			{
 				totalNotesHit = FlxG.save.data.totalNotesHit;
 			}
+			
 			if (totalNotesMissed == 0 && FlxG.save.data.totalNotesMissed != null)
 			{
 				totalNotesMissed = FlxG.save.data.totalNotesMissed;
 			}
+			
 			if (gitarooPauses == 0 && FlxG.save.data.gitarooPauses != null)
 			{
 				gitarooPauses = FlxG.save.data.gitarooPauses;

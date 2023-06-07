@@ -39,7 +39,7 @@ class StageData
 		{
 			stage = SONG.stage;
 		}
-		else if(SONG.song != null)
+		else if (SONG.song != null)
 		{
 			switch (SONG.song.toLowerCase().replace(' ', '-'))
 			{

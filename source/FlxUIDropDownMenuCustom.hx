@@ -20,23 +20,17 @@ import flixel.addons.ui.FlxUIAssets;
 import flixel.addons.ui.StrNameLabel;
 import flixel.addons.ui.FlxUI;
 
-
 /*
-
-THIS IS AN EDIT OF FlxUIDropDownMenu I'VE MADE BECAUSE I'M TIRED OF IT NOT SUPPORTING SCROLLING UP/DOWN
-BAH!
-
-The differences are the following:
+* THIS IS AN EDIT OF FlxUIDropDownMenu I'VE MADE BECAUSE I'M TIRED OF IT NOT SUPPORTING SCROLLING UP/DOWN
+* BAH!
+* The differences are the following:
 * Support to scrolling up/down with mouse wheel or arrow keys
 * THe default drop direction is "Down" instead of "Automatic"
-
 */
 
-
-
 /**
- * @author larsiusprime
- */
+* @author larsiusprime
+*/
 class FlxUIDropDownMenuCustom extends FlxUIGroup implements IFlxUIWidget implements IFlxUIClickable implements IHasParams
 {
 	public var skipButtonUpdate(default, set):Bool;
@@ -122,18 +116,18 @@ class FlxUIDropDownMenuCustom extends FlxUIGroup implements IFlxUIWidget impleme
 	}
 
 	/**
-	 * The header of this dropdown menu.
-	 */
+	* The header of this dropdown menu.
+	*/
 	public var header:FlxUIDropDownHeader;
 
 	/**
-	 * The list of items that is shown when the toggle button is clicked.
-	 */
+	* The list of items that is shown when the toggle button is clicked.
+	*/
 	public var list:Array<FlxUIButton> = [];
 
 	/**
-	 * The background for the list.
-	 */
+	* The background for the list.
+	*/
 	public var dropPanel:FlxUI9SliceSprite;
 
 	public var params(default, set):Array<Dynamic>;
@@ -159,17 +153,17 @@ class FlxUIDropDownMenuCustom extends FlxUIGroup implements IFlxUIWidget impleme
 	//private var _ui_control_callback:Bool->FlxUIDropDownMenuCustom->Void;
 
 	/**
-	 * This creates a new dropdown menu.
-	 *
-	 * @param	X					x position of the dropdown menu
-	 * @param	Y					y position of the dropdown menu
-	 * @param	DataList			The data to be displayed
-	 * @param	Callback			Optional Callback
-	 * @param	Header				The header of this dropdown menu
-	 * @param	DropPanel			Optional 9-slice-background for actual drop down menu
-	 * @param	ButtonList			Optional list of buttons to be used for the corresponding entry in DataList
-	 * @param	UIControlCallback	Used internally by FlxUI
-	 */
+	* This creates a new dropdown menu.
+	*
+	* @param	X					x position of the dropdown menu
+	* @param	Y					y position of the dropdown menu
+	* @param	DataList			The data to be displayed
+	* @param	Callback			Optional Callback
+	* @param	Header				The header of this dropdown menu
+	* @param	DropPanel			Optional 9-slice-background for actual drop down menu
+	* @param	ButtonList			Optional list of buttons to be used for the corresponding entry in DataList
+	* @param	UIControlCallback	Used internally by FlxUI
+	*/
 	public function new(X:Float = 0, Y:Float = 0, DataList:Array<StrNameLabel>, ?Callback:String->Void, ?Header:FlxUIDropDownHeader, ?DropPanel:FlxUI9SliceSprite, ?ButtonList:Array<FlxUIButton>, ?UIControlCallback:Bool->FlxUIDropDownMenuCustom->Void)
 	{
 		super(X, Y);
@@ -240,7 +234,7 @@ class FlxUIDropDownMenuCustom extends FlxUIGroup implements IFlxUIWidget impleme
 		for (i in 0...currentScroll) //Hides buttons that goes before the current scroll
 		{
 			var button:FlxUIButton = list[i];
-			if(button != null)
+			if (button != null)
 			{
 				button.y = -99999;
 			}
@@ -299,9 +293,9 @@ class FlxUIDropDownMenuCustom extends FlxUIGroup implements IFlxUIWidget impleme
 	}
 
 	/**
-	 * Change the contents with a new data list
-	 * Replaces the old content with the new content
-	 */
+	* Change the contents with a new data list
+	* Replaces the old content with the new content
+	*/
 	public function setData(DataList:Array<StrNameLabel>):Void
 	{
 		var i:Int = 0;
@@ -318,9 +312,9 @@ class FlxUIDropDownMenuCustom extends FlxUIGroup implements IFlxUIWidget impleme
 						var btn:FlxUIButton = list[i];
 						if (btn != null)
 						{
-							btn.label.text = data.label; // Set the label
-							list[i].name = data.name; // Replace the name
-							recycled = true; // we successfully recycled it
+							btn.label.text = data.label; //Set the label
+							list[i].name = data.name; //Replace the name
+							recycled = true; //we successfully recycled it
 						}
 					}
 				}
@@ -328,6 +322,7 @@ class FlxUIDropDownMenuCustom extends FlxUIGroup implements IFlxUIWidget impleme
 				{
 					list = [];
 				}
+
 				if (!recycled) //If we couldn't recycle a button, make a fresh one
 				{
 					var t:FlxUIButton = makeListButton(i, data.label, data.name);
@@ -446,7 +441,7 @@ class FlxUIDropDownMenuCustom extends FlxUIGroup implements IFlxUIWidget impleme
 		if (dropPanel.visible)
 		{
 			#if android //thanks gamerbross -saw
-			if(list.length > 1 && canScroll) 
+			if (list.length > 1 && canScroll) 
 			{
 				for (swipe in FlxG.swipes)
 				{
@@ -456,9 +451,9 @@ class FlxUIDropDownMenuCustom extends FlxUIGroup implements IFlxUIWidget impleme
 					{
 						if ((-45 <= swipe.startPosition.angleBetween(swipe.endPosition) && 45 >= swipe.startPosition.angleBetween(swipe.endPosition)))
 						{
-							// Go down
+							//Go down
 							currentScroll++;
-							if(currentScroll >= list.length)
+							if (currentScroll >= list.length)
 							{
 								currentScroll = list.length-1;
 							}
@@ -466,9 +461,9 @@ class FlxUIDropDownMenuCustom extends FlxUIGroup implements IFlxUIWidget impleme
 						}
 						else if (-180 <= swipe.startPosition.angleBetween(swipe.endPosition) && -135 >= swipe.startPosition.angleBetween(swipe.endPosition) || (135 <= swipe.startPosition.angleBetween(swipe.endPosition) && 180 >= swipe.startPosition.angleBetween(swipe.endPosition)))
 						{
-							// Go up
+							//Go up
 							--currentScroll;
-							if(currentScroll < 0)
+							if (currentScroll < 0)
 							{
 								currentScroll = 0;
 							}
@@ -482,7 +477,7 @@ class FlxUIDropDownMenuCustom extends FlxUIGroup implements IFlxUIWidget impleme
 			{
 				if (FlxG.mouse.wheel > 0 || FlxG.keys.justPressed.UP)
 				{
-					// Go up
+					//Go up
 					--currentScroll;
 					if (currentScroll < 0)
 					{
@@ -548,7 +543,7 @@ class FlxUIDropDownMenuCustom extends FlxUIGroup implements IFlxUIWidget impleme
 			updateButtonPositions();
 		}
 
-		FlxUI.forceFocus(b, this); // avoid overlaps
+		FlxUI.forceFocus(b, this); //avoid overlaps
 	}
 
 	private function onDropdown():Void
@@ -574,12 +569,12 @@ class FlxUIDropDownMenuCustom extends FlxUIGroup implements IFlxUIWidget impleme
 	}
 
 	/**
-	 * Helper function to easily create a data list for a dropdown menu from an array of strings.
-	 *
-	 * @param	StringArray		The strings to use as data - used for both label and string ID.
-	 * @param	UseIndexID		Whether to use the integer index of the current string as ID.
-	 * @return	The StrIDLabel array ready to be used in FlxUIDropDownMenuCustom's constructor
-	 */
+	* Helper function to easily create a data list for a dropdown menu from an array of strings.
+	*
+	* @param	StringArray		The strings to use as data - used for both label and string ID.
+	* @param	UseIndexID		Whether to use the integer index of the current string as ID.
+	* @return	The StrIDLabel array ready to be used in FlxUIDropDownMenuCustom's constructor
+	*/
 	public static function makeStrIdLabelArray(StringArray:Array<String>, UseIndexID:Bool = false):Array<StrNameLabel>
 	{
 		var strIdArray:Array<StrNameLabel> = [];
@@ -597,33 +592,33 @@ class FlxUIDropDownMenuCustom extends FlxUIGroup implements IFlxUIWidget impleme
 }
 
 /**
- * Header for a FlxUIDropDownMenuCustom
- */
+* Header for a FlxUIDropDownMenuCustom
+*/
 class FlxUIDropDownHeader extends FlxUIGroup
 {
 	/**
-	 * The background of the header.
-	 */
+	* The background of the header.
+	*/
 	public var background:FlxSprite;
 
 	/**
-	 * The text that displays the currently selected item.
-	 */
+	* The text that displays the currently selected item.
+	*/
 	public var text:FlxUIText;
 
 	/**
-	 * The button that toggles the visibility of the dropdown panel.
-	 */
+	* The button that toggles the visibility of the dropdown panel.
+	*/
 	public var button:FlxUISpriteButton;
 
 	/**
-	 * Creates a new dropdown header to be used in a FlxUIDropDownMenuCustom.
-	 *
-	 * @param	Width	Width of the dropdown - only relevant when no back sprite was specified
-	 * @param	Back	Optional sprite to be placed in the background
-	 * @param 	Text	Optional text that displays the current value
-	 * @param	Button	Optional button that toggles the dropdown list
-	 */
+	* Creates a new dropdown header to be used in a FlxUIDropDownMenuCustom.
+	*
+	* @param	Width	Width of the dropdown - only relevant when no back sprite was specified
+	* @param	Back	Optional sprite to be placed in the background
+	* @param 	Text	Optional text that displays the current value
+	* @param	Button	Optional button that toggles the dropdown list
+	*/
 	public function new(Width:Int = 120, ?Background:FlxSprite, ?Text:FlxUIText, ?Button:FlxUISpriteButton)
 	{
 		super();
@@ -642,8 +637,7 @@ class FlxUIDropDownHeader extends FlxUIGroup
 		if (button == null)
 		{
 			button = new FlxUISpriteButton(0, 0, new FlxSprite(0, 0, FlxUIAssets.IMG_DROPDOWN));
-			button.loadGraphicSlice9([FlxUIAssets.IMG_BUTTON_THIN], 80, 20, [FlxStringUtil.toIntArray(FlxUIAssets.SLICE9_BUTTON)],
-				FlxUI9SliceSprite.TILE_NONE, -1, false, FlxUIAssets.IMG_BUTTON_SIZE, FlxUIAssets.IMG_BUTTON_SIZE);
+			button.loadGraphicSlice9([FlxUIAssets.IMG_BUTTON_THIN], 80, 20, [FlxStringUtil.toIntArray(FlxUIAssets.SLICE9_BUTTON)], FlxUI9SliceSprite.TILE_NONE, -1, false, FlxUIAssets.IMG_BUTTON_SIZE, FlxUIAssets.IMG_BUTTON_SIZE);
 		}
 		button.resize(background.height, background.height);
 		button.x = background.x + background.width - button.width;

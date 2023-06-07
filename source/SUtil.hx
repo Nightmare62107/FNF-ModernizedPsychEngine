@@ -17,16 +17,16 @@ import sys.io.File;
 import flash.system.System;
 
 /**
- * ...
- * @author: Saw (M.A. Jigsaw)
- */
+* ...
+* @author: Saw (M.A. Jigsaw)
+*/
 
 using StringTools;
 
 class SUtil
 {
 	#if android
-	private static var aDir:String = null; // android dir
+	private static var aDir:String = null; //android dir
 	#end
 
 	public static function getPath():String

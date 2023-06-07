@@ -62,8 +62,7 @@ class HitboxSettingsSubState extends BaseOptionsMenu
 		super();
 	}
 
-	/*
-	override function update(elapsed:Float)
+	/*override function update(elapsed:Float)
 	{
 		super.update(elapsed);
 		#if android
@@ -74,6 +73,5 @@ class HitboxSettingsSubState extends BaseOptionsMenu
 			MusicBeatState.switchState(new options.OptionsState());
 		}
 		#end
-	}
-	*/ //why this exists?!?¡
+	}*/ //why this exists?!?¡
 }

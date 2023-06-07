@@ -9,6 +9,8 @@ import llua.Lua;
 import llua.State;
 #end
 
+import lime.app.Application;
+
 using StringTools;
 
 class DiscordClient
@@ -48,7 +50,7 @@ class DiscordClient
 			details: "In the Menus",
 			state: null,
 			largeImageKey: 'icon',
-			largeImageText: "Psych Engine"
+			largeImageText: "Modernized Psych Engine"
 		});
 	}
 
@@ -86,9 +88,9 @@ class DiscordClient
 			details: details,
 			state: state,
 			largeImageKey: 'icon',
-			largeImageText: "Engine Version: " + MainMenuState.modernizedPsychEngineVersion,
+			largeImageText: "Engine Version: " + Application.current.meta.get('version'),
 			smallImageKey : smallImageKey,
-			// Obtained times are in milliseconds so they are divided so Discord can use it
+			//Obtained times are in milliseconds so they are divided so Discord can use it
 			startTimestamp : Std.int(startTimestamp / 1000),
             endTimestamp : Std.int(endTimestamp / 1000)
 		});

@@ -162,10 +162,8 @@ class Character extends FlxSprite
 				{
 					case "packer":
 						frames = Paths.getPackerAtlas(json.image);
-					
 					case "sparrow":
 						frames = Paths.getSparrowAtlas(json.image);
-					
 					case "texture":
 						frames = AtlasFrameMaker.construct(json.image);
 				}
@@ -248,7 +246,7 @@ class Character extends FlxSprite
 			/*//Doesn't flip for BF, since his are already in the right place???
 			if (!curCharacter.startsWith('bf'))
 			{
-				// var animArray
+				//var animArray
 				if(animation.getByName('singLEFT') != null && animation.getByName('singRIGHT') != null)
 				{
 					var oldRight = animation.getByName('singRIGHT').frames;
@@ -266,7 +264,7 @@ class Character extends FlxSprite
 			}*/
 		}
 
-		switch(curCharacter)
+		switch (curCharacter)
 		{
 			case 'pico-speaker':
 				skipDance = true;
@@ -298,7 +296,7 @@ class Character extends FlxSprite
 				dance();
 			}
 			
-			switch(curCharacter)
+			switch (curCharacter)
 			{
 				case 'pico-speaker':
 					if (animationNotes.length > 0 && Conductor.songPosition > animationNotes[0][0])
@@ -313,6 +311,7 @@ class Character extends FlxSprite
 						playAnim('shoot' + noteData, true);
 						animationNotes.shift();
 					}
+
 					if (animation.curAnim.finished)
 					{
 						playAnim(animation.curAnim.name, false, false, animation.curAnim.frames.length - 3);
@@ -344,8 +343,8 @@ class Character extends FlxSprite
 	public var danced:Bool = false;
 
 	/**
-	 * FOR GF DANCING SHIT
-	 */
+	* FOR GF DANCING SHIT
+	*/
 	public function dance()
 	{
 		if (!debugMode && !skipDance && !specialAnim)
@@ -381,7 +380,9 @@ class Character extends FlxSprite
 			offset.set(daOffset[0], daOffset[1]);
 		}
 		else
+		{
 			offset.set(0, 0);
+		}
 
 		if (curCharacter.startsWith('gf'))
 		{

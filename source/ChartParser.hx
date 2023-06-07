@@ -22,7 +22,7 @@ class ChartParser
 
 		var row:Int = 0;
 
-		// LMAOOOO STOLE ALL THIS FROM FLXBASETILEMAP LOLOL
+		//LMAOOOO STOLE ALL THIS FROM FLXBASETILEMAP LOLOL
 
 		var dopeArray:Array<Int> = [];
 		while (row < heightInTiles)
@@ -39,6 +39,7 @@ class ChartParser
 				heightInTiles--;
 				continue;
 			}
+
 			if (widthInTiles == 0)
 			{
 				widthInTiles = columns.length;
@@ -48,7 +49,7 @@ class ChartParser
 			var pushedInColumn:Bool = false;
 			while (column < widthInTiles)
 			{
-				// the current tile to be added:
+				//the current tile to be added:
 				var columnString = columns[column];
 				var curTile = Std.parseInt(columnString);
 

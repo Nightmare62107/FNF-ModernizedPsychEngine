@@ -49,6 +49,7 @@ class NoteSplash extends FlxSprite
 				{
 					texture = 'pixelUI/noteSplashes' + PlayState.SONG.splashSkin;
 				}
+				
 				if (animation.curAnim != null)
 				{
 					animation.curAnim.frameRate = 12;
@@ -89,7 +90,7 @@ class NoteSplash extends FlxSprite
 	{
 		if (animation.curAnim != null)
 		{
-			if(animation.curAnim.finished)
+			if (animation.curAnim.finished)
 			{
 				kill();
 			}

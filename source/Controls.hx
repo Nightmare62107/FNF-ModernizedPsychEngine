@@ -94,10 +94,10 @@ enum Device
 }
 
 /**
- * Since, in many cases multiple actions should use similar keys, we don't want the
- * rebinding UI to list every action. ActionBinders are what the user percieves as
- * an input so, for instance, they can't set jump-press and jump-release to different keys.
- */
+* Since, in many cases multiple actions should use similar keys, we don't want the
+* rebinding UI to list every action. ActionBinders are what the user percieves as
+* an input so, for instance, they can't set jump-press and jump-release to different keys.
+*/
 enum Control
 {
 	UI_UP;
@@ -123,9 +123,9 @@ enum KeyboardScheme
 }
 
 /**
- * A list of actions that a player would invoke via some input device.
- * Uses FlxActions to funnel various inputs to a single action.
- */
+* A list of actions that a player would invoke via some input device.
+* Uses FlxActions to funnel various inputs to a single action.
+*/
 class Controls extends FlxActionSet
 {
 	var _ui_up = new FlxActionDigital(Action.UI_UP);
@@ -484,7 +484,6 @@ class Controls extends FlxActionSet
 		inline forEachBound(Control.NOTE_RIGHT, (action, state) -> addbuttonuNOTES(action, hitbox.buttonRight, state));	
 	}
 	
-	
 	public function setNewHitBox(Hitbox:FlxNewHitbox)
 	{
 		inline forEachBound(Control.NOTE_UP, (action, state) -> addButtonNOTES(action, Hitbox.buttonUp, state));
@@ -523,6 +522,7 @@ class Controls extends FlxActionSet
 				inline forEachBound(Control.UI_LEFT, (action, state) -> addbuttonuUI(action, virtualPad.buttonLeft2, state));
 				inline forEachBound(Control.UI_RIGHT, (action, state) -> addbuttonuUI(action, virtualPad.buttonRight2, state));                        
 			case NONE:
+				//nothing
 		}
 
 		switch (Action)
@@ -555,6 +555,7 @@ class Controls extends FlxActionSet
 				inline forEachBound(Control.ACCEPT, (action, state) -> addbuttonuUI(action, virtualPad.buttonA, state));
 				inline forEachBound(Control.BACK, (action, state) -> addbuttonuUI(action, virtualPad.buttonB, state));	
 			case NONE:
+				//nothing
 		}
 	}
 
@@ -588,6 +589,7 @@ class Controls extends FlxActionSet
 				inline forEachBound(Control.NOTE_LEFT, (action, state) -> addbuttonuNOTES(action, virtualPad.buttonLeft2, state));
 				inline forEachBound(Control.NOTE_RIGHT, (action, state) -> addbuttonuNOTES(action, virtualPad.buttonRight2, state));
 			case NONE:
+				//nothing
 		}
 
 		switch (Action)
@@ -620,9 +622,9 @@ class Controls extends FlxActionSet
 				inline forEachBound(Control.ACCEPT, (action, state) -> addbuttonuNOTES(action, virtualPad.buttonA, state));
 				inline forEachBound(Control.BACK, (action, state) -> addbuttonuNOTES(action, virtualPad.buttonB, state));              
 			case NONE:
+				//nothing
 		}
 	}
-	
 
 	public function removeFlxInput(Tinputs)
 	{
@@ -669,9 +671,12 @@ class Controls extends FlxActionSet
 		var input = action.inputs[0];
 		return switch input.device
 		{
-			case KEYBOARD: return '[${(input.inputID : FlxKey)}]';
-			case GAMEPAD: return '(${(input.inputID : FlxGamepadInputID)})';
-			case device: throw 'unhandled device: $device';
+			case KEYBOARD:
+				return '[${(input.inputID : FlxKey)}]';
+			case GAMEPAD:
+				return '(${(input.inputID : FlxGamepadInputID)})';
+			case device:
+				throw 'unhandled device: $device';
 		}
 	}
 
@@ -684,18 +689,30 @@ class Controls extends FlxActionSet
 	{
 		return switch (control)
 		{
-			case UI_UP: _ui_up;
-			case UI_DOWN: _ui_down;
-			case UI_LEFT: _ui_left;
-			case UI_RIGHT: _ui_right;
-			case NOTE_UP: _note_up;
-			case NOTE_DOWN: _note_down;
-			case NOTE_LEFT: _note_left;
-			case NOTE_RIGHT: _note_right;
-			case ACCEPT: _accept;
-			case BACK: _back;
-			case PAUSE: _pause;
-			case RESET: _reset;
+			case UI_UP:
+				_ui_up;
+			case UI_DOWN:
+				_ui_down;
+			case UI_LEFT:
+				_ui_left;
+			case UI_RIGHT:
+				_ui_right;
+			case NOTE_UP:
+				_note_up;
+			case NOTE_DOWN:
+				_note_down;
+			case NOTE_LEFT:
+				_note_left;
+			case NOTE_RIGHT:
+				_note_right;
+			case ACCEPT:
+				_accept;
+			case BACK:
+				_back;
+			case PAUSE:
+				_pause;
+			case RESET:
+				_reset;
 		}
 	}
 
@@ -706,11 +723,11 @@ class Controls extends FlxActionSet
 	}
 
 	/**
-	 * Calls a function passing each action bound by the specified control
-	 * @param control
-	 * @param func
-	 * @return ->Void)
-	 */
+	* Calls a function passing each action bound by the specified control
+	* @param control
+	* @param func
+	* @return ->Void)
+	*/
 	function forEachBound(control:Control, func:FlxActionDigital->FlxInputState->Void)
 	{
 		switch (control)
@@ -772,16 +789,17 @@ class Controls extends FlxActionSet
 				{
 					unbindKeys(control, [toRemove]);
 				}
+
 				if (toAdd != null)
 				{
 					bindKeys(control, [toAdd]);
 				}
-
 			case Gamepad(id):
 				if (toRemove != null)
 				{
 					unbindButtons(control, id, [toRemove]);
 				}
+
 				if (toAdd != null)
 				{
 					bindButtons(control, id, [toAdd]);
@@ -822,20 +840,23 @@ class Controls extends FlxActionSet
 				//add all
 				#if (haxe >= "4.0.0")
 				for (gamepad in controls.gamepadsAdded)
+				{
 					if (!gamepadsAdded.contains(gamepad))
 					{
 						gamepadsAdded.push(gamepad);
 					}
+				}
 				#else
 				for (gamepad in controls.gamepadsAdded)
+				{
 					if (gamepadsAdded.indexOf(gamepad) == -1)
 					{
 					  gamepadsAdded.push(gamepad);
 					}
+				}
 				#end
 
 				mergeKeyboardScheme(controls.keyboardScheme);
-
 			case Gamepad(id):
 				gamepadsAdded.push(id);
 			case Keys:
@@ -863,16 +884,19 @@ class Controls extends FlxActionSet
 	}
 
 	/**
-	 * Sets all actions that pertain to the binder to trigger when the supplied keys are used.
-	 * If binder is a literal you can inline this
-	 */
+	* Sets all actions that pertain to the binder to trigger when the supplied keys are used.
+	* If binder is a literal you can inline this
+	*/
 	#if !android
 	public function bindKeys(control:Control, keys:Array<FlxKey>)
 	{
 		var copyKeys:Array<FlxKey> = keys.copy();
 		for (i in 0...copyKeys.length)
 		{
-			if(i == NONE) copyKeys.remove(i);
+			if (i == NONE)
+			{
+				copyKeys.remove(i);
+			}
 		}
 
 		#if (haxe >= "4.0.0")
@@ -887,7 +911,10 @@ class Controls extends FlxActionSet
 		var copyKeys:Array<FlxKey> = keys.copy();
 		for (i in 0...copyKeys.length)
 		{
-			if(i == NONE) copyKeys.remove(i);
+			if (i == NONE)
+			{
+				copyKeys.remove(i);
+			}
 		}
 
 		#if (haxe >= "4.0.0")
@@ -920,7 +947,7 @@ class Controls extends FlxActionSet
 	{
 		for (key in keys)
 		{
-			if(key != NONE)
+			if (key != NONE)
 			{
 				action.addKey(key, state);
 			}
@@ -962,7 +989,6 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.NOTE_DOWN, keysMap.get('note_down'));
 				inline bindKeys(Control.NOTE_LEFT, keysMap.get('note_left'));
 				inline bindKeys(Control.NOTE_RIGHT, keysMap.get('note_right'));
-
 				inline bindKeys(Control.ACCEPT, keysMap.get('accept'));
 				inline bindKeys(Control.BACK, keysMap.get('back'));
 				inline bindKeys(Control.PAUSE, keysMap.get('pause'));
@@ -993,8 +1019,10 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.BACK, [P]);
 				inline bindKeys(Control.PAUSE, [ENTER]);
 				inline bindKeys(Control.RESET, [BACKSPACE]);
-			case None: //nothing
-			case Custom: //nothing
+			case None:
+				//nothing
+			case Custom:
+				//nothing
 		}
 		#else
 		switch (scheme)
@@ -1038,8 +1066,10 @@ class Controls extends FlxActionSet
 				bindKeys(Control.BACK, [P]);
 				bindKeys(Control.PAUSE, [ENTER]);
 				bindKeys(Control.RESET, [BACKSPACE]);
-			case None: //nothing
-			case Custom: //nothing
+			case None:
+				//nothing
+			case Custom:
+				//nothing
 		}
 		#end
 	}
@@ -1151,34 +1181,28 @@ class Controls extends FlxActionSet
 	}
 
 	/**
-	 * Sets all actions that pertain to the binder to trigger when the supplied keys are used.
-	 * If binder is a literal you can inline this
-	 */
+	* Sets all actions that pertain to the binder to trigger when the supplied keys are used.
+	* If binder is a literal you can inline this
+	*/
 	public function bindButtons(control:Control, id, buttons)
 	{
 		#if (haxe >= "4.0.0")
 		inline forEachBound(control, (action, state) -> addButtons(action, buttons, state, id));
 		#else
-		forEachBound(control, function(action, state)
-		{
-			addButtons(action, buttons, state, id));
-		}
+		forEachBound(control, function(action, state) addButtons(action, buttons, state, id));
 		#end
 	}
 
 	/**
-	 * Sets all actions that pertain to the binder to trigger when the supplied keys are used.
-	 * If binder is a literal you can inline this
-	 */
+	* Sets all actions that pertain to the binder to trigger when the supplied keys are used.
+	* If binder is a literal you can inline this
+	*/
 	public function unbindButtons(control:Control, gamepadID:Int, buttons)
 	{
 		#if (haxe >= "4.0.0")
 		inline forEachBound(control, (action, _) -> removeButtons(action, gamepadID, buttons));
 		#else
-		forEachBound(control, function(action, _)
-		{
-			removeButtons(action, gamepadID, buttons));
-		}
+		forEachBound(control, function(action, _) removeButtons(action, gamepadID, buttons));
 		#end
 	}
 
@@ -1247,8 +1271,10 @@ class Controls extends FlxActionSet
 	{
 		return switch device
 		{
-			case Keys: input.device == KEYBOARD;
-			case Gamepad(id): isGamepad(input, id);
+			case Keys:
+				input.device == KEYBOARD;
+			case Gamepad(id):
+				isGamepad(input, id);
 		}
 	}
 

@@ -12,14 +12,14 @@ import flash.media.Sound;
 using StringTools;
 
 /**
- * Loosley based on FlxTypeText lolol
- */
+* Loosley based on FlxTypeText lolol
+*/
 class PsychAlphabet extends FlxSpriteGroup
 {
 	public var delay:Float = 0.05;
 	public var paused:Bool = false;
 
-	// for menu shit
+	//for menu shit
 	public var forceX:Float = Math.NEGATIVE_INFINITY;
 	public var targetY:Float = 0;
 	public var yMult:Float = 120;
@@ -33,8 +33,8 @@ class PsychAlphabet extends FlxSpriteGroup
 	var _finalText:String = "";
 	var yMulti:Float = 1;
 
-	// custom shit
-	// amp, backslash, question mark, apostrophy, comma, angry faic, period
+	//custom shit
+	//amp, backslash, question mark, apostrophy, comma, angry faic, period
 	var lastSprite:AlphaCharacter;
 	var xPosResetted:Bool = false;
 
@@ -98,7 +98,7 @@ class PsychAlphabet extends FlxSpriteGroup
 		x = 0;
 		_finalText = newText;
 		text = newText;
-		if(newTypingSpeed != -1)
+		if (newTypingSpeed != -1)
 		{
 			typingSpeed = newTypingSpeed;
 		}
@@ -128,9 +128,9 @@ class PsychAlphabet extends FlxSpriteGroup
 		var xPos:Float = 0;
 		for (character in splitWords)
 		{
-			//if (character.fastCodeAt() == " ")
-			//{
-			//}
+			/*if (character.fastCodeAt() == " ")
+			{
+			}*/
 
 			var spaceChar:Bool = (character == " " || (isBold && character == "_"));
 			if (spaceChar)
@@ -154,7 +154,7 @@ class PsychAlphabet extends FlxSpriteGroup
 				}
 				consecutiveSpaces = 0;
 
-				// var letter:AlphaCharacter = new AlphaCharacter(30 * loopNum, 0, textSize);
+				//var letter:AlphaCharacter = new AlphaCharacter(30 * loopNum, 0, textSize);
 				var letter:AlphaCharacter = new AlphaCharacter(xPos, 0, textSize);
 
 				if (isBold)
@@ -215,6 +215,7 @@ class PsychAlphabet extends FlxSpriteGroup
 		{
 			name = 'dialogue';
 		}
+		
 		soundDialog = Paths.sound(name);
 		if (soundDialog == null)
 		{
@@ -228,7 +229,7 @@ class PsychAlphabet extends FlxSpriteGroup
 		_finalText = text;
 		doSplitWords();
 
-		// trace(arrayShit);
+		//trace(arrayShit);
 
 		if (soundDialog == null)
 		{
@@ -268,19 +269,28 @@ class PsychAlphabet extends FlxSpriteGroup
 		{
 			if (autoBreak)
 			{
-				if(tmr != null) tmr.loops -= 1;
+				if (tmr != null)
+				{
+					tmr.loops -= 1;
+				}
 				loopNum += 1;
 			}
 			else
 			{
-				if(tmr != null) tmr.loops -= 2;
+				if (tmr != null)
+				{
+					tmr.loops -= 2;
+				}
 				loopNum += 2;
 			}
 			yMulti += 1;
 			xPosResetted = true;
 			xPos = 0;
 			curRow += 1;
-			if(curRow == 2) y += LONG_TEXT_ADD;
+			if (curRow == 2)
+			{
+				y += LONG_TEXT_ADD;
+			}
 		}
 
 		if (loopNum <= splitWords.length && splitWords[loopNum] != null)
@@ -301,8 +311,8 @@ class PsychAlphabet extends FlxSpriteGroup
 				{
 					lastSprite.updateHitbox();
 					xPos += lastSprite.width + 3;
-					// if (isBold)
-					// xPos -= 80;
+					//if (isBold)
+					//xPos -= 80;
 				}
 				else
 				{
@@ -315,7 +325,7 @@ class PsychAlphabet extends FlxSpriteGroup
 				}
 				consecutiveSpaces = 0;
 
-				// var letter:AlphaCharacter = new AlphaCharacter(30 * loopNum, 0, textSize);
+				//var letter:AlphaCharacter = new AlphaCharacter(30 * loopNum, 0, textSize);
 				var letter:AlphaCharacter = new AlphaCharacter(xPos, 55 * yMulti, textSize);
 				letter.row = curRow;
 				if (isBold)

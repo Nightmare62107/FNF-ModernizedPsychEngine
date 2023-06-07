@@ -47,7 +47,7 @@ class NoteOffsetState extends MusicBeatState
 
 	override public function create()
 	{
-		// Cameras
+		//Cameras
 		camGame = new FlxCamera();
 		camHUD = new FlxCamera();
 		camOther = new FlxCamera();
@@ -64,7 +64,7 @@ class NoteOffsetState extends MusicBeatState
 
 		persistentUpdate = true;
 		FlxG.sound.pause();
-		// Stage
+		//Stage
 		var bg:BGSprite = new BGSprite('stageback', -600, -200, 0.9, 0.9);
 		add(bg);
 
@@ -312,7 +312,7 @@ class NoteOffsetState extends MusicBeatState
 				repositionCombo();
 			}
 
-			// probably there's a better way to do this but, oh well.
+			//probably there's a better way to do this but, oh well.
 			if (FlxG.mouse.justPressed)
 			{
 				holdingObjectType = null;
@@ -377,7 +377,10 @@ class NoteOffsetState extends MusicBeatState
 			if (controls.UI_LEFT || controls.UI_RIGHT)
 			{
 				holdTime += elapsed;
-				if(controls.UI_LEFT) mult = -1;
+				if (controls.UI_LEFT)
+				{
+					mult = -1;
+				}
 			}
 
 			if (controls.UI_LEFT_R || controls.UI_RIGHT_R)
@@ -513,10 +516,14 @@ class NoteOffsetState extends MusicBeatState
 		{
 			switch (i)
 			{
-				case 0: dumbTexts.members[i].text = 'Rating Offset:';
-				case 1: dumbTexts.members[i].text = '[' + ClientPrefs.comboOffset[0] + ', ' + ClientPrefs.comboOffset[1] + ']';
-				case 2: dumbTexts.members[i].text = 'Numbers Offset:';
-				case 3: dumbTexts.members[i].text = '[' + ClientPrefs.comboOffset[2] + ', ' + ClientPrefs.comboOffset[3] + ']';
+				case 0:
+					dumbTexts.members[i].text = 'Rating Offset:';
+				case 1:
+					dumbTexts.members[i].text = '[' + ClientPrefs.comboOffset[0] + ', ' + ClientPrefs.comboOffset[1] + ']';
+				case 2:
+					dumbTexts.members[i].text = 'Numbers Offset:';
+				case 3:
+					dumbTexts.members[i].text = '[' + ClientPrefs.comboOffset[2] + ', ' + ClientPrefs.comboOffset[3] + ']';
 			}
 		}
 	}

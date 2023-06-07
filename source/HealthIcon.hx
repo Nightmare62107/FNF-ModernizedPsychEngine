@@ -67,6 +67,7 @@ class HealthIcon extends FlxSprite
 			{
 				name = 'icons/icon-' + char; //Older versions of psych engine's support
 			}
+			
 			if (!Paths.fileExists('images/' + name + '.png', IMAGE))
 			{
 				if (PlayState.isPixelStage)

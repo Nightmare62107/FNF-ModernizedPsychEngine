@@ -67,7 +67,6 @@ class CheckboxThingie extends FlxSprite
 			case 'checking':
 				animation.play('checked', true);
 				offset.set(3, 12);
-
 			case 'unchecking':
 				animation.play('unchecked', true);
 				offset.set(0, 2);

@@ -35,7 +35,7 @@ class DiscordState extends MusicBeatState
 	override function create()
 	{
 		#if desktop
-		// Updating Discord Rich Presence
+		//Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
 
@@ -48,7 +48,7 @@ class DiscordState extends MusicBeatState
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
 
-		var pisspoop:Array<Array<String>> = // Server Name - Link
+		var pisspoop:Array<Array<String>> = //Server Name - Link
 		[
 			['Discord Servers'],
 			["Radioactive's Server 3: The Trilogy",						'https://discord.gg/UxVSARJHHR'],
@@ -152,14 +152,13 @@ class DiscordState extends MusicBeatState
 				}
 
 				var upP = controls.UI_UP_P;
-				var downP = controls.UI_DOWN_P;
-
 				if (upP)
 				{
 					changeSelection(-shiftMult);
 					holdTime = 0;
 				}
 
+				var downP = controls.UI_DOWN_P;
 				if (downP)
 				{
 					changeSelection(shiftMult);
@@ -188,6 +187,7 @@ class DiscordState extends MusicBeatState
 			{
 				CoolUtil.browserLoad(serversStuff[curSelected][1]);
 			}
+
 			if (controls.BACK)
 			{
 				FlxG.sound.play(Paths.sound('cancelMenu'));
@@ -224,9 +224,14 @@ class DiscordState extends MusicBeatState
 		{
 			curSelected += change;
 			if (curSelected < 0)
+			{
 				curSelected = serversStuff.length - 1;
+			}
+			
 			if (curSelected >= serversStuff.length)
+			{
 				curSelected = 0;
+			}
 		}
 		while (unselectableCheck(curSelected));
 

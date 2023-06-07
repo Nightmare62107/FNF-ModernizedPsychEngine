@@ -159,8 +159,7 @@ class ColorSwapShader extends FlxShader
 			}
 			gl_FragColor = color;
 
-			/* 
-			if (color.a > 0.5)
+			/*if (color.a > 0.5)
 			{
 				gl_FragColor = color;
 			}
@@ -175,8 +174,7 @@ class ColorSwapShader extends FlxShader
 				{
 					gl_FragColor = color;
 				}
-			}
-			*/
+			}*/
 		}')
 	@:glVertexSource('
 		attribute float openfl_Alpha;

@@ -4,6 +4,7 @@ dad
 gf
 gf-old
 spooky
+monster
 pico
 pico-player
 mom
@@ -14,7 +15,6 @@ parents-christmas
 monster-christmas
 bf-christmas
 gf-christmas
-monster
 bf-pixel
 bf-pixel-opponent
 gf-pixel

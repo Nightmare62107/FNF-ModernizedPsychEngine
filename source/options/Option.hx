@@ -30,8 +30,8 @@ class Option
 	public var onChange:Void->Void = null; //Pressed enter (on Bool type options) or pressed/held left/right (on other types)
 
 	public var type(get, default):String = 'bool'; //bool, int (or integer), float (or fl), percent, string (or str)
-	// Bool will use checkboxes
-	// Everything else will use a text
+	//Bool will use checkboxes
+	//Everything else will use a text
 
 	public var showBoyfriend:Bool = false;
 	public var scrollSpeed:Float = 50; //Only works on int/float, defines how fast it scrolls per second while holding left/right
@@ -59,9 +59,9 @@ class Option
 		this.defaultValue = defaultValue;
 		this.options = options;
 
-		if(defaultValue == 'null variable value')
+		if (defaultValue == 'null variable value')
 		{
-			switch(type)
+			switch (type)
 			{
 				case 'bool':
 					defaultValue = false;
@@ -71,14 +71,14 @@ class Option
 					defaultValue = 1;
 				case 'string':
 					defaultValue = '';
-					if(options.length > 0)
+					if (options.length > 0)
 					{
 						defaultValue = options[0];
 					}
 			}
 		}
 
-		if(getValue() == null)
+		if (getValue() == null)
 		{
 			setValue(defaultValue);
 		}
@@ -87,11 +87,10 @@ class Option
 		{
 			case 'string':
 				var num:Int = options.indexOf(getValue());
-				if(num > -1)
+				if (num > -1)
 				{
 					curOption = num;
 				}
-	
 			case 'percent':
 				displayFormat = '%v%';
 				changeValue = 0.01;
@@ -105,7 +104,7 @@ class Option
 	public function change()
 	{
 		//nothing lol
-		if(onChange != null)
+		if (onChange != null)
 		{
 			onChange();
 		}
@@ -115,6 +114,7 @@ class Option
 	{
 		return Reflect.getProperty(ClientPrefs, variable);
 	}
+
 	public function setValue(value:Dynamic)
 	{
 		Reflect.setProperty(ClientPrefs, variable, value);
@@ -127,7 +127,7 @@ class Option
 
 	private function get_text()
 	{
-		if(child != null)
+		if (child != null)
 		{
 			return child.text;
 		}
@@ -135,7 +135,7 @@ class Option
 	}
 	private function set_text(newValue:String = '')
 	{
-		if(child != null)
+		if (child != null)
 		{
 			child.text = newValue;
 		}
@@ -145,12 +145,16 @@ class Option
 	private function get_type()
 	{
 		var newValue:String = 'bool';
-		switch(type.toLowerCase().trim())
+		switch (type.toLowerCase().trim())
 		{
-			case 'int' | 'float' | 'percent' | 'string': newValue = type;
-			case 'integer': newValue = 'int';
-			case 'str': newValue = 'string';
-			case 'fl': newValue = 'float';
+			case 'int' | 'float' | 'percent' | 'string':
+				newValue = type;
+			case 'integer':
+				newValue = 'int';
+			case 'str':
+				newValue = 'string';
+			case 'fl':
+				newValue = 'float';
 		}
 		type = newValue;
 		return type;

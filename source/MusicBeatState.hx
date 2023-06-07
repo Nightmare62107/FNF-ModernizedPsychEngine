@@ -89,6 +89,7 @@ class MusicBeatState extends FlxUIState
 					controls.setNewHitBox(androidc.newhbox);
 				}
 			default:
+				//nothing
 		}
 
 		trackedinputsNOTES = controls.trackedinputsNOTES;
@@ -169,7 +170,7 @@ class MusicBeatState extends FlxUIState
 				stepHit();
 			}
 
-			if(PlayState.SONG != null)
+			if (PlayState.SONG != null)
 			{
 				if (oldStep < curStep)
 				{
@@ -196,6 +197,7 @@ class MusicBeatState extends FlxUIState
 		{
 			stepsToDo = Math.round(getBeatsOnSection() * 4);
 		}
+		
 		while (curStep >= stepsToDo)
 		{
 			curSection++;
@@ -207,7 +209,7 @@ class MusicBeatState extends FlxUIState
 
 	private function rollbackSection():Void
 	{
-		if(curStep < 0)
+		if (curStep < 0)
 		{
 			return;
 		}

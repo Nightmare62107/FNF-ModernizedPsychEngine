@@ -51,7 +51,7 @@ class MenuCharacterEditorState extends MusicBeatState
 			flipX: false
 		};
 		#if desktop
-		// Updating Discord Rich Presence
+		//Updating Discord Rich Presence
 		DiscordClient.changePresence("Menu Character Editor", "Editting: " + characterFile.image);
 		#end
 
@@ -221,7 +221,7 @@ class MenuCharacterEditorState extends MusicBeatState
 		boyfriendCheckbox.checked = false;
 		girlfriendCheckbox.checked = false;
 
-		switch(curTypeSelected)
+		switch (curTypeSelected)
 		{
 			case 0:
 				opponentCheckbox.checked = true;
@@ -265,7 +265,7 @@ class MenuCharacterEditorState extends MusicBeatState
 		updateOffset();
 		
 		#if desktop
-		// Updating Discord Rich Presence
+		//Updating Discord Rich Presence
 		DiscordClient.changePresence("Menu Character Editor", "Editting: " + characterFile.image);
 		#end
 	}
@@ -282,12 +282,12 @@ class MenuCharacterEditorState extends MusicBeatState
 			{
 				characterFile.idle_anim = idleInputText.text;
 			}
-			else if(sender == confirmInputText)
+			else if (sender == confirmInputText)
 			{
 				characterFile.confirm_anim = confirmInputText.text;
 			}
 		}
-		else if(id == FlxUINumericStepper.CHANGE_EVENT && (sender is FlxUINumericStepper))
+		else if (id == FlxUINumericStepper.CHANGE_EVENT && (sender is FlxUINumericStepper))
 		{
 			if (sender == scaleStepper)
 			{
@@ -309,12 +309,15 @@ class MenuCharacterEditorState extends MusicBeatState
 				FlxG.sound.volumeUpKeys = [];
 				blockInput = true;
 
-				if(FlxG.keys.justPressed.ENTER) inputText.hasFocus = false;
+				if (FlxG.keys.justPressed.ENTER)
+				{
+					inputText.hasFocus = false;
+				}
 				break;
 			}
 		}
 
-		if(!blockInput)
+		if (!blockInput)
 		{
 			FlxG.sound.muteKeys = TitleState.muteKeys;
 			FlxG.sound.volumeDownKeys = TitleState.volumeDownKeys;
@@ -336,16 +339,19 @@ class MenuCharacterEditorState extends MusicBeatState
 				characterFile.position[0] += shiftMult;
 				updateOffset();
 			}
+
 			if (FlxG.keys.justPressed.RIGHT #if android || _virtualpad.buttonRight.justPressed #end)
 			{
 				characterFile.position[0] -= shiftMult;
 				updateOffset();
 			}
+
 			if (FlxG.keys.justPressed.UP #if android || _virtualpad.buttonUp.justPressed #end)
 			{
 				characterFile.position[1] += shiftMult;
 				updateOffset();
 			}
+
 			if (FlxG.keys.justPressed.DOWN #if android || _virtualpad.buttonDown.justPressed #end)
 			{
 				characterFile.position[1] -= shiftMult;
@@ -428,8 +434,8 @@ class MenuCharacterEditorState extends MusicBeatState
 	}
 
 	/**
-		* Called when the save file dialog is cancelled.
-		*/
+	* Called when the save file dialog is cancelled.
+	*/
 	function onLoadCancel(_):Void
 	{
 		_file.removeEventListener(Event.SELECT, onLoadComplete);
@@ -440,8 +446,8 @@ class MenuCharacterEditorState extends MusicBeatState
 	}
 
 	/**
-		* Called if there is an error while saving the gameplay recording.
-		*/
+	* Called if there is an error while saving the gameplay recording.
+	*/
 	function onLoadError(_):Void
 	{
 		_file.removeEventListener(Event.SELECT, onLoadComplete);
@@ -481,8 +487,8 @@ class MenuCharacterEditorState extends MusicBeatState
 	}
 
 	/**
-		* Called when the save file dialog is cancelled.
-		*/
+	* Called when the save file dialog is cancelled.
+	*/
 	function onSaveCancel(_):Void
 	{
 		_file.removeEventListener(Event.COMPLETE, onSaveComplete);
@@ -492,8 +498,8 @@ class MenuCharacterEditorState extends MusicBeatState
 	}
 
 	/**
-		* Called if there is an error while saving the gameplay recording.
-		*/
+	* Called if there is an error while saving the gameplay recording.
+	*/
 	function onSaveError(_):Void
 	{
 		_file.removeEventListener(Event.COMPLETE, onSaveComplete);

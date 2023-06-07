@@ -43,7 +43,7 @@ class CoolUtil
 		}
 
 		var fileSuffix:String = difficulties[num];
-		if(fileSuffix != defaultDifficulty)
+		if (fileSuffix != defaultDifficulty)
 		{
 			fileSuffix = '-' + fileSuffix;
 		}
@@ -68,9 +68,15 @@ class CoolUtil
 	{
 		var daList:Array<String> = [];
 		#if sys
-		if(FileSystem.exists(path)) daList = File.getContent(path).trim().split('\n');
+		if (FileSystem.exists(path))
+		{
+			daList = File.getContent(path).trim().split('\n');
+		}
 		#else
-		if(Assets.exists(path)) daList = Assets.getText(path).trim().split('\n');
+		if (Assets.exists(path))
+		{
+			daList = Assets.getText(path).trim().split('\n');
+		}
 		#end
 
 		for (i in 0...daList.length)
@@ -80,6 +86,7 @@ class CoolUtil
 
 		return daList;
 	}
+
 	public static function listFromString(string:String):Array<String>
 	{
 		var daList:Array<String> = [];
@@ -92,6 +99,7 @@ class CoolUtil
 
 		return daList;
 	}
+	
 	public static function dominantColor(sprite:flixel.FlxSprite):Int
 	{
 		var countByColor:Map<Int, Int> = [];
@@ -114,7 +122,7 @@ class CoolUtil
 			}
 		}
 		var maxCount = 0;
-		var maxKey:Int = 0;//after the loop this will store the max color
+		var maxKey:Int = 0; //after the loop this will store the max color
 		countByColor[flixel.util.FlxColor.BLACK] = 0;
 		for (key in countByColor.keys())
 		{

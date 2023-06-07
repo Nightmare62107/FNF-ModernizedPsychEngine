@@ -226,8 +226,6 @@ class StoryMenuState extends MusicBeatState
 			}
 
 			var upP = controls.UI_UP_P;
-			var downP = controls.UI_DOWN_P;
-
 			if (upP)
 			{
 				changeWeek(-shiftMult);
@@ -235,6 +233,7 @@ class StoryMenuState extends MusicBeatState
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 			}
 
+			var downP = controls.UI_DOWN_P;
 			if (downP)
 			{
 				changeWeek(shiftMult);
@@ -400,6 +399,7 @@ class StoryMenuState extends MusicBeatState
 		{
 			curDifficulty = CoolUtil.difficulties.length-1;
 		}
+
 		if (curDifficulty >= CoolUtil.difficulties.length)
 		{
 			curDifficulty = 0;
@@ -419,7 +419,11 @@ class StoryMenuState extends MusicBeatState
 			sprDifficulty.alpha = 0;
 			sprDifficulty.y = leftArrow.y - 15;
 
-			if (tweenDifficulty != null) tweenDifficulty.cancel();
+			if (tweenDifficulty != null)
+			{
+				tweenDifficulty.cancel();
+			}
+
 			tweenDifficulty = FlxTween.tween(sprDifficulty, {y: leftArrow.y + 15, alpha: 1}, 0.07, {onComplete: function(twn:FlxTween)
 			{
 				tweenDifficulty = null;
@@ -443,6 +447,7 @@ class StoryMenuState extends MusicBeatState
 		{
 			curWeek = 0;
 		}
+		
 		if (curWeek < 0)
 		{
 			curWeek = loadedWeeks.length - 1;
@@ -501,7 +506,10 @@ class StoryMenuState extends MusicBeatState
 				if (diffs[i] != null)
 				{
 					diffs[i] = diffs[i].trim();
-					if(diffs[i].length < 1) diffs.remove(diffs[i]);
+					if (diffs[i].length < 1)
+					{
+						diffs.remove(diffs[i]);
+					}
 				}
 				--i;
 			}

@@ -22,8 +22,8 @@ class Section
 	public var mustHitSection:Bool = true;
 
 	/**
-	 *	Copies the first section into the second section!
-	 */
+	*	Copies the first section into the second section!
+	*/
 	public static var COPYCAT:Int = 0;
 
 	public function new(sectionBeats:Float = 4)

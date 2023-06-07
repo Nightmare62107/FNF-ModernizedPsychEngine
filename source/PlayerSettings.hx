@@ -44,8 +44,7 @@ class PlayerSettings
 		controls.setKeyboardScheme(scheme);
 	}
 
-	/* 
-	static public function addAvatar(avatar:Player):PlayerSettings
+	/*static public function addAvatar(avatar:Player):PlayerSettings
 	{
 		var settings:PlayerSettings;
 
@@ -128,8 +127,8 @@ class PlayerSettings
 		splitCameras();
 
 		onAvatarRemove.dispatch(avatar.settings);
-	}
-	*/
+	}*/
+	
 	static public function init():Void
 	{
 		if (player1 == null)

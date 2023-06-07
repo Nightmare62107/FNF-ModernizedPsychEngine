@@ -3,9 +3,9 @@ package lime.utils;
 import haxe.PosInfos;
 import sys.io.File;
 import sys.FileSystem;
-import openfl.Lib; // I FORGOR
+import openfl.Lib; //I FORGOR
 
-using StringTools; // AGAIN
+using StringTools; //AGAIN
 
 #if !lime_debug
 @:fileXml('tags="haxe,release"')
@@ -146,6 +146,7 @@ class Log
 		{
 			untyped #if haxe4 js.Syntax.code #else __js__ #end ("console = {}");
 		}
+		
 		if (untyped #if haxe4 js.Syntax.code #else __js__ #end ("console").log == null)
 		{
 			untyped #if haxe4 js.Syntax.code #else __js__ #end ("console").log = function() {};

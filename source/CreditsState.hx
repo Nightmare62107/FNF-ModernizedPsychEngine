@@ -40,7 +40,7 @@ class CreditsState extends MusicBeatState
 	override function create()
 	{
 		#if desktop
-		// Updating Discord Rich Presence
+		//Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
 
@@ -64,7 +64,7 @@ class CreditsState extends MusicBeatState
 					var modSplit:Array<String> = leMods[i].split('|');
 					if (!Paths.ignoreModFolders.contains(modSplit[0].toLowerCase()) && !modsAdded.contains(modSplit[0]))
 					{
-						if(modSplit[1] == '1')
+						if (modSplit[1] == '1')
 						{
 							pushModCreditsToList(modSplit[0]);
 						}
@@ -85,17 +85,18 @@ class CreditsState extends MusicBeatState
 		}
 		#end
 
-		var pisspoop:Array<Array<String>> = // Name - Icon name - Description - Link - BG Color
+		var pisspoop:Array<Array<String>> = //Name - Icon name - Description - Link - BG Color
 		[
 			['Modernized Psych Engine Team'],
 			['Radioactive',			'radiimbo',			'Main Programmer of Modernized Psych Engine',					'https://www.youtube.com/c/Radioactive4020',				'16E63F'],
 			["UGH",					'ugh',				'Made the Discord Main Menu Sprites',							'https://www.youtube.com/@emulatortests159',				'E1E1E1'],
 			[''],
 			['Psych Engine Android Team'],
-			['MaysLastPlay',		'MaysLastPlay',		'Android Porter',												'https://www.youtube.com/channel/UCx0LxtFR8ROd9sFAq-UxDfw',	'5DE7FF'],
+			['MaysLastPlay',		'mayslastplay',		'Android Porter',												'https://www.youtube.com/channel/UCx0LxtFR8ROd9sFAq-UxDfw',	'5DE7FF'],
 			['Nuno Filipe Studios',	'nuno',				'Android Porter',												'https://www.youtube.com/channel/UCq7G3p4msVN5SX2CpJ86tTw',	'989c99'],
 			['M.A. Jigsaw', 		'saw',				'AndroidTools Creator/Vpad Designer',							'https://www.youtube.com/channel/UC2Sk7vtPzOvbVzdVTWrribQ',	'444444'],
 			['MarioMaster',		    'mariomaster',		'hi its a me',													'https://www.youtube.com/c/MarioMaster1997',				'D10616'],
+			[''],
 			['Psych Engine Team'],
 			['Shadow Mario',		'shadowmario',		'Main Programmer of Psych Engine',								'https://twitter.com/Shadow_Mario_',						'444444'],
 			['RiverOaken',			'river',			'Main Artist/Animator of Psych Engine',							'https://twitter.com/RiverOaken',							'B42F71'],
@@ -147,7 +148,7 @@ class CreditsState extends MusicBeatState
 				icon.xAdd = optionText.width + 10;
 				icon.sprTracker = optionText;
 	
-				// using a FlxGroup is too much fuss!
+				//using a FlxGroup is too much fuss!
 				iconArray.push(icon);
 				add(icon);
 				Paths.currentModDirectory = '';
@@ -207,14 +208,13 @@ class CreditsState extends MusicBeatState
 				}
 
 				var upP = controls.UI_UP_P;
-				var downP = controls.UI_DOWN_P;
-
 				if (upP)
 				{
 					changeSelection(-shiftMult);
 					holdTime = 0;
 				}
 
+				var downP = controls.UI_DOWN_P;
 				if (downP)
 				{
 					changeSelection(shiftMult);
@@ -243,6 +243,7 @@ class CreditsState extends MusicBeatState
 			{
 				CoolUtil.browserLoad(creditsStuff[curSelected][3]);
 			}
+
 			if (controls.BACK)
 			{
 				if (colorTween != null)
@@ -283,9 +284,14 @@ class CreditsState extends MusicBeatState
 		{
 			curSelected += change;
 			if (curSelected < 0)
+			{
 				curSelected = creditsStuff.length - 1;
+			}
+			
 			if (curSelected >= creditsStuff.length)
+			{
 				curSelected = 0;
+			}
 		}
 		while (unselectableCheck(curSelected));
 

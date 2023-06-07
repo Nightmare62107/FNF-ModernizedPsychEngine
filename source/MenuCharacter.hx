@@ -39,6 +39,7 @@ class MenuCharacter extends FlxSprite
 		{
 			character = '';
 		}
+		
 		if (character == this.character)
 		{
 			return;

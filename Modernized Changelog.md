@@ -116,6 +116,18 @@ VERSION 3.5;
 
 		- Added a screenshot feature (press Control and 6 to screenshot anywhere in the game)
 
+VERSION 4.0;
+
+	NEW THINGS ADDED:
+
+		- Fixed Mom's hair shading in all her base game spritesheets (normal, car, and christmas)
+
+		- Fixed the "Pause Screen RNG" Achievement not working
+
+		- Added the "hurt" animation to "bf-christmas"
+
+		- Added the "Arrow Spin" Event (spins the arrows left or right like how it does in VS Sonic.exe, in the song "Endless")
+
 ENGINES USED:
 
 	- "Psych Engine" https://github.com/ShadowMario/FNF-PsychEngine

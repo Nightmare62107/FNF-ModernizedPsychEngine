@@ -147,6 +147,7 @@ class DialogueCharacter extends FlxSprite
 			{
 				arrayAnims.push(anim.anim);
 			}
+
 			if (arrayAnims.length > 0)
 			{
 				leAnim = arrayAnims[FlxG.random.int(0, arrayAnims.length-1)];
@@ -335,7 +336,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 			return;
 		}
 
-		if(!dialogueEnded)
+		if (!dialogueEnded)
 		{
 			bgFade.alpha += 0.5 * elapsed;
 			if (bgFade.alpha > 0.5)
@@ -415,7 +416,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 				}
 			}
 
-			if(box.animation.curAnim.finished)
+			if (box.animation.curAnim.finished)
 			{
 				for (i in 0...textBoxTypes.length)
 				{
@@ -470,7 +471,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 						}
 						else
 						{
-							switch(char.jsonFile.dialogue_pos)
+							switch (char.jsonFile.dialogue_pos)
 							{
 								case 'left':
 									char.x += scrollSpeed * elapsed;
@@ -503,7 +504,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 		}
 		else //Dialogue ending
 		{
-			if(box != null && box.animation.curAnim.curFrame <= 0)
+			if (box != null && box.animation.curAnim.curFrame <= 0)
 			{
 				box.kill();
 				remove(box);
@@ -514,7 +515,7 @@ class DialogueBoxPsych extends FlxSpriteGroup
 			if (bgFade != null)
 			{
 				bgFade.alpha -= 0.5 * elapsed;
-				if(bgFade.alpha <= 0)
+				if (bgFade.alpha <= 0)
 				{
 					bgFade.kill();
 					remove(bgFade);
@@ -569,16 +570,19 @@ class DialogueBoxPsych extends FlxSpriteGroup
 		do
 		{
 			curDialogue = dialogueList.dialogue[currentText];
-		} while(curDialogue == null);
+		}
+		while (curDialogue == null);
 
 		if (curDialogue.text == null || curDialogue.text.length < 1)
 		{
 			curDialogue.text = ' ';
 		}
+
 		if (curDialogue.boxState == null)
 		{
 			curDialogue.boxState = 'normal';
 		}
+		
 		if (curDialogue.speed == null || Math.isNaN(curDialogue.speed))
 		{
 			curDialogue.speed = 0.05;

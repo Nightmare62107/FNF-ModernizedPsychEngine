@@ -7,11 +7,11 @@ import openfl.display.Shape;
 import android.flixel.FlxButton;
 
 /**
- * A zone with 4 hint's (A hitbox).
- * It's really easy to customize the layout.
- *
- * @author Mihai Alexandru (M.A. Jigsaw)
- */
+* A zone with 4 hint's (A hitbox).
+* It's really easy to customize the layout.
+*
+* @author Mihai Alexandru (M.A. Jigsaw)
+*/
 class FlxNewHitbox extends FlxSpriteGroup
 {
 	public var buttonLeft:FlxButton = new FlxButton(0, 0);
@@ -20,8 +20,8 @@ class FlxNewHitbox extends FlxSpriteGroup
 	public var buttonRight:FlxButton = new FlxButton(0, 0);
 
 	/**
-	 * Create the zone.
-	 */
+	* Create the zone.
+	*/
 	public function new():Void
 	{
 		super();
@@ -35,8 +35,8 @@ class FlxNewHitbox extends FlxSpriteGroup
 	}
 
 	/**
-	 * Clean up memory.
-	 */
+	* Clean up memory.
+	*/
 	override function destroy():Void
 	{
 		super.destroy();

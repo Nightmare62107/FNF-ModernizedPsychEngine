@@ -27,7 +27,7 @@ class MainMenuState extends MusicBeatState
 {
 	public static var psychEngineVersion:String = '0.6.2';
 	public static var fridayNightFunkinVersion:String = '0.2.8';
-	public static var modernizedPsychEngineVersion:String = '0.3.0'; //This is also used for Discord RPC
+	public static var modernizedPsychEngineVersion:String = '0.4.0';
 	public static var curSelected:Int = 0;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
@@ -66,7 +66,7 @@ class MainMenuState extends MusicBeatState
 		WeekData.loadTheFirstEnabledMod();
 
 		#if desktop
-		// Updating Discord Rich Presence
+		//Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
 		debugKeys = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
@@ -107,7 +107,7 @@ class MainMenuState extends MusicBeatState
             var hours:Int = Date.now().getHours();
             if (hours > 18)
 			{
-                themedBg.color = 0x545f8a; // 0x6939ff
+                themedBg.color = 0x545f8a; //0x6939ff
             }
 			else if (hours > 8)
 			{
@@ -130,7 +130,7 @@ class MainMenuState extends MusicBeatState
 		magenta.color = 0xFFfd719b;
 		add(magenta);
 		
-		// magenta.scrollFactor.set();
+		//magenta.scrollFactor.set();
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
@@ -167,7 +167,7 @@ class MainMenuState extends MusicBeatState
 
 		FlxG.camera.follow(camFollowPos, null, 1);
 
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 64, 0, "Modernized Psych Engine v" + Application.current.meta.get('version'), 12);
+		var versionShit:FlxText = new FlxText(12, FlxG.height - 64, 0, "Modernized Psych Engine v" + modernizedPsychEngineVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
@@ -180,7 +180,7 @@ class MainMenuState extends MusicBeatState
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
 
-		// NG.core.calls.event.logEvent('swag').send();
+		//NG.core.calls.event.logEvent('swag').send();
 
 		changeItem();
 
@@ -241,14 +241,13 @@ class MainMenuState extends MusicBeatState
 			}
 
 			var upP = controls.UI_UP_P;
-			var downP = controls.UI_DOWN_P;
-
 			if (upP)
 			{
 				changeItem(-shiftMult);
 				holdTime = 0;
 			}
 			
+			var downP = controls.UI_DOWN_P;
 			if (downP)
 			{
 				changeItem(shiftMult);
@@ -295,7 +294,10 @@ class MainMenuState extends MusicBeatState
 					selectedSomethin = true;
 					FlxG.sound.play(Paths.sound('confirmMenu'));
 
-					if(ClientPrefs.flashing) FlxFlicker.flicker(magenta, 1.1, 0.15, false);
+					if (ClientPrefs.flashing)
+					{
+						FlxFlicker.flicker(magenta, 1.1, 0.15, false);
+					}
 
 					menuItems.forEach(function(spr:FlxSprite)
 					{
@@ -364,6 +366,7 @@ class MainMenuState extends MusicBeatState
 		{
 			curSelected = 0;
 		}
+
 		if (curSelected < 0)
 		{
 			curSelected = menuItems.length - 1;
@@ -401,7 +404,7 @@ class MainMenuState extends MusicBeatState
 
 				var leDate = Date.now();
 				
-				switch(achievementName)
+				switch (achievementName)
 				{
 					case 'friday_night_play':
 						if (leDate.getDay() == 5 && leDate.getHours() >= 18)

@@ -168,22 +168,20 @@ class PauseSubState extends MusicBeatSubstate
 		super.update(elapsed);
 		updateSkipTextStuff();
 
-		var upP = controls.UI_UP_P;
-		var downP = controls.UI_DOWN_P;
-		var accepted = controls.ACCEPT;
-
 		var shiftMult:Int = 1;
 		if (FlxG.keys.pressed.SHIFT)
 		{
 			shiftMult = 1;
 		}
 
+		var upP = controls.UI_UP_P;
 		if (upP)
 		{
 			changeSelection(-shiftMult);
 			holdTime = 0;
 		}
 
+		var downP = controls.UI_DOWN_P;
 		if (downP)
 		{
 			changeSelection(shiftMult);
@@ -244,6 +242,7 @@ class PauseSubState extends MusicBeatSubstate
 				}
 		}
 
+		var accepted = controls.ACCEPT;
 		if (accepted && (cantUnpause <= 0 || !ClientPrefs.controllerMode))
 		{
 			if (menuItems == difficultyChoices)
@@ -377,6 +376,7 @@ class PauseSubState extends MusicBeatSubstate
 		{
 			curSelected = menuItems.length - 1;
 		}
+
 		if (curSelected >= menuItems.length)
 		{
 			curSelected = 0;
@@ -390,12 +390,12 @@ class PauseSubState extends MusicBeatSubstate
 			bullShit++;
 
 			item.alpha = 0.6;
-			// item.setGraphicSize(Std.int(item.width * 0.8));
+			//item.setGraphicSize(Std.int(item.width * 0.8));
 
 			if (item.targetY == 0)
 			{
 				item.alpha = 1;
-				// item.setGraphicSize(Std.int(item.width));
+				//item.setGraphicSize(Std.int(item.width));
 
 				if (item == skipTimeTracker)
 				{

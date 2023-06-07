@@ -39,9 +39,9 @@ class Note extends FlxSprite
 
 	public var spawned:Bool = false;
 
-	public var tail:Array<Note> = []; // for sustains
+	public var tail:Array<Note> = []; //for sustains
 	public var parent:Note;
-	public var blockHit:Bool = false; // only works for player
+	public var blockHit:Bool = false; //only works for player
 
 	public var sustainLength:Float = 0;
 	public var isSustainNote:Bool = false;
@@ -74,7 +74,7 @@ class Note extends FlxSprite
 	private var colArray:Array<String> = ['purple', 'blue', 'green', 'red'];
 	private var pixelInt:Array<Int> = [0, 1, 2, 3];
 
-	// Lua shit
+	//Lua shit
 	public var noteSplashDisabled:Bool = false;
 	public var noteSplashTexture:String = null;
 	public var noteSplashHue:Float = 0;
@@ -209,7 +209,10 @@ class Note extends FlxSprite
 		//MAKE SURE ITS DEFINITELY OFF SCREEN?
 		y -= 2000;
 		this.strumTime = strumTime;
-		if(!inEditor) this.strumTime += ClientPrefs.noteOffset;
+		if (!inEditor)
+		{
+			this.strumTime += ClientPrefs.noteOffset;
+		}
 
 		this.noteData = noteData;
 
@@ -220,7 +223,7 @@ class Note extends FlxSprite
 			shader = colorSwap.shader;
 
 			x += swagWidth * (noteData);
-			if (!isSustainNote && noteData > -1 && noteData < 4) // Doing this 'if' check to fix the warnings on Senpai songs
+			if (!isSustainNote && noteData > -1 && noteData < 4) //Doing this 'if' check to fix the warnings on Senpai songs
 			{
 				var animToPlay:String = '';
 				animToPlay = colArray[noteData % 4];
@@ -228,7 +231,7 @@ class Note extends FlxSprite
 			}
 		}
 
-		// trace(prevNote);
+		//trace(prevNote);
 
 		if (prevNote!=null)
 		{
@@ -240,7 +243,10 @@ class Note extends FlxSprite
 			alpha = 0.6;
 			multAlpha = 0.6;
 			hitsoundDisabled = true;
-			if(ClientPrefs.downScroll) flipY = true;
+			if (ClientPrefs.downScroll)
+			{
+				flipY = true;
+			}
 
 			offsetX += width / 2;
 			copyAngle = false;
@@ -272,7 +278,7 @@ class Note extends FlxSprite
 					prevNote.scale.y *= (6 / height); //Auto adjust note size
 				}
 				prevNote.updateHitbox();
-				// prevNote.setGraphicSize();
+				//prevNote.setGraphicSize();
 			}
 
 			if (PlayState.isPixelStage)
@@ -297,10 +303,12 @@ class Note extends FlxSprite
 		{
 			prefix = '';
 		}
+
 		if (texture == null)
 		{
 			texture = '';
 		}
+
 		if (suffix == null)
 		{
 			suffix = '';
@@ -368,6 +376,7 @@ class Note extends FlxSprite
 			loadNoteAnims();
 			antialiasing = ClientPrefs.globalAntialiasing;
 		}
+
 		if (isSustainNote)
 		{
 			scale.y = lastScaleY;
@@ -420,7 +429,7 @@ class Note extends FlxSprite
 
 		if (mustPress)
 		{
-			// ok river
+			//ok river
 			if (strumTime > Conductor.songPosition - (Conductor.safeZoneOffset * lateHitMult) && strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * earlyHitMult))
 			{
 				canBeHit = true;

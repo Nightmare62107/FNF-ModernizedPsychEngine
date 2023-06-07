@@ -8,26 +8,26 @@ import openfl.display.ShaderParameter;
 import openfl.display.ShaderParameterType;
 
 /**
- * An wrapper for Flixel/OpenFL's shaders, which takes fragment and vertex source
- * in the constructor instead of using macros, so it can be provided data
- * at runtime (for example, when using mods).
- * 
- * HOW TO USE:
- * 1. Create an instance of this class, passing the text of the `.frag` and `.vert` files.
- *    Note that you can set either of these to null (making them both null would make the shader do nothing???).
- * 2. Use `flxSprite.shader = runtimeShader` to apply the shader to the sprite.
- * 3. Use `runtimeShader.setFloat()`, `setBool()`, etc. to modify any uniforms.
- * 
- * @author MasterEric
- * @see https://github.com/openfl/openfl/blob/develop/src/openfl/utils/_internal/ShaderMacro.hx
- * @see https://dixonary.co.uk/blog/shadertoy
- */
+* An wrapper for Flixel/OpenFL's shaders, which takes fragment and vertex source
+* in the constructor instead of using macros, so it can be provided data
+* at runtime (for example, when using mods).
+* 
+* HOW TO USE:
+* 1. Create an instance of this class, passing the text of the `.frag` and `.vert` files.
+*    Note that you can set either of these to null (making them both null would make the shader do nothing???).
+* 2. Use `flxSprite.shader = runtimeShader` to apply the shader to the sprite.
+* 3. Use `runtimeShader.setFloat()`, `setBool()`, etc. to modify any uniforms.
+* 
+* @author MasterEric
+* @see https://github.com/openfl/openfl/blob/develop/src/openfl/utils/_internal/ShaderMacro.hx
+* @see https://dixonary.co.uk/blog/shadertoy
+*/
 class FlxRuntimeShader extends FlxShader
 {
 	#if FLX_DRAW_QUADS
 	//We need to add stuff from FlxGraphicsShader too!
 	#else
-	// Only stuff from openfl.display.Shader is needed
+	//Only stuff from openfl.display.Shader is needed
 	#end
 	//These variables got copied from openfl.display.GraphicsShader
 	//and from flixel.graphics.tile.FlxGraphicsShader,
@@ -87,10 +87,12 @@ class FlxRuntimeShader extends FlxShader
 			{
 				return color;
 			}
+
 			if (color.a == 0.0)
 			{
 				return vec4(0.0, 0.0, 0.0, 0.0);
 			}
+
 			if (!hasColorTransform)
 			{
 				return color * openfl_Alphav;
@@ -110,7 +112,7 @@ class FlxRuntimeShader extends FlxShader
 		}
 	";
 	#else
-	// No additional data.
+	//No additional data.
 	;
 	#end
 	static final BASE_FRAGMENT_BODY:String = "
@@ -136,7 +138,8 @@ class FlxRuntimeShader extends FlxShader
 			{
 				gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
 			}
-		}else
+		}
+		else
 		{
 			gl_FragColor = color * openfl_Alphav;
 		}
@@ -201,11 +204,11 @@ class FlxRuntimeShader extends FlxShader
 	private var _glslesVersion:Int;
 
 	/**
-	 * Constructs a GLSL shader.
-	 * @param fragmentSource The fragment shader source.
-	 * @param vertexSource The vertex shader source.
-	 * Note you also need to `initialize()` the shader MANUALLY! It can't be done automatically.
-	 */
+	* Constructs a GLSL shader.
+	* @param fragmentSource The fragment shader source.
+	* @param vertexSource The vertex shader source.
+	* Note you also need to `initialize()` the shader MANUALLY! It can't be done automatically.
+	*/
 	public function new(fragmentSource:String = null, vertexSource:String = null, glslesVersion:Int = 100):Void
 	{
     _glslesVersion = glslesVersion;
@@ -234,9 +237,9 @@ class FlxRuntimeShader extends FlxShader
 
 		@:privateAccess
 		{
-			// This tells the shader that the glVertexSource/glFragmentSource have been updated.
+			//This tells the shader that the glVertexSource/glFragmentSource have been updated.
 			__glSourceDirty = true;
-			// This tells the shader that the shader properties are NOT reflected on this class automatically.
+			//This tells the shader that the shader properties are NOT reflected on this class automatically.
 			__isGenerated = false;
 		}
 
@@ -244,8 +247,8 @@ class FlxRuntimeShader extends FlxShader
 	}
 	
 	/**
-	 * Replace the `#pragma header` and `#pragma body` with the fragment shader header and body.
-	 */
+	* Replace the `#pragma header` and `#pragma body` with the fragment shader header and body.
+	*/
 	function processFragmentSource(input:String):String
 	{
 		var result = StringTools.replace(input, PRAGMA_HEADER, BASE_FRAGMENT_HEADER);
@@ -254,8 +257,8 @@ class FlxRuntimeShader extends FlxShader
 	}
 
 	/**
-	 * Replace the `#pragma header` and `#pragma body` with the vertex shader header and body.
-	 */
+	* Replace the `#pragma header` and `#pragma body` with the vertex shader header and body.
+	*/
 	function processVertexSource(input:String):String
 	{
 		var result = StringTools.replace(input, PRAGMA_HEADER, BASE_VERTEX_HEADER);
@@ -266,20 +269,20 @@ class FlxRuntimeShader extends FlxShader
 	function buildPrecisionHeaders():String
 	{
 		return "#ifdef GL_ES
-				" + (precisionHint == FULL ? "#ifdef GL_FRAGMENT_PRECISION_HIGH
-					precision highp float;
-				#else
-					precision mediump float;
-				#endif" : "precision lowp float;")
-				+ "
-				#endif
-				";
+			" + (precisionHint == FULL ? "#ifdef GL_FRAGMENT_PRECISION_HIGH
+				precision highp float;
+			#else
+				precision mediump float;
+			#endif" : "precision lowp float;")
+			+ "
+			#endif
+			";
 	}
 
 	/**
-	 * The parent function that initializes the shader.
-	 * This is done to add the `#version` shader directive.
-	 */
+	* The parent function that initializes the shader.
+	* This is done to add the `#version` shader directive.
+	*/
 	private override function __initGL():Void
 	{
 		if (__glSourceDirty || __paramBool == null)
@@ -388,26 +391,23 @@ class FlxRuntimeShader extends FlxShader
 		//Reflect.hasField(this, name) is REALLY expensive so we use a cache.
 		if (__fieldList == null)
 		{
-			__fieldList = Reflect.fields(this)
-				.concat(Type.getInstanceFields(Type.getClass(this)));
+			__fieldList = Reflect.fields(this).concat(Type.getInstanceFields(Type.getClass(this)));
 		}
 		return __fieldList.indexOf(name) != -1;
 	}
 
 	/**
-	 * The parent function that initializes the shader.
-	 * This is done because some shader fields (such as `bitmap`) have to automatically propagate from the shader,
-	 * but others may not exist or be properties rather than fields.
-	 */
+	* The parent function that initializes the shader.
+	* This is done because some shader fields (such as `bitmap`) have to automatically propagate from the shader,
+	* but others may not exist or be properties rather than fields.
+	*/
 	private override function __processGLData(source:String, storageType:String):Void
 	{
 		var position;
 		var name;
 		var type;
 
-		var regex = (storageType == "uniform")
-			? ~/uniform ([A-Za-z0-9]+) ([A-Za-z0-9_]+)/
-			: ~/attribute ([A-Za-z0-9]+) ([A-Za-z0-9_]+)/;
+		var regex = (storageType == "uniform") ? ~/uniform ([A-Za-z0-9]+) ([A-Za-z0-9_]+)/ : ~/attribute ([A-Za-z0-9]+) ([A-Za-z0-9_]+)/;
 
 		var lastMatch = 0;
 
@@ -438,55 +438,91 @@ class FlxRuntimeShader extends FlxShader
 					case "bitmap":
 						__bitmap = input;
 					default:
+						//nothing
 				}
 
 				Reflect.setField(__data, name, input);
-				if (__isGenerated && thisHasField(name)) Reflect.setProperty(this, name, input);
+				if (__isGenerated && thisHasField(name))
+				{
+					Reflect.setProperty(this, name, input);
+				}
 			}
 			else if (!Reflect.hasField(__data, name) || Reflect.field(__data, name) == null)
 			{
 				var parameterType:ShaderParameterType = switch (type)
 				{
-					case "bool": BOOL;
-					case "double", "float": FLOAT;
-					case "int", "uint": INT;
-					case "bvec2": BOOL2;
-					case "bvec3": BOOL3;
-					case "bvec4": BOOL4;
-					case "ivec2", "uvec2": INT2;
-					case "ivec3", "uvec3": INT3;
-					case "ivec4", "uvec4": INT4;
-					case "vec2", "dvec2": FLOAT2;
-					case "vec3", "dvec3": FLOAT3;
-					case "vec4", "dvec4": FLOAT4;
-					case "mat2", "mat2x2": MATRIX2X2;
-					case "mat2x3": MATRIX2X3;
-					case "mat2x4": MATRIX2X4;
-					case "mat3x2": MATRIX3X2;
-					case "mat3", "mat3x3": MATRIX3X3;
-					case "mat3x4": MATRIX3X4;
-					case "mat4x2": MATRIX4X2;
-					case "mat4x3": MATRIX4X3;
-					case "mat4", "mat4x4": MATRIX4X4;
-					default: null;
+					case "bool":
+						BOOL;
+					case "double", "float":
+						FLOAT;
+					case "int", "uint":
+						INT;
+					case "bvec2":
+						BOOL2;
+					case "bvec3":
+						BOOL3;
+					case "bvec4":
+						BOOL4;
+					case "ivec2", "uvec2":
+						INT2;
+					case "ivec3", "uvec3":
+						INT3;
+					case "ivec4", "uvec4":
+						INT4;
+					case "vec2", "dvec2":
+						FLOAT2;
+					case "vec3", "dvec3":
+						FLOAT3;
+					case "vec4", "dvec4":
+						FLOAT4;
+					case "mat2", "mat2x2":
+						MATRIX2X2;
+					case "mat2x3":
+						MATRIX2X3;
+					case "mat2x4":
+						MATRIX2X4;
+					case "mat3x2":
+						MATRIX3X2;
+					case "mat3", "mat3x3":
+						MATRIX3X3;
+					case "mat3x4":
+						MATRIX3X4;
+					case "mat4x2":
+						MATRIX4X2;
+					case "mat4x3":
+						MATRIX4X3;
+					case "mat4", "mat4x4":
+						MATRIX4X4;
+					default:
+						null;
 				}
 
 				var length = switch (parameterType)
 				{
-					case BOOL2, INT2, FLOAT2: 2;
-					case BOOL3, INT3, FLOAT3: 3;
-					case BOOL4, INT4, FLOAT4, MATRIX2X2: 4;
-					case MATRIX3X3: 9;
-					case MATRIX4X4: 16;
-					default: 1;
+					case BOOL2, INT2, FLOAT2:
+						2;
+					case BOOL3, INT3, FLOAT3:
+						3;
+					case BOOL4, INT4, FLOAT4, MATRIX2X2:
+						4;
+					case MATRIX3X3:
+						9;
+					case MATRIX4X4:
+						16;
+					default:
+						1;
 				}
 
 				var arrayLength = switch (parameterType)
 				{
-					case MATRIX2X2: 2;
-					case MATRIX3X3: 3;
-					case MATRIX4X4: 4;
-					default: 1;
+					case MATRIX2X2:
+						2;
+					case MATRIX3X3:
+						3;
+					case MATRIX4X4:
+						4;
+					default:
+						1;
 				}
 
 				switch (parameterType)
@@ -507,8 +543,10 @@ class FlxRuntimeShader extends FlxShader
 						}
 
 						Reflect.setField(__data, name, parameter);
-						if (__isGenerated && thisHasField(name)) Reflect.setProperty(this, name, parameter);
-
+						if (__isGenerated && thisHasField(name))
+						{
+							Reflect.setProperty(this, name, parameter);
+						}
 					case INT, INT2, INT3, INT4:
 						var parameter = new ShaderParameter<Int>();
 						parameter.name = name;
@@ -519,15 +557,20 @@ class FlxRuntimeShader extends FlxShader
 						parameter.__length = length;
 						__paramInt.push(parameter);
 						Reflect.setField(__data, name, parameter);
-						if (__isGenerated && thisHasField(name)) Reflect.setProperty(this, name, parameter);
-
+						if (__isGenerated && thisHasField(name))
+						{
+							Reflect.setProperty(this, name, parameter);
+						}
 					default:
 						var parameter = new ShaderParameter<Float>();
 						parameter.name = name;
 						parameter.type = parameterType;
 						parameter.__arrayLength = arrayLength;
 						#if lime
-						if (arrayLength > 0) parameter.__uniformMatrix = new Float32Array(arrayLength * arrayLength);
+						if (arrayLength > 0)
+						{
+							parameter.__uniformMatrix = new Float32Array(arrayLength * arrayLength);
+						}
 						#end
 						parameter.__isFloat = true;
 						parameter.__isUniform = isUniform;
@@ -538,14 +581,22 @@ class FlxRuntimeShader extends FlxShader
 						{
 							switch (name)
 							{
-								case "openfl_Alpha": __alpha = parameter;
-								case "openfl_ColorMultiplier": __colorMultiplier = parameter;
-								case "openfl_ColorOffset": __colorOffset = parameter;
-								case "openfl_Matrix": __matrix = parameter;
-								case "openfl_Position": __position = parameter;
-								case "openfl_TextureCoord": __textureCoord = parameter;
-								case "openfl_TextureSize": __textureSize = parameter;
+								case "openfl_Alpha":
+									__alpha = parameter;
+								case "openfl_ColorMultiplier":
+									__colorMultiplier = parameter;
+								case "openfl_ColorOffset":
+									__colorOffset = parameter;
+								case "openfl_Matrix":
+									__matrix = parameter;
+								case "openfl_Position":
+									__position = parameter;
+								case "openfl_TextureCoord":
+									__textureCoord = parameter;
+								case "openfl_TextureSize":
+									__textureSize = parameter;
 								default:
+									//nothing
 							}
 						}
 
@@ -561,11 +612,12 @@ class FlxRuntimeShader extends FlxShader
 			lastMatch = position.pos + position.len;
 		}
 	}
+	
 	/**
-	 * Modify a float parameter of the shader.
-	 * @param name The name of the parameter to modify.
-	 * @param value The new value to use.
-	 */
+	* Modify a float parameter of the shader.
+	* @param name The name of the parameter to modify.
+	* @param value The new value to use.
+	*/
 	public function setFloat(name:String, value:Float):Void
 	{
 		var prop:ShaderParameter<Float> = Reflect.field(this.data, name);
@@ -579,10 +631,10 @@ class FlxRuntimeShader extends FlxShader
 	}
 
 	/**
-	 * Modify a float array parameter of the shader.
-	 * @param name The name of the parameter to modify.
-	 * @param value The new value to use.
-	 */
+	* Modify a float array parameter of the shader.
+	* @param name The name of the parameter to modify.
+	* @param value The new value to use.
+	*/
 	public function setFloatArray(name:String, value:Array<Float>):Void
 	{
 		var prop:ShaderParameter<Float> = Reflect.field(this.data, name);
@@ -595,10 +647,10 @@ class FlxRuntimeShader extends FlxShader
 	}
 
 	/**
-	 * Modify an integer parameter of the shader.
-	 * @param name The name of the parameter to modify.
-	 * @param value The new value to use.
-	 */
+	* Modify an integer parameter of the shader.
+	* @param name The name of the parameter to modify.
+	* @param value The new value to use.
+	*/
 	public function setInt(name:String, value:Int):Void
 	{
 		var prop:ShaderParameter<Int> = Reflect.field(this.data, name);
@@ -611,10 +663,10 @@ class FlxRuntimeShader extends FlxShader
 	}
 
 	/**
-	 * Modify an integer array parameter of the shader.
-	 * @param name The name of the parameter to modify.
-	 * @param value The new value to use.
-	 */
+	* Modify an integer array parameter of the shader.
+	* @param name The name of the parameter to modify.
+	* @param value The new value to use.
+	*/
 	public function setIntArray(name:String, value:Array<Int>):Void
 	{
 		var prop:ShaderParameter<Int> = Reflect.field(this.data, name);
@@ -627,10 +679,10 @@ class FlxRuntimeShader extends FlxShader
 	}
 
 	/**
-	 * Modify a boolean parameter of the shader.
-	 * @param name The name of the parameter to modify.
-	 * @param value The new value to use.
-	 */
+	* Modify a boolean parameter of the shader.
+	* @param name The name of the parameter to modify.
+	* @param value The new value to use.
+	*/
 	public function setBool(name:String, value:Bool):Void
 	{
 		var prop:ShaderParameter<Bool> = Reflect.field(this.data, name);
@@ -643,10 +695,10 @@ class FlxRuntimeShader extends FlxShader
 	}
 
 	/**
-	 * Modify a boolean array parameter of the shader.
-	 * @param name The name of the parameter to modify.
-	 * @param value The new value to use.
-	 */
+	* Modify a boolean array parameter of the shader.
+	* @param name The name of the parameter to modify.
+	* @param value The new value to use.
+	*/
 	public function setBoolArray(name:String, value:Array<Bool>):Void
 	{
 		var prop:ShaderParameter<Bool> = Reflect.field(this.data, name);
@@ -659,14 +711,14 @@ class FlxRuntimeShader extends FlxShader
 	}
 
 	/**
-	 * Set or modify a sampler2D input of the shader.
-	 * @param name The name of the shader input to modify.
-	 * @param value The texture to use as the sampler2D input.
-	 */
+	* Set or modify a sampler2D input of the shader.
+	* @param name The name of the shader input to modify.
+	* @param value The texture to use as the sampler2D input.
+	*/
 	public function setSampler2D(name:String, value:BitmapData)
 	{
 		var prop:ShaderInput<BitmapData> = Reflect.field(this.data, name);
-		if(prop == null)
+		if (prop == null)
 		{
 			trace('[WARNING] Shader sampler2D property ${name} not found.');
 			return;
@@ -675,9 +727,9 @@ class FlxRuntimeShader extends FlxShader
 	}
 
 	/**
-	 * Retrieve a float parameter of the shader.
-	 * @param name The name of the parameter to retrieve.
-	 */
+	* Retrieve a float parameter of the shader.
+	* @param name The name of the parameter to retrieve.
+	*/
 	public function getFloat(name:String):Null<Float>
 	{
 		var prop:ShaderParameter<Float> = Reflect.field(this.data, name);
@@ -690,9 +742,9 @@ class FlxRuntimeShader extends FlxShader
 	}
 
 	/**
-	 * Retrieve a float array parameter of the shader.
-	 * @param name The name of the parameter to retrieve.
-	 */
+	* Retrieve a float array parameter of the shader.
+	* @param name The name of the parameter to retrieve.
+	*/
 	public function getFloatArray(name:String):Null<Array<Float>>
 	{
 		var prop:ShaderParameter<Float> = Reflect.field(this.data, name);
@@ -705,9 +757,9 @@ class FlxRuntimeShader extends FlxShader
 	}
 
 	/**
-	 * Retrieve an integer parameter of the shader.
-	 * @param name The name of the parameter to retrieve.
-	 */
+	* Retrieve an integer parameter of the shader.
+	* @param name The name of the parameter to retrieve.
+	*/
 	public function getInt(name:String):Null<Int>
 	{
 		var prop:ShaderParameter<Int> = Reflect.field(this.data, name);
@@ -720,9 +772,9 @@ class FlxRuntimeShader extends FlxShader
 	}
 
 	/**
-	 * Retrieve an integer array parameter of the shader.
-	 * @param name The name of the parameter to retrieve.
-	 */
+	* Retrieve an integer array parameter of the shader.
+	* @param name The name of the parameter to retrieve.
+	*/
 	public function getIntArray(name:String):Null<Array<Int>>
 	{
 		var prop:ShaderParameter<Int> = Reflect.field(this.data, name);
@@ -735,9 +787,9 @@ class FlxRuntimeShader extends FlxShader
 	}
 
 	/**
-	 * Retrieve a boolean parameter of the shader.
-	 * @param name The name of the parameter to retrieve.
-	 */
+	* Retrieve a boolean parameter of the shader.
+	* @param name The name of the parameter to retrieve.
+	*/
 	public function getBool(name:String):Null<Bool>
 	{
 		var prop:ShaderParameter<Bool> = Reflect.field(this.data, name);
@@ -750,9 +802,9 @@ class FlxRuntimeShader extends FlxShader
 	}
 
 	/**
-	 * Retrieve a boolean array parameter of the shader.
-	 * @param name The name of the parameter to retrieve.
-	 */
+	* Retrieve a boolean array parameter of the shader.
+	* @param name The name of the parameter to retrieve.
+	*/
 	public function getBoolArray(name:String):Null<Array<Bool>>
 	{
 		var prop:ShaderParameter<Bool> = Reflect.field(this.data, name);

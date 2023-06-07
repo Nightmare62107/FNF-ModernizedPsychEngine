@@ -30,6 +30,7 @@ class AttachedText extends Alphabet
 			{
 				visible = sprTracker.visible;
 			}
+			
 			if (copyAlpha)
 			{
 				alpha = sprTracker.alpha;

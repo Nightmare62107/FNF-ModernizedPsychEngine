@@ -105,14 +105,13 @@ class MasterEditorMenu extends MusicBeatState
 		}
 
 		var upP = controls.UI_UP_P;
-		var downP = controls.UI_DOWN_P;
-
 		if (upP)
 		{
 			changeSelection(-shiftMult);
 			holdTime = 0;
 		}
 
+		var downP = controls.UI_DOWN_P;
 		if (downP)
 		{
 			changeSelection(shiftMult);
@@ -155,7 +154,7 @@ class MasterEditorMenu extends MusicBeatState
 
 		if (controls.ACCEPT)
 		{
-			switch(options[curSelected])
+			switch (options[curSelected])
 			{
 				case 'Character Editor':
 					LoadingState.loadAndSwitchState(new CharacterEditorState(Character.DEFAULT_CHARACTER, false));

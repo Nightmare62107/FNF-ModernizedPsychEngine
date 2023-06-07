@@ -120,8 +120,9 @@ class AndroidControlsMenu extends MusicBeatState
 		rightArrow.x = inputvari.x + inputvari.width + 10;
 		inputvari.screenCenter(X);
 		
-		for (touch in FlxG.touches.list){		
-			if(touch.overlaps(leftArrow) && touch.justPressed)
+		for (touch in FlxG.touches.list)
+		{		
+			if (touch.overlaps(leftArrow) && touch.justPressed)
 			{
 				changeSelection(-1);
 			}
@@ -231,7 +232,8 @@ class AndroidControlsMenu extends MusicBeatState
 				{
 					bindbutton = null;
 					buttonistouched = false;
-				}else 
+				}
+				else 
 				{
 					movebutton(touch, bindbutton);
 					setbuttontexts();

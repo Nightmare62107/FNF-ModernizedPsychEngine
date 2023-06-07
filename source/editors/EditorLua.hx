@@ -54,7 +54,7 @@ class EditorLua
 
 		var result:Dynamic = LuaL.dofile(lua, script);
 		var resultStr:String = Lua.tostring(lua, result);
-		if(resultStr != null && result != 0)
+		if (resultStr != null && result != 0)
 		{
 			lime.app.Application.current.window.alert(resultStr, 'Error on .LUA script!');
 			trace('Error on .LUA script! ' + resultStr);
@@ -106,6 +106,7 @@ class EditorLua
 			}
 			return Reflect.getProperty(EditorPlayState.instance, variable);
 		});
+
 		Lua_helper.add_callback(lua, "setProperty", function(variable:String, value:Dynamic)
 		{
 			var killMe:Array<String> = variable.split('.');
@@ -121,6 +122,7 @@ class EditorLua
 			}
 			return Reflect.setProperty(EditorPlayState.instance, variable, value);
 		});
+
 		Lua_helper.add_callback(lua, "getPropertyFromGroup", function(obj:String, index:Int, variable:Dynamic)
 		{
 			if (Std.isOfType(Reflect.getProperty(EditorPlayState.instance, obj), FlxTypedGroup))
@@ -139,6 +141,7 @@ class EditorLua
 			}
 			return null;
 		});
+
 		Lua_helper.add_callback(lua, "setPropertyFromGroup", function(obj:String, index:Int, variable:Dynamic, value:Dynamic)
 		{
 			if (Std.isOfType(Reflect.getProperty(EditorPlayState.instance, obj), FlxTypedGroup))
@@ -156,6 +159,7 @@ class EditorLua
 				return Reflect.setProperty(leArray, variable, value);
 			}
 		});
+
 		Lua_helper.add_callback(lua, "removeFromGroup", function(obj:String, index:Int, dontDestroy:Bool = false)
 		{
 			if (Std.isOfType(Reflect.getProperty(EditorPlayState.instance, obj), FlxTypedGroup))
@@ -166,7 +170,7 @@ class EditorLua
 					sex.kill();
 				}
 				Reflect.getProperty(EditorPlayState.instance, obj).remove(sex, true);
-				if(!dontDestroy)
+				if (!dontDestroy)
 				{
 					sex.destroy();
 				}
@@ -194,6 +198,7 @@ class EditorLua
 				return;
 			}
 		});
+
 		Lua_helper.add_callback(lua, "scaleObject", function(obj:String, x:Float, y:Float)
 		{
 			var poop:FlxSprite = Reflect.getProperty(EditorPlayState.instance, obj);
@@ -204,6 +209,7 @@ class EditorLua
 				return;
 			}
 		});
+		
 		Lua_helper.add_callback(lua, "updateHitbox", function(obj:String)
 		{
 			var poop:FlxSprite = Reflect.getProperty(EditorPlayState.instance, obj);
@@ -238,7 +244,7 @@ class EditorLua
 		}
 
 		var result:Null<Int> = Lua.pcall(lua, args.length, 1, 0);
-		if(result != null && resultIsAllowed(lua, result))
+		if (result != null && resultIsAllowed(lua, result))
 		{
 			/*var resultStr:String = Lua.tostring(lua, result);
 			var error:String = Lua.tostring(lua, -1);
@@ -275,7 +281,7 @@ class EditorLua
 	public function set(variable:String, data:Dynamic)
 	{
 		#if LUA_ALLOWED
-		if(lua == null)
+		if (lua == null)
 		{
 			return;
 		}

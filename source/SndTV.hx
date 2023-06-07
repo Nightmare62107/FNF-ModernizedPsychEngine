@@ -12,104 +12,102 @@ enum TVVar
 class TweenV
 {
 	static var GUID = 0;
-	var uid 		= 0;
+	var uid = 0;
 	
-	var man 		: SndTV;	 
-	var parent		: Snd;
-	var n			: Float;
-	var ln			: Float;
-	var speed		: Float;
-	var from		: Float;
-	var to			: Float;
-	var type		: TType;
-	var plays		: Int; //-1 = infini, 1 et plus = nombre d'exécutions (1 par défaut)
-	var varType		: TVVar; 
-	var onUpdate	: Null<TweenV->Void>;
-	var onEnd		: Null<TweenV->Void>;
-	var isDebug		= false;
+	var man:SndTV;	 
+	var parent:Snd;
+	var n:Float;
+	var ln:Float;
+	var speed:Float;
+	var from:Float;
+	var to:Float;
+	var type:TType;
+	var plays:Int; //-1 = infini, 1 et plus = nombre d'exécutions (1 par défaut)
+	var varType:TVVar; 
+	var onUpdate:Null<TweenV->Void>;
+	var onEnd:Null<TweenV->Void>;
+	var isDebug = false;
 	
 	public inline function new
 	(
-		parent:Snd	 ,
-	    n:Float		 ,
-	    ln:Float	 ,
+		parent:Snd,
+	    n:Float,
+	    ln:Float,
 		varType:TVVar,
-	    speed:Float	 ,
-	    from:Float	 ,
-	    to:Float	 ,
-	    type:h2d.Tweenie.TType ,
-	    plays		 ,
-	    onUpdate	 ,
+	    speed:Float,
+	    from:Float,
+	    to:Float,
+	    type:h2d.Tweenie.TType,
+	    plays,
+	    onUpdate,
 	    onEnd		 
 	)
 	{
-		this.parent			= parent		;
-		this.n			    = n			 	;
-		this.ln			    = ln			;
-		this.varType 		= varType 		;
-		this.speed		    = speed			;
-		this.from		    = from			;
-		this.to			    = to			;
-		this.type		    = type		 	;
-		this.plays		    = plays		 	;
-		this.onUpdate	    = onUpdate	 	;
-		this.onEnd		    = onEnd		 	;
+		this.parent = parent;
+		this.n = n;
+		this.ln = ln;
+		this.varType = varType;
+		this.speed = speed;
+		this.from = from;
+		this.to = to;
+		this.type = type;
+		this.plays = plays;
+		this.onUpdate = onUpdate;
+		this.onEnd = onEnd;
 	}
 	
 	public inline function reset
 	(
-		parent:Snd	 ,
-	    n:Float		 ,
-	    ln:Float	 ,
+		parent:Snd,
+	    n:Float,
+	    ln:Float,
 		varType:TVVar,
-	    speed:Float	 ,
-	    from:Float	 ,
-	    to:Float	 ,
-	    type:TType	 ,
-	    plays:Int	 ,
-	    onUpdate	 ,
+	    speed:Float,
+	    from:Float,
+	    to:Float,
+	    type:TType,
+	    plays:Int,
+	    onUpdate,
 	    onEnd		 
 	)
 	{
-		this.parent			= parent		;
-		this.n			    = n			 	;
-		this.ln			    = ln			;
-		this.speed		    = speed			;
-		this.from		    = from			;
-		this.to			    = to			;
-		this.type		    = type		 	;
-		this.plays		    = plays		 	;
-		this.onUpdate	    = onUpdate	 	;
-		this.onEnd		    = onEnd		 	;
-		this.varType 		= varType 		;
-		isDebug		= false;
+		this.parent	= parent;
+		this.n = n;
+		this.ln = ln;
+		this.speed = speed;
+		this.from = from;
+		this.to	= to;
+		this.type = type;
+		this.plays = plays;
+		this.onUpdate = onUpdate;
+		this.onEnd = onEnd;
+		this.varType = varType;
+		isDebug = false;
 		uid = GUID++;
 	}
 	
 	public function clear()
 	{
-		n 			= 0.0;
-		ln			= 0.0;
-		speed 		= 0.0;
-		plays		= 0;
-		from		= 0.0;
-		to			= 0.0;
+		n = 0.0;
+		ln = 0.0;
+		speed = 0.0;
+		plays = 0;
+		from = 0.0;
+		to = 0.0;
 		parent = null;
 		onEnd = null;
 		onUpdate = null;
-		isDebug		= false;
+		isDebug = false;
 		uid = GUID++;
 	}
 	
-	
 	public 
 	inline
-	function apply( val )
+	function apply(val)
 	{
-		switch(varType)
+		switch (varType)
 		{
 			case TVVVolume:
-			{
 				parent.volume = val;
 				#if debug
 				if (isDebug)
@@ -117,7 +115,6 @@ class TweenV
 					trace("tv:" + val);
 				}
 				#end
-			}
 			case TVVPan:
 				parent.pan = val;
 		}
@@ -139,15 +136,15 @@ class TweenV
 }
 
 /**
- * tween order is not respected
- */
+* tween order is not respected
+*/
 class SndTV
 {
 	static var DEFAULT_DURATION = DateTools.seconds(1);
-	public var fps 				= 60.0;
-	public var isDebug			= false;
+	public var fps = 60.0;
+	public var isDebug = false;
 
-	var tlist					: hxd.Stack<TweenV>;
+	var tlist:hxd.Stack<TweenV>;
 
 	public function new()
 	{
@@ -194,7 +191,7 @@ class SndTV
 		#if debug
 		if (p == null)
 		{
-			trace("tween2 creation failed to:"+to+" tp:"+tp);
+			trace("tween2 creation failed to:" + to + " tp:" + tp);
 		}
 		#end
 			
@@ -203,21 +200,21 @@ class SndTV
 			tp = TEase;
 		}
 
+		//on supprime les tweens précédents appliqués à la même variable
+		for (t in tlist.backWardIterator())
 		{
-			//on supprime les tweens précédents appliqués à la même variable
-			for (t in tlist.backWardIterator())
-				if (t.parent==p && t.varType == vartype)
-				{
-					forceTerminateTween(t);
-				}
+			if (t.parent==p && t.varType == vartype)
+			{
+				forceTerminateTween(t);
+			}
 		}
 		
-		var from = switch(vartype)
+		var from = switch (vartype)
 		{
-			case TVVVolume 	: p.volume;
-			case TVVPan 	: p.pan;
+			case TVVVolume:p.volume;
+			case TVVPan:p.pan;
 		}
-		var t : TweenV;
+		var t:TweenV;
 		if (pool.length == 0)
 		{
 			t = new TweenV
@@ -255,8 +252,10 @@ class SndTV
 			
 		}
 
-		if(t.from==t.to)
+		if (t.from==t.to)
+		{
 			t.ln = 1; //tweening inutile : mais on s'assure ainsi qu'un update() et un end() seront bien appelés
+		}
 
 		t.man = this;
 		tlist.push(t);

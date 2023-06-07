@@ -103,30 +103,31 @@ class NotesSubState extends MusicBeatSubstate
 
 	override function update(elapsed:Float)
 	{
-		if(changingNote)
+		if (changingNote)
 		{
-			if(holdTime < 0.5)
+			if (holdTime < 0.5)
 			{
-				if(controls.UI_LEFT_P)
+				if (controls.UI_LEFT_P)
 				{
 					updateValue(-1);
 					FlxG.sound.play(Paths.sound('scrollMenu'));
 				}
-				else if(controls.UI_RIGHT_P)
+				else if (controls.UI_RIGHT_P)
 				{
 					updateValue(1);
 					FlxG.sound.play(Paths.sound('scrollMenu'));
 				}
-				else if(controls.RESET #if android || _virtualpad.buttonC.justPressed #end)
+				else if (controls.RESET #if android || _virtualpad.buttonC.justPressed #end)
 				{
 					resetValue(curSelected, typeSelected);
 					FlxG.sound.play(Paths.sound('scrollMenu'));
 				}
-				if(controls.UI_LEFT_R || controls.UI_RIGHT_R)
+
+				if (controls.UI_LEFT_R || controls.UI_RIGHT_R)
 				{
 					holdTime = 0;
 				}
-				else if(controls.UI_LEFT || controls.UI_RIGHT)
+				else if (controls.UI_LEFT || controls.UI_RIGHT)
 				{
 					holdTime += elapsed;
 				}
@@ -134,10 +135,12 @@ class NotesSubState extends MusicBeatSubstate
 			else
 			{
 				var add:Float = 90;
-				switch(typeSelected)
+				switch (typeSelected)
 				{
-					case 1 | 2: add = 50;
+					case 1 | 2:
+						add = 50;
 				}
+
 				if(controls.UI_LEFT)
 				{
 					updateValue(elapsed * -add);
@@ -146,6 +149,7 @@ class NotesSubState extends MusicBeatSubstate
 				{
 					updateValue(elapsed * add);
 				}
+
 				if(controls.UI_LEFT_R || controls.UI_RIGHT_R)
 				{
 					FlxG.sound.play(Paths.sound('scrollMenu'));
@@ -156,21 +160,25 @@ class NotesSubState extends MusicBeatSubstate
 		else
 		{
 			var shiftMult:Int = 1;
-			if (FlxG.keys.pressed.SHIFT) shiftMult = 1;
+			if (FlxG.keys.pressed.SHIFT)
+			{
+				shiftMult = 1;
+			}
 
 			var upP = controls.UI_UP_P;
-			var downP = controls.UI_DOWN_P;
-
 			if (upP)
 			{
 				changeSelection(-shiftMult);
 				holdTime = 0;
 			}
+
+			var downP = controls.UI_DOWN_P;
 			if (downP)
 			{
 				changeSelection(shiftMult);
 				holdTime = 0;
 			}
+
 			if (controls.UI_DOWN || controls.UI_UP)
 			{
 				var checkLastHold:Int = Math.floor((holdTime - 0.5) * 10);
@@ -182,20 +190,24 @@ class NotesSubState extends MusicBeatSubstate
 					changeSelection((checkNewHold - checkLastHold) * (controls.UI_UP ? -shiftMult : shiftMult));
 				}
 			}
+
 			if (FlxG.mouse.wheel != 0)
 			{
 				changeSelection(-shiftMult * FlxG.mouse.wheel);
 			}
+
 			if (controls.UI_LEFT_P)
 			{
 				changeType(-1);
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 			}
+
 			if (controls.UI_RIGHT_P)
 			{
 				changeType(1);
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 			}
+
 			if(controls.RESET #if android || _virtualpad.buttonC.justPressed #end)
 			{
 				for (i in 0...3)
@@ -204,6 +216,7 @@ class NotesSubState extends MusicBeatSubstate
 				}
 				FlxG.sound.play(Paths.sound('scrollMenu'));
 			}
+
 			if (controls.ACCEPT && nextAccept <= 0)
 			{
 				FlxG.sound.play(Paths.sound('scrollMenu'));
@@ -234,7 +247,7 @@ class NotesSubState extends MusicBeatSubstate
 
 		if (controls.BACK || (changingNote && controls.ACCEPT))
 		{
-			if(!changingNote)
+			if (!changingNote)
 			{
 				#if android
 				FlxTransitionableState.skipNextTransOut = true;
@@ -251,7 +264,7 @@ class NotesSubState extends MusicBeatSubstate
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 		}
 
-		if(nextAccept > 0)
+		if (nextAccept > 0)
 		{
 			nextAccept -= 1;
 		}
@@ -262,9 +275,14 @@ class NotesSubState extends MusicBeatSubstate
 	{
 		curSelected += change;
 		if (curSelected < 0)
+		{
 			curSelected = ClientPrefs.arrowHSV.length-1;
+		}
+
 		if (curSelected >= ClientPrefs.arrowHSV.length)
+		{
 			curSelected = 0;
+		}
 
 		curValue = ClientPrefs.arrowHSV[curSelected][typeSelected];
 		updateValue();
@@ -298,9 +316,14 @@ class NotesSubState extends MusicBeatSubstate
 	{
 		typeSelected += change;
 		if (typeSelected < 0)
+		{
 			typeSelected = 2;
+		}
+
 		if (typeSelected > 2)
+		{
 			typeSelected = 0;
+		}
 
 		curValue = ClientPrefs.arrowHSV[curSelected][typeSelected];
 		updateValue();
@@ -320,11 +343,14 @@ class NotesSubState extends MusicBeatSubstate
 	{
 		curValue = 0;
 		ClientPrefs.arrowHSV[selected][type] = 0;
-		switch(type)
+		switch (type)
 		{
-			case 0: shaderArray[selected].hue = 0;
-			case 1: shaderArray[selected].saturation = 0;
-			case 2: shaderArray[selected].brightness = 0;
+			case 0:
+				shaderArray[selected].hue = 0;
+			case 1:
+				shaderArray[selected].saturation = 0;
+			case 2:
+				shaderArray[selected].brightness = 0;
 		}
 
 		var item = grpNumbers.members[(selected * 3) + type];
@@ -341,26 +367,31 @@ class NotesSubState extends MusicBeatSubstate
 		curValue += change;
 		var roundedValue:Int = Math.round(curValue);
 		var max:Float = 180;
-		switch(typeSelected)
+		switch (typeSelected)
 		{
-			case 1 | 2: max = 100;
+			case 1 | 2:
+				max = 100;
 		}
 
-		if(roundedValue < -max)
+		if (roundedValue < -max)
 		{
 			curValue = -max;
-		} else if(roundedValue > max)
+		}
+		else if (roundedValue > max)
 		{
 			curValue = max;
 		}
 		roundedValue = Math.round(curValue);
 		ClientPrefs.arrowHSV[curSelected][typeSelected] = roundedValue;
 
-		switch(typeSelected)
+		switch (typeSelected)
 		{
-			case 0: shaderArray[curSelected].hue = roundedValue / 360;
-			case 1: shaderArray[curSelected].saturation = roundedValue / 100;
-			case 2: shaderArray[curSelected].brightness = roundedValue / 100;
+			case 0:
+				shaderArray[curSelected].hue = roundedValue / 360;
+			case 1:
+				shaderArray[curSelected].saturation = roundedValue / 100;
+			case 2:
+				shaderArray[curSelected].brightness = roundedValue / 100;
 		}
 
 		var item = grpNumbers.members[(curSelected * 3) + typeSelected];
@@ -370,7 +401,10 @@ class NotesSubState extends MusicBeatSubstate
 		for (letter in item.letters)
 		{
 			letter.offset.x += add;
-			if(roundedValue < 0) letter.offset.x += 10;
+			if (roundedValue < 0)
+			{
+				letter.offset.x += 10;
+			}
 		}
 	}
 }

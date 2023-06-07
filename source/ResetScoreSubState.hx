@@ -85,13 +85,17 @@ class ResetScoreSubState extends MusicBeatSubstate
 	override function update(elapsed:Float)
 	{
 		bg.alpha += elapsed * 1.5;
-		if(bg.alpha > 0.6) bg.alpha = 0.6;
+		if (bg.alpha > 0.6)
+		{
+			bg.alpha = 0.6;
+		}
 
 		for (i in 0...alphabetArray.length)
 		{
 			var spr = alphabetArray[i];
 			spr.alpha += elapsed * 2.5;
 		}
+
 		if (week == -1)
 		{
 			icon.alpha += elapsed * 2.5;
@@ -103,6 +107,7 @@ class ResetScoreSubState extends MusicBeatSubstate
 			onYes = !onYes;
 			updateOptions();
 		}
+		
 		if (controls.BACK)
 		{
 			FlxG.sound.play(Paths.sound('cancelMenu'), 1);

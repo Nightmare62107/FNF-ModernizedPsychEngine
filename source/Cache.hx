@@ -66,7 +66,6 @@ class Cache extends MusicBeatState
             cache();
         });
 
-
         super.create();
     }
 
@@ -74,7 +73,6 @@ class Cache extends MusicBeatState
 
     override function update(elapsed) 
     {
-
         if (toBeDone != 0 && done != toBeDone)
         {
             var alpha = HelperFunctions.truncateFloat(done / toBeDone * 100,2) / 100;
@@ -85,7 +83,6 @@ class Cache extends MusicBeatState
 
         super.update(elapsed);
     }
-
 
     function cache()
     {
@@ -98,7 +95,9 @@ class Cache extends MusicBeatState
         for (i in FileSystem.readDirectory(FileSystem.absolutePath("assets/shared/images/characters")))
         {
             if (!i.endsWith(".png"))
+            {
                 continue;
+            }
             images.push(i);
         }
 
@@ -131,6 +130,5 @@ class Cache extends MusicBeatState
 
         FlxG.switchState(new TitleState());
     }
-
 }
 #end

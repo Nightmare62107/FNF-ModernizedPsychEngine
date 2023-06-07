@@ -77,7 +77,9 @@ class SpriteSymbol extends Sprite
 		for (layer in data.TIMELINE.LAYERS)
 		{
 			if (layer.FrameMap != null)
+			{
 				return;
+			}
 
 			var map = new Map();
 
@@ -123,7 +125,7 @@ class SpriteSymbol extends Sprite
 		moveMovieclip_MovieClips(-1);
 	}
 
-	/** Moves all movie clips n frames, recursively. */
+	//Moves all movie clips n frames, recursively.
 	private function moveMovieclip_MovieClips(direction:Int = 1):Void
 	{
 		if (_type == SymbolType.MOVIE_CLIP)
@@ -228,7 +230,6 @@ class SpriteSymbol extends Sprite
 					newSymbol.currentFrame = firstFrame + frameAge;
 				}
 			}
-			
 		}
 
 		var numObsoleteSymbols:Int = (layer.numChildren - numElements);
@@ -298,6 +299,7 @@ class SpriteSymbol extends Sprite
 				
 	
 			}
+
 			//aditional checks for rotation
 			if (spriteData.rotated)
 			{
@@ -323,7 +325,8 @@ class SpriteSymbol extends Sprite
 		}
 	}
 	@:access(animateatlas)
-	private function setFilterData(data:FilterData):Void{
+	private function setFilterData(data:FilterData):Void
+	{
 		var blur:BlurFilter;
 		var glow:GlowFilter;
 		if (data != null)
@@ -337,23 +340,22 @@ class SpriteSymbol extends Sprite
 				//_bitmap.bitmapData.applyFilter(_bitmap.bitmapData,new Rectangle(0,0,_bitmap.bitmapData.width,_bitmap.bitmapData.height),new Point(0,0),blur);
 				//filters.push(blur);
 			}
+
 			if (data.GlowFilter != null)
 			{
-				//trace('GLOW' + data.GlowFilter);
-				//glow = new GlowFilter();
-				//glow.blurX = data.GlowFilter.blurX;
-				//glow.blurY = data.GlowFilter.blurY;
-				//glow.color = data.GlowFilter.color;
-				//glow.alpha = data.GlowFilter.alpha;
-				//glow.quality = data.GlowFilter.quality;
-				//glow.strength = data.GlowFilter.strength;
-				//glow.knockout = data.GlowFilter.knockout;
-				//glow.inner = data.GlowFilter.inner;
-				//filters.push(glow);
+				/*trace('GLOW' + data.GlowFilter);
+				glow = new GlowFilter();
+				glow.blurX = data.GlowFilter.blurX;
+				glow.blurY = data.GlowFilter.blurY;
+				glow.color = data.GlowFilter.color;
+				glow.alpha = data.GlowFilter.alpha;
+				glow.quality = data.GlowFilter.quality;
+				glow.strength = data.GlowFilter.strength;
+				glow.knockout = data.GlowFilter.knockout;
+				glow.inner = data.GlowFilter.inner;
+				filters.push(glow);*/
 			}
-
 		}
-		
 	}
 
 	private function setTransformationMatrix(data:Matrix3DData):Void

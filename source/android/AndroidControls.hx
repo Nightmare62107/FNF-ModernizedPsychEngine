@@ -20,14 +20,19 @@ class Config
 
 	public function getcontrolmode():Int
 	{
-		if (save.data.buttonsmode != null) 
+		if (save.data.buttonsmode != null)
+		{
 			return save.data.buttonsmode[0];
+		}
 		return 0;
 	}
 
 	public function setcontrolmode(mode:Int = 0):Int
 	{
-		if (save.data.buttonsmode == null) save.data.buttonsmode = new Array();
+		if (save.data.buttonsmode == null)
+		{
+			save.data.buttonsmode = new Array();
+		}
 		save.data.buttonsmode[0] = mode;
 		save.flush();
 		return save.data.buttonsmode[0];
@@ -61,6 +66,7 @@ class Config
 		{
 			return _pad;
 		}
+		
 		var tempCount:Int = 0;
 		for (buttons in _pad)
 		{

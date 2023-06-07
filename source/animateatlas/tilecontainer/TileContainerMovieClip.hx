@@ -56,6 +56,7 @@ class TileContainerMovieClip extends TileContainer
 	{
 		return symbol.getFrame(label);
 	}
+
 	public function getFramesofAnim(label:String):Int
 	{
 		var framesArray:Array<Int>;
@@ -67,7 +68,6 @@ class TileContainerMovieClip extends TileContainer
 			uncalculatedArray.push(getFrame(getFrameLabels()[i]));
 		}
 		
-	
 		uncalculatedFrames = uncalculatedArray[0]+uncalculatedArray.length;
 
 		return uncalculatedFrames;
@@ -94,10 +94,9 @@ class TileContainerMovieClip extends TileContainer
 
 	public function get_animFrames():Int
 	{
-	return symbol.get_numFrames();
+		return symbol.get_numFrames();
 	}
 	
-
 	private function get_currentFrame():Int
 	{
 		return symbol.currentFrame;

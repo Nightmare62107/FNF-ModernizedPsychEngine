@@ -94,8 +94,7 @@ class FreeplayState extends MusicBeatState
 		}
 		WeekData.loadTheFirstEnabledMod();
 
-		/*		//KIND OF BROKEN NOW AND ALSO PRETTY USELESS//
-
+		/*//KIND OF BROKEN NOW AND ALSO PRETTY USELESS//
 		var initSonglist = CoolUtil.coolTextFile(Paths.txt('freeplaySonglist'));
 		for (i in 0...initSonglist.length)
 		{
@@ -155,7 +154,10 @@ class FreeplayState extends MusicBeatState
 
 		add(scoreText);
 
-		if(curSelected >= songs.length) curSelected = 0;
+		if (curSelected >= songs.length)
+		{
+			curSelected = 0;
+		}
 		bg.color = songs[curSelected].color;
 		intendedColor = bg.color;
 
@@ -171,21 +173,19 @@ class FreeplayState extends MusicBeatState
 		var swag:Alphabet = new Alphabet(1, 0, "swag");
 
 		//JUST DOIN THIS SHIT FOR TESTING!!!
-		/* 
-			var md:String = Markdown.markdownToHtml(Assets.getText('CHANGELOG.md'));
+		/*var md:String = Markdown.markdownToHtml(Assets.getText('CHANGELOG.md'));
 
-			var texFel:TextField = new TextField();
-			texFel.width = FlxG.width;
-			texFel.height = FlxG.height;
-			//texFel.
-			texFel.htmlText = md;
+		var texFel:TextField = new TextField();
+		texFel.width = FlxG.width;
+		texFel.height = FlxG.height;
+		//texFel.
+		texFel.htmlText = md;
 
-			FlxG.stage.addChild(texFel);
+		FlxG.stage.addChild(texFel);
 
-			//scoreText.textField.htmlText = md;
+		//scoreText.textField.htmlText = md;
 
-			trace(md);
-		 */
+		trace(md);*/
 
 		var textBG:FlxSprite = new FlxSprite(0, FlxG.height - 26).makeGraphic(FlxG.width, 26, 0xFF000000);
 		textBG.alpha = 0.6;
@@ -236,7 +236,9 @@ class FreeplayState extends MusicBeatState
 	/*public function addWeek(songs:Array<String>, weekNum:Int, weekColor:Int, ?songCharacters:Array<String>)
 	{
 		if (songCharacters == null)
+		{
 			songCharacters = ['bf'];
+		}
 
 		var num:Int = 0;
 		for (song in songs)
@@ -268,6 +270,7 @@ class FreeplayState extends MusicBeatState
 		{
 			lerpScore = intendedScore;
 		}
+
 		if (Math.abs(lerpRating - intendedRating) <= 0.01)
 		{
 			lerpRating = intendedRating;
@@ -306,6 +309,7 @@ class FreeplayState extends MusicBeatState
 				changeSelection(-shiftMult);
 				holdTime = 0;
 			}
+
 			if (downP)
 			{
 				changeSelection(shiftMult);
@@ -401,11 +405,10 @@ class FreeplayState extends MusicBeatState
 			var poop:String = Highscore.formatSong(songLowercase, curDifficulty);
 			/*#if MODS_ALLOWED
 			if (!sys.FileSystem.exists(Paths.modsJson(songLowercase + '/' + poop)) && !sys.FileSystem.exists(Paths.json(songLowercase + '/' + poop)))
-			{
 			#else
 			if (!OpenFlAssets.exists(Paths.json(songLowercase + '/' + poop)))
-			{
 			#end
+			{
 				poop = songLowercase;
 				curDifficulty = 1;
 				trace('Couldnt find file');
@@ -465,6 +468,7 @@ class FreeplayState extends MusicBeatState
 		{
 			curDifficulty = CoolUtil.difficulties.length-1;
 		}
+
 		if (curDifficulty >= CoolUtil.difficulties.length)
 		{
 			curDifficulty = 0;
@@ -495,6 +499,7 @@ class FreeplayState extends MusicBeatState
 		{
 			curSelected = songs.length - 1;
 		}
+		
 		if (curSelected >= songs.length)
 		{
 			curSelected = 0;

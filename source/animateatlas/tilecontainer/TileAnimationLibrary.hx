@@ -17,9 +17,9 @@ import animateatlas.HelperEnums.SymbolType;
 import openfl.errors.ArgumentError;
 
 /**
- * Since we can extract symbols from the exported timeline and instance them separatedly, this keeps track of all symbols.
- * Also, this is a "more readable" way of understanding the AnimationData
- */
+* Since we can extract symbols from the exported timeline and instance them separatedly, this keeps track of all symbols.
+* Also, this is a "more readable" way of understanding the AnimationData
+*/
 class TileAnimationLibrary
 {
 	public var frameRate:Float;
@@ -171,19 +171,19 @@ class TileAnimationLibrary
 
 		_symbolData = new Map();
 
-		// the actual symbol dictionary
+		//the actual symbol dictionary
 		var symbols = data.SYMBOL_DICTIONARY.Symbols;
 		for (symbolData in symbols)
 		{
 			_symbolData[symbolData.SYMBOL_name] = preprocessSymbolData(symbolData);
 		}
 
-		// the main animation
+		//the main animation
 		var defaultSymbolData:SymbolData = preprocessSymbolData(data.ANIMATION);
 		_defaultSymbolName = defaultSymbolData.SYMBOL_name;
 		_symbolData.set(_defaultSymbolName, defaultSymbolData);
 
-		// a purely internal symbol for bitmaps - simplifies their handling
+		//a purely internal symbol for bitmaps - simplifies their handling
 		_symbolData.set(BITMAP_SYMBOL_NAME,
 		{
 			SYMBOL_name: BITMAP_SYMBOL_NAME,

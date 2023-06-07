@@ -71,7 +71,7 @@ class ModsMenuState extends MusicBeatState
 		WeekData.setDirectoryFromWeek();
 
 		#if desktop
-		// Updating Discord Rich Presence
+		//Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
 
@@ -110,7 +110,7 @@ class ModsMenuState extends MusicBeatState
 			}
 		}
 
-		// FIND MOD FOLDERS
+		//FIND MOD FOLDERS
 		var boolshit = true;
 		if (FileSystem.exists("modsList.txt"))
 		{
@@ -213,6 +213,7 @@ class ModsMenuState extends MusicBeatState
 			{
 				i[1] = false;
 			}
+
 			for (mod in mods)
 			{
 				if (mod.restart)
@@ -240,6 +241,7 @@ class ModsMenuState extends MusicBeatState
 			{
 				i[1] = true;
 			}
+
 			for (mod in mods)
 			{
 				if (mod.restart)
@@ -263,8 +265,7 @@ class ModsMenuState extends MusicBeatState
 		//more buttons
 		var startX:Int = 1100;
 
-		/*
-		installButton = new FlxButton(startX, 620, "Install Mod", function()
+		/*installButton = new FlxButton(startX, 620, "Install Mod", function()
 		{
 			installMod();
 		});
@@ -356,7 +357,7 @@ class ModsMenuState extends MusicBeatState
 			newMod.icon = new AttachedSprite();
 			if (loadedIcon != null)
 			{
-				newMod.icon.loadGraphic(loadedIcon, true, 150, 150);//animated icon support
+				newMod.icon.loadGraphic(loadedIcon, true, 150, 150); //animated icon support
 				var totalFrames = Math.floor(loadedIcon.width / 150) * Math.floor(loadedIcon.height / 150);
 				newMod.icon.animation.add("icon", [for (i in 0...totalFrames) i],10);
 				newMod.icon.animation.play("icon");
@@ -409,11 +410,12 @@ class ModsMenuState extends MusicBeatState
 		}
 		return arr;
 	}*/
+
 	function addToModsList(values:Array<Dynamic>)
 	{
 		for (i in 0...modsList.length)
 		{
-			if(modsList[i][0] == values[0])
+			if (modsList[i][0] == values[0])
 			{
 				//trace(modsList[i][0], values[0]);
 				return;
@@ -469,6 +471,7 @@ class ModsMenuState extends MusicBeatState
 			{
 				doRestart = mods[curSelected].restart;
 			}
+
 			if (!skipResetCheck && doRestart)
 			{
 				needaReset = true;
@@ -541,14 +544,13 @@ class ModsMenuState extends MusicBeatState
 		}
 
 		var upP = controls.UI_UP_P;
-		var downP = controls.UI_DOWN_P;
-
 		if (upP)
 		{
 			changeSelection(-shiftMult);
 			holdTime = 0;
 		}
 
+		var downP = controls.UI_DOWN_P;
 		if (downP)
 		{
 			changeSelection(shiftMult);
@@ -592,10 +594,12 @@ class ModsMenuState extends MusicBeatState
 		{
 			obj.visible = !noMods;
 		}
+
 		for (obj in visibleWhenNoMods)
 		{
 			obj.visible = noMods;
 		}
+
 		if (noMods)
 		{
 			return;
@@ -612,7 +616,7 @@ class ModsMenuState extends MusicBeatState
 		}
 
 		var newColor:Int = mods[curSelected].color;
-		if(newColor != intendedColor)
+		if (newColor != intendedColor)
 		{
 			if (colorTween != null)
 			{
@@ -642,13 +646,14 @@ class ModsMenuState extends MusicBeatState
 					descriptionTxt.text += " (This Mod will restart the game!)";
 				}
 
-				// correct layering
+				//correct layering
 				var stuffArray:Array<FlxSprite> = [/*removeButton, installButton,*/ selector, descriptionTxt, mod.alphabet, mod.icon];
 				for (obj in stuffArray)
 				{
 					remove(obj);
 					insert(members.length, obj);
 				}
+
 				for (obj in buttonsArray)
 				{
 					remove(obj);
@@ -670,6 +675,7 @@ class ModsMenuState extends MusicBeatState
 			{
 				intendedPos += 225;
 			}
+
 			if (elapsed == -1)
 			{
 				mod.alphabet.y = intendedPos;
@@ -697,8 +703,8 @@ class ModsMenuState extends MusicBeatState
 		selector.makeGraphic(1100, 450, FlxColor.BLACK);
 		selector.pixels.fillRect(new Rectangle(0, 190, selector.width, 5), 0x0);
 
-		// Why did i do this? Because i'm a lmao stupid, of course
-		// also i wanted to understand better how fillRect works so i did this shit lol???
+		//Why did i do this? Because i'm a lmao stupid, of course
+		//also i wanted to understand better how fillRect works so i did this shit lol???
 		selector.pixels.fillRect(new Rectangle(0, 0, cornerSize, cornerSize), 0x0);														 //top left
 		drawCircleCornerOnSelector(false, false);
 		selector.pixels.fillRect(new Rectangle(selector.width - cornerSize, 0, cornerSize, cornerSize), 0x0);							 //top right
@@ -803,7 +809,7 @@ class ModMetadata
 	public var name:String;
 	public var description:String;
 	public var color:FlxColor;
-	public var restart:Bool;//trust me. this is very important
+	public var restart:Bool; //trust me. this is very important
 	public var alphabet:Alphabet;
 	public var icon:AttachedSprite;
 
@@ -833,33 +839,38 @@ class ModMetadata
 				{
 					this.name = name;
 				}
+
 				if (description != null && description.length > 0)
 				{
 					this.description = description;
 				}
+
 				if (name == 'Name')
 				{
 					this.name = folder;
 				}
+
 				if (description == 'Description')
 				{
 					this.description = "No description provided.";
 				}
+
 				if (colors != null && colors.length > 2)
 				{
 					this.color = FlxColor.fromRGB(colors[0], colors[1], colors[2]);
 				}
 
 				this.restart = restart;
-				/*
-				if (stuff.name != null && stuff.name.length > 0)
+				/*if (stuff.name != null && stuff.name.length > 0)
 				{
 					this.name = stuff.name;
 				}
+				
 				if (stuff.description != null && stuff.description.length > 0)
 				{
 					this.description = stuff.description;
 				}
+
 				if (stuff.color != null && stuff.color.length > 2)
 				{
 					this.color = FlxColor.fromRGB(stuff.color[0], stuff.color[1], stuff.color[2]);

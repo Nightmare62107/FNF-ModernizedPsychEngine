@@ -138,7 +138,10 @@ class OptionsState extends MusicBeatState
 		super.update(elapsed);
 
 		var shiftMult:Int = 1;
-		if (FlxG.keys.pressed.SHIFT) shiftMult = 1;
+		if (FlxG.keys.pressed.SHIFT)
+		{
+			shiftMult = 1;
+		}
 
 		var upP = controls.UI_UP_P;
 		var downP = controls.UI_DOWN_P;
@@ -186,6 +189,7 @@ class OptionsState extends MusicBeatState
 			FlxTransitionableState.skipNextTransOut = true;
 			MusicBeatState.switchState(new android.AndroidControlsMenu());
 		}
+
 		if (_virtualpad.buttonY.justPressed)
 		{
 			removeVirtualPad();
@@ -203,9 +207,14 @@ class OptionsState extends MusicBeatState
 	{
 		curSelected += change;
 		if (curSelected < 0)
+		{
 			curSelected = options.length - 1;
+		}
+
 		if (curSelected >= options.length)
+		{
 			curSelected = 0;
+		}
 
 		var bullShit:Int = 0;
 

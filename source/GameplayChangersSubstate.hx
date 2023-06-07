@@ -130,7 +130,7 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		bg.alpha = 0.6;
 		add(bg);
 
-		// avoids lagspikes while scrolling through menus!
+		//avoids lagspikes while scrolling through menus!
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
 
@@ -197,14 +197,13 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		}
 
 		var upP = controls.UI_UP_P;
-		var downP = controls.UI_DOWN_P;
-
 		if (upP)
 		{
 			changeSelection(-shiftMult);
 			holdTime = 0;
 		}
 
+		var downP = controls.UI_DOWN_P;
 		if (downP)
 		{
 			changeSelection(shiftMult);
@@ -273,7 +272,7 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 								add = controls.UI_LEFT ? -curOption.changeValue : curOption.changeValue;
 							}
 
-							switch(curOption.type)
+							switch (curOption.type)
 							{
 								case 'int' | 'float' | 'percent':
 									holdValue = curOption.getValue() + add;
@@ -286,17 +285,15 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 										holdValue = curOption.maxValue;
 									}
 
-									switch(curOption.type)
+									switch (curOption.type)
 									{
 										case 'int':
 											holdValue = Math.round(holdValue);
 											curOption.setValue(holdValue);
-
 										case 'float' | 'percent':
 											holdValue = FlxMath.roundDecimal(holdValue, curOption.decimals);
 											curOption.setValue(holdValue);
 									}
-
 								case 'string':
 									var num:Int = curOption.curOption; //lol
 									if (controls.UI_LEFT_P)
@@ -334,7 +331,10 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 											{
 												oOption.displayFormat = "%vX";
 												oOption.maxValue = 3;
-												if(oOption.getValue() > 3) oOption.setValue(3);
+												if (oOption.getValue() > 3)
+												{
+													oOption.setValue(3);
+												}
 											}
 											updateTextFrom(oOption);
 										}
@@ -353,7 +353,6 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 							{
 								case 'int':
 									curOption.setValue(Math.round(holdValue));
-								
 								case 'float' | 'percent':
 									var blah:Float = Math.max(curOption.minValue, Math.min(curOption.maxValue, holdValue + curOption.changeValue - (holdValue % curOption.changeValue)));
 									curOption.setValue(FlxMath.roundDecimal(blah, curOption.decimals));
@@ -374,7 +373,7 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 				}
 			}
 
-			if(controls.RESET #if android || _virtualpad.buttonC.justPressed #end)
+			if (controls.RESET #if android || _virtualpad.buttonC.justPressed #end)
 			{
 				for (i in 0...optionsArray.length)
 				{
@@ -417,7 +416,10 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 	{
 		var text:String = option.displayFormat;
 		var val:Dynamic = option.getValue();
-		if(option.type == 'percent') val *= 100;
+		if (option.type == 'percent')
+		{
+			val *= 100;
+		}
 		var def:Dynamic = option.defaultValue;
 		option.text = text.replace('%v', val).replace('%d', def);
 	}
@@ -438,6 +440,7 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 		{
 			curSelected = optionsArray.length - 1;
 		}
+
 		if (curSelected >= optionsArray.length)
 		{
 			curSelected = 0;
@@ -456,6 +459,7 @@ class GameplayChangersSubstate extends MusicBeatSubstate
 				item.alpha = 1;
 			}
 		}
+
 		for (text in grpTexts)
 		{
 			text.alpha = 0.6;
@@ -484,8 +488,8 @@ class GameplayOption
 	public var onChange:Void->Void = null; //Pressed enter (on Bool type options) or pressed/held left/right (on other types)
 
 	public var type(get, default):String = 'bool'; //bool, int (or integer), float (or fl), percent, string (or str)
-	// Bool will use checkboxes
-	// Everything else will use a text
+	//Bool will use checkboxes
+	//Everything else will use a text
 
 	public var showBoyfriend:Bool = false;
 	public var scrollSpeed:Float = 50; //Only works on int/float, defines how fast it scrolls per second while holding left/right
@@ -543,7 +547,6 @@ class GameplayOption
 				{
 					curOption = num;
 				}
-	
 			case 'percent':
 				displayFormat = '%v%';
 				changeValue = 0.01;
@@ -567,6 +570,7 @@ class GameplayOption
 	{
 		return ClientPrefs.gameplaySettings.get(variable);
 	}
+
 	public function setValue(value:Dynamic)
 	{
 		ClientPrefs.gameplaySettings.set(variable, value);
@@ -585,6 +589,7 @@ class GameplayOption
 		}
 		return null;
 	}
+	
 	private function set_text(newValue:String = '')
 	{
 		if (child != null)

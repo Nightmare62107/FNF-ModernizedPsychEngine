@@ -39,6 +39,7 @@ class SpriteMovieClip extends Sprite {
 			frameElapsed -= frameDuration;
 			symbol.nextFrame();
 		}
+		
 		while (frameElapsed < -frameDuration)
 		{
 			frameElapsed += frameDuration;

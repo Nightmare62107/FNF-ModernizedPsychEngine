@@ -11,9 +11,9 @@ import openfl.display.BitmapData;
 import openfl.geom.Rectangle;
 
 /**
- * ...
- * @author 
- */
+* ...
+* @author 
+*/
 class Prompt extends MusicBeatSubstate
 {
 	var selected = 0;
@@ -43,6 +43,7 @@ class Prompt extends MusicBeatSubstate
 		{
 			op1 = option1;
 		}
+
 		if (option2 != null)
 		{
 			op2 = option2;
@@ -79,8 +80,7 @@ class Prompt extends MusicBeatSubstate
 			makeSelectorGraphic(panelbg,304,154,0xff000000);
 			//panel.makeGraphic(300, 150, 0xff999999);
 			//panel.loadGraphic(Paths.image('ui/promptbg'));
-			/*
-			buttons.frames = Paths.getSparrowAtlas('ui/prompt_buttons');
+			/*buttons.frames = Paths.getSparrowAtlas('ui/prompt_buttons');
 			buttons.animation.addByIndices('but0', 'buttons', [0], '', 0);
 			buttons.animation.addByIndices('but1', 'buttons', [1], '', 0);
 			buttons.animation.play('but0');
@@ -108,8 +108,8 @@ class Prompt extends MusicBeatSubstate
 			textshit.scrollFactor.set();
 		}
 	}
-	/*
-	override public function update(elapsed:Float):Void 
+	
+	/*override public function update(elapsed:Float):Void 
 	{
 		super.update(elapsed);
 
@@ -134,10 +134,12 @@ class Prompt extends MusicBeatSubstate
 			{
 				buttonAccept.color.brightness = 0.9;
 			}
+
 			if (selected == 1 )
 			{
 				buttonNo.color.brightness = 0.9;
 			}
+
 			if (controls.ACCEPT )
 			{
 				if (selected == 0)
@@ -153,8 +155,7 @@ class Prompt extends MusicBeatSubstate
 				close();
 			}
 		}
-	}
-	*/
+	}*/
 	
 	function makeSelectorGraphic(panel:FlxSprite,w,h,color:FlxColor)
 	{
@@ -197,5 +198,4 @@ class Prompt extends MusicBeatSubstate
 		panel.pixels.fillRect(new Rectangle((flipX ? antiX : 6), Std.int(Math.abs(antiY - 2)),  5, 1), color);
 		panel.pixels.fillRect(new Rectangle((flipX ? antiX : 8), Std.int(Math.abs(antiY - 1)),  3, 1), color);
 	}
-	
 }

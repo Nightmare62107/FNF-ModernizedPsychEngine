@@ -104,7 +104,7 @@ class WeekData
 			for (i in 0...stuff.length)
 			{
 				var splitName:Array<String> = stuff[i].trim().split('|');
-				if (splitName[1] == '0') // Disable mod
+				if (splitName[1] == '0') //Disable mod
 				{
 					disabledMods.push(splitName[0]);
 				}
@@ -176,7 +176,7 @@ class WeekData
 				for (daWeek in listOfWeeks)
 				{
 					var path:String = directory + daWeek + '.json';
-					if(sys.FileSystem.exists(path))
+					if (sys.FileSystem.exists(path))
 					{
 						addWeek(daWeek, path, directories[i], i, originalLength);
 					}
@@ -209,6 +209,7 @@ class WeekData
 					weekFile.folder = directory.substring(Paths.mods().length, directory.length-1);
 					#end
 				}
+
 				if ((PlayState.isStoryMode && !weekFile.hideStoryMode) || (!PlayState.isStoryMode && !weekFile.hideFreeplay))
 				{
 					weeksLoaded.set(weekToCheck, weekFile);
@@ -222,12 +223,12 @@ class WeekData
 	{
 		var rawJson:String = null;
 		#if MODS_ALLOWED
-		if(FileSystem.exists(path))
+		if (FileSystem.exists(path))
 		{
 			rawJson = File.getContent(path);
 		}
 		#else
-		if(OpenFlAssets.exists(path))
+		if (OpenFlAssets.exists(path))
 		{
 			rawJson = Assets.getText(path);
 		}

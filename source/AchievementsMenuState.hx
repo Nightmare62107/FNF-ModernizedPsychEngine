@@ -95,14 +95,13 @@ class AchievementsMenuState extends MusicBeatState
 		}
 
 		var upP = controls.UI_UP_P;
-		var downP = controls.UI_DOWN_P;
-
 		if (upP)
 		{
 			changeSelection(-shiftMult);
 			holdTime = 0;
 		}
 
+		var downP = controls.UI_DOWN_P;
 		if (downP)
 		{
 			changeSelection(shiftMult);
@@ -140,6 +139,7 @@ class AchievementsMenuState extends MusicBeatState
 		{
 			curSelected = options.length - 1;
 		}
+		
 		if (curSelected >= options.length)
 		{
 			curSelected = 0;

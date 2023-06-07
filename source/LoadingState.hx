@@ -24,7 +24,7 @@ class LoadingState extends MusicBeatState
 	//If you're compiling to desktop (or something that doesn't use NO_PRELOAD_ALL), search for getNextState instead
 	//I'd recommend doing it on both actually lol
 	
-	// TO DO: Make this easier
+	//TO DO: Make this easier
 	
 	var target:FlxState;
 	var stopMusic = false;
@@ -186,6 +186,7 @@ class LoadingState extends MusicBeatState
 			return new LoadingState(target, stopMusic, directory);
 		}
 		#end
+		
 		if (stopMusic && FlxG.sound.music != null)
 		{
 			FlxG.sound.music.stop();
@@ -326,7 +327,9 @@ class MultiCallback
 				}
 			}
 			else
+			{
 				log('already fired $id');
+			}
 		}
 		unfired[id] = func;
 		return func;

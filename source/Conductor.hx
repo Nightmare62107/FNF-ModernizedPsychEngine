@@ -3,9 +3,9 @@ package;
 import Song.SwagSong;
 
 /**
- * ...
- * @author
- */
+* ...
+* @author
+*/
 
 typedef BPMChangeEvent =
 {
@@ -18,14 +18,14 @@ typedef BPMChangeEvent =
 class Conductor
 {
 	public static var bpm:Float = 100;
-	public static var crochet:Float = ((60 / bpm) * 1000); // beats in milliseconds
-	public static var stepCrochet:Float = crochet / 4; // steps in milliseconds
+	public static var crochet:Float = ((60 / bpm) * 1000); //beats in milliseconds
+	public static var stepCrochet:Float = crochet / 4; //steps in milliseconds
 	public static var songPosition:Float=0;
 	public static var lastSongPos:Float;
 	public static var offset:Float = 0;
 
 	//public static var safeFrames:Int = 10;
-	public static var safeZoneOffset:Float = (ClientPrefs.safeFrames / 60) * 1000; // is calculated in create(), is safeFrames in milliseconds
+	public static var safeZoneOffset:Float = (ClientPrefs.safeFrames / 60) * 1000; //is calculated in create(), is safeFrames in milliseconds
 
 	public static var bpmChangeMap:Array<BPMChangeEvent> = [];
 
@@ -34,10 +34,10 @@ class Conductor
 		//nothing lol
 	}
 
-	public static function judgeNote(note:Note, diff:Float=0):Rating // die
+	public static function judgeNote(note:Note, diff:Float=0):Rating //die
 	{
 		var data:Array<Rating> = PlayState.instance.ratingsData; //shortening cuz fuck u
-		for(i in 0...data.length-1) //skips last window (Shit)
+		for (i in 0...data.length-1) //skips last window (Shit)
 		{
 			if (diff <= data[i].hitWindow)
 			{
@@ -82,6 +82,7 @@ class Conductor
 			bpm: bpm,
 			stepCrochet: stepCrochet
 		}
+		
 		for (i in 0...Conductor.bpmChangeMap.length)
 		{
 			if (Conductor.bpmChangeMap[i].stepTime<=step)
@@ -131,7 +132,7 @@ class Conductor
 		var totalPos:Float = 0;
 		for (i in 0...song.notes.length)
 		{
-			if(song.notes[i].changeBPM && song.notes[i].bpm != curBPM)
+			if (song.notes[i].changeBPM && song.notes[i].bpm != curBPM)
 			{
 				curBPM = song.notes[i].bpm;
 				var event:BPMChangeEvent =

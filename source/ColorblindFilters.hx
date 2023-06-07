@@ -10,10 +10,7 @@ class ColorblindFilters
     public static var filterArray:Array<BitmapFilter> = [];
 	public static var filterMap:Map<String, {filter:BitmapFilter, ?onUpdate:Void->Void}> =
 	[
-
-        /*
-            I found these values in official haxe guides :D
-        */
+        //I found these values in official haxe guides :D
 
 		"Deuteranopia" =>
 		{
@@ -59,7 +56,7 @@ class ColorblindFilters
         FlxG.game.setFilters(filterArray);
         if (ClientPrefs.colorblindMode != "None") //actually self explanatory, isn't it?
 		{
-            if (filterMap.get(ClientPrefs.colorblindMode) != null) // anticrash system
+            if (filterMap.get(ClientPrefs.colorblindMode) != null) //anticrash system
 			{
                 var thisF = filterMap.get(ClientPrefs.colorblindMode).filter;
                 if (thisF != null)

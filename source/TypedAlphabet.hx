@@ -55,7 +55,10 @@ class TypedAlphabet extends Alphabet
 				if (_curLetter >= letters.length - 1)
 				{
 					finishedText = true;
-					if(onFinish != null) onFinish();
+					if (onFinish != null)
+					{
+						onFinish();
+					}
 					_timeToUpdate = 0;
 					break;
 				}

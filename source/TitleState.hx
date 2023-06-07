@@ -50,6 +50,7 @@ typedef TitleData =
 	backgroundSprite:String,
 	bpm:Int
 }
+
 class TitleState extends MusicBeatState
 {
 	public static var muteKeys:Array<FlxKey> = [FlxKey.ZERO];
@@ -112,6 +113,7 @@ class TitleState extends MusicBeatState
 					folders.push(file);
 				}
 			}
+
 			if (folders.length > 0)
 			{
 				polymod.Polymod.init({modRoot: "mods", dirs: folders});
@@ -167,11 +169,15 @@ class TitleState extends MusicBeatState
 
 		Highscore.load();
 
-		// IGNORE THIS!!!
+		//IGNORE THIS!!!
 		titleJSON = Json.parse(Paths.getTextFromFile('images/gfDanceTitle.json'));
 
 		#if TITLE_SCREEN_EASTER_EGG
-		if (FlxG.save.data.psychDevsEasterEgg == null) FlxG.save.data.psychDevsEasterEgg = ''; //Crash prevention
+		if (FlxG.save.data.psychDevsEasterEgg == null)
+		{
+			FlxG.save.data.psychDevsEasterEgg = ''; //Crash prevention
+		}
+
 		switch (FlxG.save.data.psychDevsEasterEgg.toUpperCase())
 		{
 			case 'SHADOW':
@@ -268,14 +274,14 @@ class TitleState extends MusicBeatState
 			transIn = FlxTransitionableState.defaultTransIn;
 			transOut = FlxTransitionableState.defaultTransOut;*/
 
-			// HAD TO MODIFY SOME BACKEND SHIT
-			// IF THIS PR IS HERE IF ITS ACCEPTED UR GOOD TO GO
-			// https://github.com/HaxeFlixel/flixel-addons/pull/348
+			//HAD TO MODIFY SOME BACKEND SHIT
+			//IF THIS PR IS HERE IF ITS ACCEPTED UR GOOD TO GO
+			//https://github.com/HaxeFlixel/flixel-addons/pull/348
 
-			// var music:FlxSound = new FlxSound();
-			// music.loadStream(Paths.music('freakyMenu'));
-			// FlxG.sound.list.add(music);
-			// music.play();
+			//var music:FlxSound = new FlxSound();
+			//music.loadStream(Paths.music('freakyMenu'));
+			//FlxG.sound.list.add(music);
+			//music.play();
 
 			if(FlxG.sound.music == null)
 			{
@@ -297,9 +303,9 @@ class TitleState extends MusicBeatState
 			bg.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		}
 
-		// bg.antialiasing = ClientPrefs.globalAntialiasing;
-		// bg.setGraphicSize(Std.int(bg.width * 0.6));
-		// bg.updateHitbox();
+		//bg.antialiasing = ClientPrefs.globalAntialiasing;
+		//bg.setGraphicSize(Std.int(bg.width * 0.6));
+		//bg.updateHitbox();
 		add(bg);
 
 		logoBl = new FlxSprite(titleJSON.titlex, titleJSON.titley);
@@ -309,8 +315,8 @@ class TitleState extends MusicBeatState
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
 		logoBl.animation.play('bump');
 		logoBl.updateHitbox();
-		// logoBl.screenCenter();
-		// logoBl.color = FlxColor.BLACK;
+		//logoBl.screenCenter();
+		//logoBl.color = FlxColor.BLACK;
 
 		swagShader = new ColorSwap();
 		gfDance = new FlxSprite(titleJSON.gfx, titleJSON.gfy);
@@ -321,7 +327,7 @@ class TitleState extends MusicBeatState
 			easterEgg = ''; //html5 fix
 		}
 
-		switch(easterEgg.toUpperCase())
+		switch (easterEgg.toUpperCase())
 		{
 			#if TITLE_SCREEN_EASTER_EGG
 			case 'SHADOW':
@@ -519,7 +525,7 @@ class TitleState extends MusicBeatState
 			}
 		}
 
-		// EASTER EGG
+		//EASTER EGG
 
 		if (initialized && !transitioning && skippedIntro)
 		{
@@ -870,7 +876,6 @@ class TitleState extends MusicBeatState
 						FlxG.sound.play(Paths.sound('JingleShadow'));
 					case 'BBPANZU':
 						sound = FlxG.sound.play(Paths.sound('JingleBB'));
-
 					default: //Go back to normal ugly ass boring GF
 						remove(ngSpr);
 						remove(credGroup);

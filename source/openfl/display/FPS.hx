@@ -18,8 +18,8 @@ import openfl.system.System;
 #end
 
 /**
-	The FPS class provides an easy-to-use monitor to display
-	the current frame rate of an OpenFL project
+* The FPS class provides an easy-to-use monitor to display
+* the current frame rate of an OpenFL project
 **/
 #if !openfl_debug
 @:fileXml('tags="haxe,release"')
@@ -29,7 +29,7 @@ import openfl.system.System;
 class FPS extends TextField
 {
 	/**
-		The current frame rate, expressed using frames-per-second
+	* The current frame rate, expressed using frames-per-second
 	**/
 	public var currentFPS(default, null):Int;
 
